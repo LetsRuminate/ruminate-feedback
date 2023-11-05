@@ -1,37 +1,27 @@
-# Ruminate
+# React + TypeScript + Vite
 
-### Introduction
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Welcome to Project Ruminate!
-Ruminate is a non-profit organization operating in the US that seeks to resolve poverty and provide the access to good quality of food to as many people as possible. The primary customers for this group are usually small business owners who share the similar value in helping the society.
-</b></b>
-For more information, please check [Ruminate](https://www.letsruminate.org/)
+Currently, two official plugins are available:
 
-### Contribution
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-In this project, we are building a web application for Ruminate.<br/>
-We are building the application for desktop use as well as mobile use.<br/>
-<br/>
+## Expanding the ESLint configuration
 
-#### Front-End
+If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
 
-The Lead: John<br/>
-The Apprentices: TBA<br/>
-Tools:<br/>
-<img alt="Dynamic TypeScript Badge" src="https://img.shields.io/badge/logo-typescript-blue?logo=typescriptt&logoColor=e8f22e">
-<img alt="Dynamic React.js Badge" src="https://img.shields.io/badge/logo-react-blue?logo=react&logoColor=61DAFB">
-<img alt="Dynamic Tailwind CSS Badge" src="https://img.shields.io/badge/logo-tailwindcss-blue?logo=tailwindcss&logoColor=06B6D4"><br/>
+- Configure the top-level `parserOptions` property like this:
 
-#### Back-End
+```js
+   parserOptions: {
+    ecmaVersion: 'latest',
+    sourceType: 'module',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
+    tsconfigRootDir: __dirname,
+   },
+```
 
-The Lead: Giorgi<br/>
-The Apprentices: TBA <br/>
-Tools:<br/>
-<img alt="Firebase" src="https://img.shields.io/badge/logo-firebase-blue?logo=firebase&logoColor=ffffff"><br/>
-
-#### Deployment
-
-For test & draft:<br/>
-<img alt="Dynamic Netlify Badge" src="https://img.shields.io/badge/logo-netlify-blue?logo=netlify&logoColor=00C7B7"><br/><br/>
-For actual Deployment:<br/>
-<img alt="Dynamic Firebase Badge" src="https://img.shields.io/badge/logo-firebase-blue?logo=firebase&logoColor=00C7B7"><br/><br/>
+- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
+- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
+- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
