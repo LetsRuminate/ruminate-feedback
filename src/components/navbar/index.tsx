@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import BrandLogo from "@assets/images/brand-logo.svg";
 
 // REACT ICONS HERE
-import { CgProfile } from "react-icons/Cg";
 import { login } from "../api/firebase";
 
 export default function NavBar() {
@@ -12,7 +11,6 @@ export default function NavBar() {
         <img alt="Feedback logo" src={BrandLogo} />
       </Link>
       <div className="gap-3 flex items-center">
-        <CgProfile className="text-2xl text-white cursor-pointer" />
         <button onClick={() => login()} className="text-2xl text-white">
           Login
         </button>
