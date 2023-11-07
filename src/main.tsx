@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
+import UserContextProvider from "./contexts/UserContext.tsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
@@ -15,7 +16,11 @@ import LoginPage from "@pages/login-page/index.tsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
+    ),
     errorElement: <NotFound />,
     children: [
       { index: true, path: "/", element: <Home /> },
