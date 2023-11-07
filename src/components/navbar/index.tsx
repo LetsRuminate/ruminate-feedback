@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import BrandLogo from "@assets/images/brand-logo.svg";
 
-// REACT ICONS HERE
-import { login } from "../api/firebase";
-
 export default function NavBar() {
   return (
     <nav className="bg-brand-green w-full h-[86px] flex justify-between items-center px-10">
@@ -11,9 +8,9 @@ export default function NavBar() {
         <img alt="Feedback logo" src={BrandLogo} />
       </Link>
       <div className="gap-3 flex items-center">
-        <button onClick={() => login()} className="text-2xl text-white">
+        <Link className="text-2xl text-white" to="/login">
           Login
-        </button>
+        </Link>
       </div>
     </nav>
   );

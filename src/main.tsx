@@ -10,6 +10,7 @@ import Home from "@pages/home/index.tsx";
 import AdminDashboard from "@pages/admin/admin-dashboard/index.tsx";
 import ProducerDashboard from "@pages/producer/producer-dashboard/index.tsx";
 import EvaluatorDashboard from "@pages/evaluator/evaluator-dashboard/index.tsx";
+import LoginPage from "@pages/login-page/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const router = createBrowserRouter([
       { path: "/admin", element: <AdminDashboard /> },
       { path: "/producer", element: <ProducerDashboard /> },
       { path: "/evaluator", element: <EvaluatorDashboard /> },
+      { path: "/login", element: <LoginPage /> },
     ],
   },
 ]);
@@ -28,5 +30,5 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
 );
