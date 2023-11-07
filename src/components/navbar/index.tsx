@@ -1,20 +1,30 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { signOut } from "firebase/auth";
+import { auth } from "@components/api/firebase";
 import { UserContext } from "@contexts/UserContext";
 import BrandLogo from "@assets/images/brand-logo.svg";
 
-export default function NavBar() {
-  const getDashboardRoute = (
-    role: "admin" | "producer" | "evaluator" | null,
-  ) => {
-    if (role) {
-      return role;
-    }
-    // XXX
-    // somehow we got a user with "null" role...what should we do?
-    return "login";
-  };
+function getDashboardRoute(role: "admin" | "producer" | "evaluator" | null) {
+  if (role) {
+    return role;
+  }
+  // XXX
+  // somehow we got a user with "null" role...what should we do?
+  return "login";
+}
 
+async function signOutUser() {
+  try {
+    await signOut(auth);
+  } catch (err) {
+    // XXX
+    // Handle better
+    console.error(err);
+  }
+}
+
+export default function NavBar() {
   const user = useContext(UserContext);
 
   const navStyle =
@@ -26,13 +36,11 @@ export default function NavBar() {
         <Link to="/">
           <img alt="Feedback logo" src={BrandLogo} />
         </Link>
-        <div className="gap-3 flex items-center">
-          <Link
-            className="text-2xl text-white"
-            to={`/${getDashboardRoute(user.role)}`}
-          >
-            My Dashboard
-          </Link>
+        <div className="text-1xl text-white gap-3 flex items-center">
+          <Link to={`/${getDashboardRoute(user.role)}`}>My Dashboard</Link>
+          <button onClick={signOutUser} type="button">
+            Sign Out
+          </button>
         </div>
       </nav>
     );
@@ -43,10 +51,8 @@ export default function NavBar() {
       <Link to="/">
         <img alt="Feedback logo" src={BrandLogo} />
       </Link>
-      <div className="gap-3 flex items-center">
-        <Link className="text-2xl text-white" to="/login">
-          Login
-        </Link>
+      <div className="text-1xl text-white gap-3 flex items-center">
+        <Link to="/login">Login</Link>
       </div>
     </nav>
   );
