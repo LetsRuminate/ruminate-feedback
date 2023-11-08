@@ -7,12 +7,11 @@ interface ContextProps {
   children: React.ReactNode;
 }
 
+// XXX
+// will eventually have more info, only use what's needed now for experimenting
 interface User {
-  displayName: string | null;
-  email: string | null;
   // when user first signs up, we'll create a db entry for them with their role
   role: "admin" | "producer" | "evaluator" | null;
-  uid: string;
 }
 
 export const UserContext = createContext<User | null>(null);
@@ -25,10 +24,7 @@ export default function UserContextProvider({ children }: ContextProps) {
       if (authUser) {
         const role = await getUserRole(authUser.uid);
         setUser({
-          displayName: authUser.displayName,
-          email: authUser.email,
           role,
-          uid: authUser.uid,
         });
       } else {
         setUser(null);
