@@ -1,8 +1,11 @@
-import { useReducer } from "react";
+import { useContext, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { UserContext } from "@contexts/UserContext";
 import { auth } from "@components/api/firebase";
 import GoogleSigninButton from "@components/google-signin-button";
 
+// interfaces for reducer
 interface Action {
   type: "changeEmail" | "changePassword";
   value: string;
@@ -13,6 +16,7 @@ interface LoginInfo {
   password: string;
 }
 
+// reducer function for login email & pass
 function loginReducer(loginInfo: LoginInfo, action: Action) {
   switch (action.type) {
     case "changeEmail":
@@ -25,6 +29,34 @@ function loginReducer(loginInfo: LoginInfo, action: Action) {
 }
 
 export default function LoginPage() {
+  const user = useContext(UserContext);
+
+  // for redirecting to dashboard if a user is already signed in
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // will redirect user to correct dashboard according to their role
+    if (user) {
+      switch (user.role) {
+        case "admin":
+          navigate("/admin");
+          break;
+        case "producer":
+          navigate("/producer");
+          break;
+        case "evaluator":
+          navigate("/evaluator");
+          break;
+        default:
+          // XXX
+          // what should we do here, if for some reason user doesn't have role?
+          break;
+      }
+    }
+  });
+
+  // XXX
+  // add input validity state here too?
   const initialLoginState = {
     email: "",
     password: "",
@@ -52,6 +84,8 @@ export default function LoginPage() {
   };
 
   const login = async () => {
+    // XXX
+    // gotta validate input before attempting login
     try {
       await signInWithEmailAndPassword(
         auth,
@@ -60,7 +94,7 @@ export default function LoginPage() {
       );
     } catch (err) {
       // XXX
-      // Handle better
+      // Handle better (display to user)
       console.error(err);
     }
   };
