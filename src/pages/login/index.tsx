@@ -1,18 +1,89 @@
-import { Link } from "react-router-dom";
-import { useState } from "react";
-
+import { Link, useNavigate } from "react-router-dom";
+import { useContext, useEffect, useReducer, useState } from "react";
 import { FcGoogle } from "react-icons/fc";
+import {
+  GoogleAuthProvider,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { UserContext } from "@contexts/UserContext";
+import { auth } from "@components/api/firebase";
 import alertCircle from "@assets/images/alert-circle.svg";
 
+// interfaces for reducer
+interface Action {
+  type: "changeEmail" | "changePassword";
+  value: string;
+}
+
+interface LoginInfo {
+  email: string;
+  password: string;
+}
+
+// reducer function for login email & pass
+function loginReducer(loginInfo: LoginInfo, action: Action) {
+  switch (action.type) {
+    case "changeEmail":
+      return { ...loginInfo, email: action.value };
+    case "changePassword":
+      return { ...loginInfo, password: action.value };
+    default:
+      throw Error(`unknown action: ${action.type}`);
+  }
+}
+
 export default function Login() {
+  // get the logged in user (or lack thereof) from context provider
+  const user = useContext(UserContext);
+
+  // for redirecting to dashboard if a user is already signed in
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // will redirect user to correct dashboard according to their role
+    if (user) {
+      switch (user.role) {
+        case "admin":
+          navigate("/admin");
+          break;
+        case "producer":
+          navigate("/producer");
+          break;
+        case "evaluator":
+          navigate("/evaluator");
+          break;
+        default:
+          // XXX
+          // what should we do here, if for some reason user doesn't have role?
+          break;
+      }
+    }
+  });
+
+  const initialLoginState = {
+    email: "",
+    password: "",
+  };
+
+  const [loginInfo, dispatchLogininfo] = useReducer(
+    loginReducer,
+    initialLoginState,
+  );
+
   const [className, setClassName] = useState(
     "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full",
   );
 
   const [showError, setShowError] = useState(false);
 
-  const handleChange = () => {
+  const handleChange = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
     setShowError(false);
+    dispatchLogininfo({
+      type: "changeEmail",
+      value: target.value,
+    });
   };
 
   const handleBlur = (e: React.SyntheticEvent) => {
@@ -42,8 +113,12 @@ export default function Login() {
   );
   const [showError2, setShowError2] = useState(false);
 
-  const handleChange2 = () => {
-    setShowError2(false);
+  const handleChange2 = (e: React.SyntheticEvent) => {
+    const target = e.target as HTMLInputElement;
+    dispatchLogininfo({
+      type: "changePassword",
+      value: target.value,
+    });
   };
 
   const handleBlur2 = (e: React.SyntheticEvent) => {
@@ -59,6 +134,34 @@ export default function Login() {
         "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full",
       );
       setShowError2(false);
+    }
+  };
+
+  const loginUser = async () => {
+    // XXX
+    // gotta validate input before attempting login
+    try {
+      await signInWithEmailAndPassword(
+        auth,
+        loginInfo.email,
+        loginInfo.password,
+      );
+    } catch (err) {
+      // XXX
+      // Handle better (display to user)
+      console.error(err);
+    }
+  };
+
+  const provider = new GoogleAuthProvider();
+
+  const loginUserGoogle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (err) {
+      // XXX
+      // Handle better (display to user)
+      console.error(err);
     }
   };
 
@@ -79,6 +182,7 @@ export default function Login() {
               className={className}
               onChange={handleChange}
               onBlur={handleBlur}
+              value={loginInfo.email || ""}
             />
             {showError ? (
               <img
@@ -105,6 +209,7 @@ export default function Login() {
               className={className2}
               onChange={handleChange2}
               onBlur={handleBlur2}
+              value={loginInfo.password || ""}
             />
             {showError2 ? (
               <img
@@ -127,12 +232,18 @@ export default function Login() {
         </button>
       </section>
       <section>
-        <button className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8">
+        <button
+          onClick={loginUser}
+          className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8"
+        >
           Log in
         </button>
         <p className="text-center py-4">OR</p>
         <div className="border border-[#BE493A] w-full h-8 rounded-md mb-4">
-          <button className="gap-1 flex items-center mx-auto text-[#BE493A] text-base font-normal leading-7">
+          <button
+            onClick={loginUserGoogle}
+            className="gap-1 flex items-center mx-auto text-[#BE493A] text-base font-normal leading-7"
+          >
             <FcGoogle />
             Login with Google
           </button>
