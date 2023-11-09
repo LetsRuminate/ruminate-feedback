@@ -85,7 +85,7 @@ export default function Login() {
                 alt=""
                 // XXX
                 // hard-coded these offsets here...better solution?
-                className="absolute right-[16px] top-[22px]"
+                className="absolute right-0 -mt-8 mr-3"
                 src={alertCircle}
               />
             ) : null}
@@ -111,7 +111,7 @@ export default function Login() {
                 alt=""
                 // XXX
                 // hard-coded these offsets here...better solution?
-                className="absolute right-[16px] top-[48px]"
+                className="absolute right-0 -mt-8 mr-3"
                 src={alertCircle}
               />
             ) : null}
