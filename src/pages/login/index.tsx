@@ -1,22 +1,8 @@
-import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-
-  //   function validateEmail() {
-  //     const re: RegExp =
-  //       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-  //      if (email === "") {
-  //        className = "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base font-semibold leading-6 border border-[#E46D64] w-full";
-  //      } else if (re.test(String(email).toLowerCase())) {
-  //        className = "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-[#6D778C] text-base font-semibold leading-6 border border-[#888D95] w-full";
-  //      } else {
-  //         className = "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base font-semibold leading-6 border border-[#E46D64] w-full";
-  //      }
-  //    }
+  const input: string = "";
 
   return (
     <div className="py-[142px] w-[316px] mx-auto">
@@ -28,25 +14,17 @@ export default function Login() {
           <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
             Email
           </p>
-          {email ? (
-            <div className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg border border-[#E46D64] w-full">
-              <input
-                value={email}
-                className="text-base font-semibold leading-6"
-              />
-              <p className="text-[#E46D64] -mt-6">Email</p>
-            </div>
-          ) : (
-            <input
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-                //   validateEmail();
-              }}
-              placeholder="Email"
-              className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-[#6D778C] text-base font-semibold leading-6 border border-[#888D95] w-full"
-            />
-          )}
+          <input
+            type="text"
+            placeholder="Email"
+            style={{
+              color:
+                input && input.includes("@")
+                  ? " text-[#6D778C] border-[#888D95]"
+                  : " border-[#E46D64] text-[#E46D64]",
+            }}
+            className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base font-semibold leading-6 border w-full"
+          />
           <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
             Password
           </p>
