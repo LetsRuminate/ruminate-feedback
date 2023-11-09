@@ -17,17 +17,19 @@ We are building the application for desktop use as well as mobile use.<br/>
 
 The Lead: John<br/>
 The Apprentices: TBA<br/>
-Tools:<br/>
-<img alt="Dynamic TypeScript Badge" src="https://img.shields.io/badge/logo-typescript-blue?logo=typescriptt&logoColor=e8f22e">
-<img alt="Dynamic React.js Badge" src="https://img.shields.io/badge/logo-react-blue?logo=react&logoColor=61DAFB">
-<img alt="Dynamic Tailwind CSS Badge" src="https://img.shields.io/badge/logo-tailwindcss-blue?logo=tailwindcss&logoColor=06B6D4"><br/>
 
 #### Back-End
 
-The Lead: TBA<br/>
+The Lead: Sean<br/>
 The Apprentices: Giorgi <br/>
 Tools:<br/>
 <img alt="Firebase" src="https://img.shields.io/badge/logo-firebase-blue?logo=firebase&logoColor=ffffff"><br/>
+
+#### Tech Stack in Common
+
+<img alt="Dynamic TypeScript Badge" src="https://img.shields.io/badge/logo-typescript-blue?logo=typescriptt&logoColor=e8f22e">
+<img alt="Dynamic React.js Badge" src="https://img.shields.io/badge/logo-react-blue?logo=react&logoColor=61DAFB">
+<img alt="Dynamic Tailwind CSS Badge" src="https://img.shields.io/badge/logo-tailwindcss-blue?logo=tailwindcss&logoColor=06B6D4"><br/>
 
 #### Deployment
 
