@@ -1,8 +1,64 @@
-import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
+import { FcGoogle } from "react-icons/fc";
+// import { BiErrorCircle } from "react-icons/bi";
 
 export default function Login() {
-  const input: string = "";
+  const [className, setClassName] = useState(
+    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
+  );
+
+  const [showError, setShowError] = useState(false);
+
+  const handleChange = (e) => {
+    setShowError(false);
+  };
+
+  const handleBlur = (e) => {
+    const input = e.target.value;
+    if (!input || !isValidEmail(input)) {
+      setClassName(
+        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full"
+      );
+      setShowError(true);
+    } else {
+      setClassName(
+        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
+      );
+      setShowError(false);
+    }
+  };
+
+  function isValidEmail(email: string) {
+    const re =
+      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+  }
+
+  const [className2, setClassName2] = useState(
+    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
+  );
+  const [showError2, setShowError2] = useState(false);
+
+  const handleChange2 = (e) => {
+    setShowError2(false);
+  };
+
+  const handleBlur2 = (e) => {
+    const input = e.target.value;
+    if (!input) {
+      setClassName2(
+        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full"
+      );
+      setShowError2(true);
+    } else {
+      setClassName2(
+        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
+      );
+      setShowError2(false);
+    }
+  };
 
   return (
     <div className="py-[142px] w-[316px] mx-auto">
@@ -14,27 +70,47 @@ export default function Login() {
           <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
             Email
           </p>
-          {input && input.includes("@") ? (
+          <div>
             <input
               type="text"
+              // placeholder={
+              //   showError ? (
+              //     <>
+              //       <span className="#E46D64">Email</span>
+              //       <BiErrorCircle className="#E46D64" />
+              //     </>
+              //   ) : (
+              //     "Email"
+              //   )
+              // }
               placeholder="Email"
-              className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
+              className={className}
+              onChange={handleChange}
+              onBlur={handleBlur}
             />
-          ) : (
+            {showError && (
+              <p className="text-[#CC4B3B] text-xs font-Manrope font-normal leading-5">
+                Email is required
+              </p>
+            )}
+          </div>
+          <div>
+            <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
+              Password
+            </p>
             <input
-              type="text"
-              placeholder="Email"
-              className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full"
+              type="password"
+              placeholder="Password"
+              className={className2}
+              onChange={handleChange2}
+              onBlur={handleBlur2}
             />
-          )}
-          <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
-            Password
-          </p>
-          <input
-            type="text"
-            placeholder="Password"
-            className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-[#6D778C] text-base font-semibold leading-6 border border-[#888D95] w-full"
-          />
+            {showError2 && (
+              <p className="text-[#CC4B3B] text-xs font-Manrope font-normal leading-5">
+                Password is required
+              </p>
+            )}
+          </div>
         </form>
         <button className="text-[#3E5BD1] text-xs underline font-normal leading-7 pb-4">
           Forgot my password
