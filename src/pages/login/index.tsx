@@ -127,9 +127,11 @@ export default function Login() {
         </button>
       </section>
       <section>
-        <button className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8">
-          Log in
-        </button>
+        <Link to="/welcome">
+          <button className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8">
+            Log in
+          </button>
+        </Link>
         <p className="text-center py-4">OR</p>
         <div className="border border-[#BE493A] w-full h-8 rounded-md mb-4">
           <button className="gap-1 flex items-center mx-auto text-[#BE493A] text-base font-normal leading-7">
