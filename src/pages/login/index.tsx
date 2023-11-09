@@ -14,17 +14,19 @@ export default function Login() {
           <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
             Email
           </p>
-          <input
-            type="text"
-            placeholder="Email"
-            style={{
-              color:
-                input && input.includes("@")
-                  ? " text-[#6D778C] border-[#888D95]"
-                  : " border-[#E46D64] text-[#E46D64]",
-            }}
-            className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base font-semibold leading-6 border w-full"
-          />
+          {input && input.includes("@") ? (
+            <input
+              type="text"
+              placeholder="Email"
+              className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
+            />
+          ) : (
+            <input
+              type="text"
+              placeholder="Email"
+              className="mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full"
+            />
+          )}
           <p className="text-[#344054] text-sm font-medium leading-5 mb-2">
             Password
           </p>
