@@ -1,7 +1,9 @@
 import {
   GoogleAuthProvider,
+  // browserSessionPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  // setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
