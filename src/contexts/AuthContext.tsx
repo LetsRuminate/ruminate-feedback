@@ -1,9 +1,7 @@
 import {
   GoogleAuthProvider,
-  browserSessionPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -74,7 +72,7 @@ export const AuthContextProvider = ({
     }
   }
   const [AuthState, AuthDispatch] = useReducer(AuthReducer, initialState)
-  //  after page reload we are getting user infomration from session and updating the global state of AuthState.userInfo with it
+  //  after page reload we are getting user information from session and updating the global state of AuthState.userInfo with it
   useEffect(() => {
     onAuthStateChanged(auth, (currentUser) => {
       AuthDispatch({ type: 'SET_USER', payload: currentUser })
@@ -91,7 +89,7 @@ export const AuthContextProvider = ({
     try {
       const user = await signInWithPopup(auth, provider)
       AuthDispatch({ type: 'SET_USER', payload: user.user })
-      setSuccess('User Has Been Authenitcated')
+      setSuccess('User Has Been Authenticated')
       console.log(user)
     } catch (error) {
       const err: any = error
