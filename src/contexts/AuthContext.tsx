@@ -1,9 +1,9 @@
 import {
   GoogleAuthProvider,
-  // browserSessionPersistence,
+  browserSessionPersistence,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
-  // setPersistence,
+  setPersistence,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -11,6 +11,10 @@ import {
 import { createContext, useContext, useEffect, useReducer } from 'react'
 import { auth } from '../components/api/firebase/index'
 import useStatusMessages from '../hooks/StatusHook'
+
+browserSessionPersistence
+setPersistence
+
 type TestState = {
   email: string
   password: string
