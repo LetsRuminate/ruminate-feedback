@@ -69,14 +69,7 @@ export default function NavBar() {
               </button>
             </Link>
           </div>
-          <button className="text-[#0F7B41] shrink-0 w-[200px] h-11 rounded-2xl bg-white">
-            GET STARTED
-          </button>
-          {/* <div className="gap-3 flex items-center">
-          <button onClick={() => login()} className="text-2xl text-white">
-            Login
-          </button>
-        </div> */}
+          <div></div>
         </nav>
       </>
     );
@@ -115,11 +108,6 @@ export default function NavBar() {
         <button className="text-[#0F7B41] shrink-0 w-[200px] h-11 rounded-2xl bg-white">
           GET STARTED
         </button>
-        {/* <div className="gap-3 flex items-center">
-          <button onClick={() => login()} className="text-2xl text-white">
-            Login
-          </button>
-        </div> */}
       </nav>
     </>
   );

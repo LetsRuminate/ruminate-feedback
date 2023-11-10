@@ -62,14 +62,14 @@ export default function LoginPage() {
     password: "",
   };
 
-  const [loginInfo, dispatchLogininfo] = useReducer(
+  const [loginInfo, dispatchLoginInfo] = useReducer(
     loginReducer,
     initialLoginState,
   );
 
   const changeLoginEmail = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
-    dispatchLogininfo({
+    dispatchLoginInfo({
       type: "changeEmail",
       value: target.value,
     });
@@ -77,7 +77,7 @@ export default function LoginPage() {
 
   const changeLoginPassword = (event: React.SyntheticEvent) => {
     const target = event.target as HTMLInputElement;
-    dispatchLogininfo({
+    dispatchLoginInfo({
       type: "changePassword",
       value: target.value,
     });

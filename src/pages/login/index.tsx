@@ -66,7 +66,7 @@ export default function Login() {
     password: "",
   };
 
-  const [loginInfo, dispatchLogininfo] = useReducer(
+  const [loginInfo, dispatchLoginInfo] = useReducer(
     loginReducer,
     initialLoginState,
   );
@@ -80,7 +80,7 @@ export default function Login() {
   const handleChange = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setShowError(false);
-    dispatchLogininfo({
+    dispatchLoginInfo({
       type: "changeEmail",
       value: target.value,
     });
@@ -115,7 +115,7 @@ export default function Login() {
 
   const handleChange2 = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
-    dispatchLogininfo({
+    dispatchLoginInfo({
       type: "changePassword",
       value: target.value,
     });
@@ -152,6 +152,12 @@ export default function Login() {
       console.error(err);
     }
   };
+
+  document.addEventListener("keypress", function(event) {
+    if (event.key === "Enter") { 
+      loginUser(); 
+    }
+  });
 
   const provider = new GoogleAuthProvider();
 
