@@ -10,6 +10,11 @@ import { createContext, useContext, useEffect, useReducer } from 'react'
 import { auth } from '../components/api/firebase/index'
 import useStatusMessages from '../hooks/StatusHook'
 
+type PersistenceString = "local" | "session" | "none";
+
+const browserSessionPersistence: PersistenceString = "local";
+console.log(browserSessionPersistence);
+
 type TestState = {
   email: string
   password: string
