@@ -153,12 +153,6 @@ export default function Login() {
     }
   };
 
-  document.addEventListener("keypress", function (event) {
-    if (event.key === "Enter") {
-      loginUser();
-    }
-  });
-
   const provider = new GoogleAuthProvider();
 
   const loginUserGoogle = async () => {
@@ -241,6 +235,7 @@ export default function Login() {
         <button
           onClick={loginUser}
           className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8"
+          type="button"
         >
           Log in
         </button>
@@ -249,6 +244,7 @@ export default function Login() {
           <button
             onClick={loginUserGoogle}
             className="gap-1 flex items-center mx-auto text-[#BE493A] text-base font-normal leading-7"
+            type="button"
           >
             <FcGoogle />
             Login with Google
