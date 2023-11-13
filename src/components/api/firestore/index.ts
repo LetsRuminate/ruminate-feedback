@@ -1,19 +1,22 @@
 import { db } from "../firebase";
 import { doc, getDoc } from "firebase/firestore";
 
-export default async function getUserRole(
+import { Admin, Evaluator, Producer } from "src/types/users";
+
+export default async function getUserInfo(
   uid: string,
-): Promise<"admin" | "producer" | "evaluator" | null> {
+): Promise<Admin | Evaluator | Producer | null> {
   const docRef = doc(db, "users", uid);
   const docSnap = await getDoc(docRef);
   if (docSnap.exists()) {
+    // need to cast to the correct user interface from firestore's DocumentData
     switch (docSnap.data().role) {
       case "admin":
-        return "admin";
-      case "producer":
-        return "producer";
+        return docSnap.data() as Admin;
       case "evaluator":
-        return "evaluator";
+        return docSnap.data() as Evaluator;
+      case "producer":
+        return docSnap.data() as Producer;
       default:
         return null;
     }
