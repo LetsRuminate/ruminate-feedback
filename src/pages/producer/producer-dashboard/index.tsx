@@ -5,7 +5,7 @@ import { UserContext } from "@contexts/UserContext";
 import { Producer } from "src/types/users";
 
 function checkProducer(user: Producer | unknown): user is Producer {
-  return (user as Producer).info.adminConfirmed !== undefined;
+  return (user as Producer).role === "producer";
 }
 
 export default function ProducerDashboard() {
@@ -25,7 +25,9 @@ export default function ProducerDashboard() {
         <>
           <p>{user.info.address.street}</p>
           <p>{`${user.info.address.city}, ${user.info.address.state}`}</p>
-          {user.info.address.unit ? <p>{user.info.address.unit}</p> : null}
+          {user.info.address.unit ? (
+            <p>{`unit ${user.info.address.unit}`}</p>
+          ) : null}
           <p>{user.info.address.zip}</p>
         </>
       );
