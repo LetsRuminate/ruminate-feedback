@@ -1,14 +1,63 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html", 
+    "./src/**/*.{js,ts,jsx,tsx}"
+    // 
+  ],
   theme: {
     extend: {
       colors: {
-        "brand-black": "#1f271b",
-        "brand-blue": "#02819e",
-        "brand-brown": "#38342a",
-        "brand-green": "#0f7b41",
-        "brand-yellow": "#ffba49",
+        primary: {
+          "B500": "#023047",
+          "B400": "#116996",
+        },
+        secondary: {
+          "B450": "#005179",
+        },
+        neutral: {
+          "N150": "#BFBFBF",
+        },
+      },
+      typography: {
+        title: {
+          primary: {
+            "p-h2": { 
+              name: 'H2/Primary',
+              fontFamily: 'Manrope',
+              fontWeight: 700,
+              fontSize: '48px',
+             },
+            "p-h3": {
+              name: "H3/Primary",
+              fontFamily: "Manrope",
+              fontWeight: 700,
+              fontSize: "24px",
+            },
+            "p-h4": {
+              name: "H4/Primary",
+              fontFamily: "Manrope",
+              fontWeight: 700,
+              fontSize: "20px",
+            },
+            "p-h6": {
+              name: "H6/Primary",
+              fontFamily: "Manrope",
+              fontWeight: 700,
+              fontSize: "16px",
+            }
+          },
+        },
+        body: {
+          primary: {
+            "p-b2": {
+              name: "B2/Primary",
+              fontFamily: "Manrope",
+              fontWeight: 400,
+              fontSize: "16px",
+            }
+          }
+        }
       },
     },
   },
