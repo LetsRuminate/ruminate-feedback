@@ -36,14 +36,14 @@ export default function ProducerDashboard() {
   };
 
   const displayAdminConfirmation = () => {
-    if (user && checkProducer(user) && user.info.adminConfirmed) {
+    if (user && checkProducer(user) && user.adminConfirmed) {
       return <p className="bg-green-500 p-1">Admin confirmed</p>;
     }
     return <p className="bg-orange-400 p-1">Awaiting admin confirmation</p>;
   };
 
   const displayApprovalStatus = () => {
-    if (user && user.approved) {
+    if (user && checkProducer(user) && user.approved) {
       return <p className="bg-green-500 p-1">Approved</p>;
     }
     return <p className="bg-rose-500 p-1">Not approved</p>;

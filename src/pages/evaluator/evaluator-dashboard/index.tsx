@@ -19,7 +19,7 @@ export default function EvaluatorDashboard() {
   }, [navigate, user]);
 
   const displayApprovalStatus = () => {
-    if (user && user.approved) {
+    if (user && checkEvaluator(user) && user.approved) {
       return <p className="bg-green-500 p-1">Approved</p>;
     }
     return <p className="bg-rose-500 p-1">Not approved</p>;
