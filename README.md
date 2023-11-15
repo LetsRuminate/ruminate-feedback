@@ -16,7 +16,7 @@ We are building the application for desktop use as well as mobile use.<br/>
 #### Front-End
 
 The Lead: John<br/>
-The Apprentices: TBA<br/>
+The Apprentices: Amy & Gian<br/>
 
 #### Back-End
 
