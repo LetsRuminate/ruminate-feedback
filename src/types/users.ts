@@ -14,7 +14,6 @@ interface UserInfo {
 
   // null if no product yet, ids of product documents if so
   products: null | string[];
-
   signupDate: Date;
   lastLogin: Date;
 }
