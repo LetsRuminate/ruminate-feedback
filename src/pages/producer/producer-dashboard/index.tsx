@@ -5,9 +5,13 @@ import { UserContext } from "@contexts/UserContext";
 import { Producer } from "src/types/users";
 
 function checkProducer(user: Producer | unknown): user is Producer {
-  return (user as Producer).info.adminConfirmed !== undefined;
+  return (user as Producer).role === "producer";
 }
 
+// XXX
+// this is a mock-up, ad-hoc dashboard just for experimenting with
+// database interactions - not for realsies. this will all change, as
+// front-end create dashboards from mid-fi designs
 export default function ProducerDashboard() {
   const user = useContext(UserContext);
 
@@ -25,7 +29,9 @@ export default function ProducerDashboard() {
         <>
           <p>{user.info.address.street}</p>
           <p>{`${user.info.address.city}, ${user.info.address.state}`}</p>
-          {user.info.address.unit ? <p>{user.info.address.unit}</p> : null}
+          {user.info.address.unit ? (
+            <p>{`unit ${user.info.address.unit}`}</p>
+          ) : null}
           <p>{user.info.address.zip}</p>
         </>
       );
@@ -34,14 +40,14 @@ export default function ProducerDashboard() {
   };
 
   const displayAdminConfirmation = () => {
-    if (user && checkProducer(user) && user.info.adminConfirmed) {
+    if (user && checkProducer(user) && user.adminConfirmed) {
       return <p className="bg-green-500 p-1">Admin confirmed</p>;
     }
     return <p className="bg-orange-400 p-1">Awaiting admin confirmation</p>;
   };
 
   const displayApprovalStatus = () => {
-    if (user && user.approved) {
+    if (user && checkProducer(user) && user.approved) {
       return <p className="bg-green-500 p-1">Approved</p>;
     }
     return <p className="bg-rose-500 p-1">Not approved</p>;
