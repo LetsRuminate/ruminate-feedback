@@ -8,6 +8,10 @@ function checkProducer(user: Producer | unknown): user is Producer {
   return (user as Producer).role === "producer";
 }
 
+// XXX
+// this is a mock-up, ad-hoc dashboard just for experimenting with
+// database interactions - not for realsies. this will all change, as
+// front-end create dashboards from mid-fi designs
 export default function ProducerDashboard() {
   const user = useContext(UserContext);
 

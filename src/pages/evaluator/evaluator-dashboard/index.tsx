@@ -7,6 +7,10 @@ function checkEvaluator(user: Evaluator | unknown): user is Evaluator {
   return (user as Evaluator).role === "evaluator";
 }
 
+// XXX
+// this is a mock-up, ad-hoc dashboard just for experimenting with
+// database interactions - not for realsies. this will all change, as
+// front-end create dashboards from mid-fi designs
 export default function EvaluatorDashboard() {
   const user = useContext(UserContext);
 
