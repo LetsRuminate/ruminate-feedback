@@ -7,6 +7,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        manrope: ["manrope", "sans-serif"],
+        anton: ['anton', "sans-serif"],
+      },
       colors: {
         primary: {
           "B500": "#023047",
@@ -61,8 +65,5 @@ export default {
       },
     },
   },
-  fontFamily: {
-    manrope: ["manrope", "sans-serif"],
-    anton: ['anton', "sans-serif"],
-  }
+  
 };
