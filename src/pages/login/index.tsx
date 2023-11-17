@@ -8,7 +8,7 @@ import {
 } from "firebase/auth";
 import { UserContext } from "@contexts/UserContext";
 import { auth } from "@components/api/firebase";
-import alertCircle from "@assets/images/alert-circle.svg";
+import alertCircle from "@assets/alert-circle.svg";
 
 // interfaces for reducer
 interface Action {
