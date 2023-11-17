@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "@components/api/firebase";
 import { UserContext } from "@contexts/UserContext";
-import BrandLogo from "@assets/brand-logo.svg";
+import BrandLogo from "@assets/brand/brand-logo.svg";
 
 function getDashboardRoute(role: "admin" | "producer" | "evaluator" | null) {
   if (role) {
@@ -79,7 +79,7 @@ export default function NavBar() {
     <>
       <div className="bg-black w-full h-10 text-right px-[73px] pt-2 pb-1 relative z-[11]">
         <Link to="/login">
-          <button className="text-white text-xl font-Manrope font-semibold">
+          <button className="text-white text-xl font-manrope font-normal">
             Login
           </button>
         </Link>
@@ -90,22 +90,22 @@ export default function NavBar() {
         </Link>
         <div className="flex items-center gap-14">
           <Link to="/about-us">
-            <button className="text-white text-xl font-semibold font-Manrope">
+            <button className="text-white text-xl font-manrope font-normal">
               About us
             </button>
           </Link>
           <Link to="/how-it-works">
-            <button className="text-white text-xl font-semibold font-Manrope">
+            <button className="text-white text-xl font-manrope font-normal">
               How it works
             </button>
           </Link>
           <Link to="/pricing">
-            <button className="text-white text-xl font-semibold font-Manrope">
+            <button className="text-white text-xl font-manrope font-normal">
               Pricing
             </button>
           </Link>
         </div>
-        <button className="text-[#0F7B41] shrink-0 w-[200px] h-11 rounded-2xl bg-white">
+        <button className="text-[#0F7B41] shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
           GET STARTED
         </button>
       </nav>
