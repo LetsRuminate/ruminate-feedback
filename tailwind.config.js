@@ -61,8 +61,8 @@ export default {
       },
     },
   },
-  plugins: [],
-  fonts: {
-    manrope: ["Manrope", "sans-serif"],
-  },
+  fontFamily: {
+    manrope: ["manrope", "sans-serif"],
+    anton: ['anton', "sans-serif"],
+  }
 };
