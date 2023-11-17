@@ -7,6 +7,7 @@ import Sandwich from '@assets/banner/sandwich/sandwich.svg'
 // === ESSENTIAL QUESTION ===
 import RedCircle2 from '@assets/feedback-section/red-circle/red-circle2.svg'
 import RedWave from '@assets/feedback-section/red-wave/red-wave.svg'
+import RedUnderline from '@assets/banner/red-underline/red-underline.svg'
 // === NO MORE ECHO ===
 import BigStar from '@assets/feedback-section/echo/echo-stars/big-echostar.svg'
 import SmallStar from '@assets/feedback-section/echo/echo-stars/small-echostar.svg'
@@ -27,7 +28,10 @@ export default function Home() {
         <h1 className="text-white text-7xl font-anton font-normal mb-4">
           Making Good Food Better
         </h1>
+        <div className='flex'>
         <img src={RedCircle} alt='Red Circle' width={233} className=' h-36 ml-48 -mt-32'/>
+        <img src={RedUnderline} alt="Red Underline" width={169} className='ml-28 -mt-4 mb-5'/>
+        </div>
         <h2 className="text-[#BDF0FF] text-4xl font-anton font-normal mb-8">
           THINK LIKE A SCIENTIST. ORGANIZE LIKE AN ACTIVIST.<br/>
           MAKE SMALL BUSINESS THRIVE.
