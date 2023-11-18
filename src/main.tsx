@@ -17,6 +17,7 @@ import Price from "@pages/pricing/index.tsx";
 import AdminDashboard from "@pages/admin/admin-dashboard/index.tsx";
 import ProducerDashboard from "@pages/producer/producer-dashboard/index.tsx";
 import EvaluatorDashboard from "@pages/evaluator/evaluator-dashboard/index.tsx";
+import ProducerRegistration from "@pages/producer/sign-up-form/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,7 @@ const router = createBrowserRouter([
       { path: "/admin", element: <AdminDashboard /> },
       { path: "/producer", element: <ProducerDashboard /> },
       { path: "/evaluator", element: <EvaluatorDashboard /> },
+      { path: '/producer-registration', element: <ProducerRegistration/>}
     ],
   },
 ]);
