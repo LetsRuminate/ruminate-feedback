@@ -34,10 +34,8 @@ export default function NavBar() {
       <>
         <div className="flex justify-end bg-black w-full h-10 text-right px-[73px] pt-2 pb-1">
           <div className="flex gap-6">
-            <Link to={`/${getDashboardRoute(user.role)}`}>
-              <button className="text-white text-xl font-Manrope font-semibold">
-                My Dashboard
-              </button>
+            <Link to={`/${getDashboardRoute(user.role)}`} className="text-white text-xl font-Manrope font-semibold">
+              {/* <Profile user={user}/> */} My Dashboard
             </Link>
             <button
               className="text-white text-xl font-Manropoe font-semibold"
@@ -106,7 +104,9 @@ export default function NavBar() {
           </Link>
         </div>
         <button className="text-[#0F7B41] shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
+          <Link to='/producer-registration'>
           GET STARTED
+          </Link>
         </button>
       </nav>
     </>
