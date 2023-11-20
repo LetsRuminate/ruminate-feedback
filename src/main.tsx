@@ -17,8 +17,10 @@ import Price from "@pages/pricing/index.tsx";
 import AdminDashboard from "@pages/admin/admin-dashboard/index.tsx";
 import ProducerDashboard from "@pages/producer/producer-dashboard/index.tsx";
 import EvaluatorDashboard from "@pages/evaluator/evaluator-dashboard/index.tsx";
-import ProducerRegistration from "@pages/producer/sign-up-form/index.tsx";
+// ===== Registration for Producer =====
 import Registration from "@pages/registration/index.tsx";
+import ProducerInitial from "@pages/producer/sign-up-form/index.tsx";
+import ProducerPage1 from "@pages/producer/sign-up-form/page-1/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -38,8 +40,10 @@ const router = createBrowserRouter([
       { path: "/admin", element: <AdminDashboard /> },
       { path: "/producer", element: <ProducerDashboard /> },
       { path: "/evaluator", element: <EvaluatorDashboard /> },
+      // Registration
       { path: '/registration', element: <Registration/>},
-      { path: '/producer-registration', element: <ProducerRegistration/>}
+      { path: '/producer-registration', element: <ProducerInitial/>},
+      { path: '/producer-page-1', element: <ProducerPage1/>}
     ],
   },
 ]);
