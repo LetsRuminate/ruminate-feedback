@@ -58,7 +58,7 @@ export default function ProducerDashboard() {
 
   const displayBusinessInfo = () => {
     return (
-      <div className="bg-neutral-100 text-black p-1">
+      <div className="bg-neutral-100 p-1">
         <p>
           {user && checkProducer(user) && user.info.businessName
             ? user.info.businessName
@@ -101,7 +101,7 @@ export default function ProducerDashboard() {
   const displayProducts = () => {
     if (user && checkProducer(user)) {
       return (
-        <div className="bg-neutral-100 text-brand-black p-1">
+        <div className="bg-neutral-100 p-1">
           <h2>Products:</h2>
           {userProducts ? (
             userProducts.map((product) => {
@@ -119,7 +119,7 @@ export default function ProducerDashboard() {
   };
 
   return (
-    <div className="bg-blue-300 text-neutral-50 p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
