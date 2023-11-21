@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import UserContextProvider from "./contexts/UserContext.tsx";
+import ProductsContextProvider from "@contexts/ProductsContext.tsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
@@ -52,7 +53,14 @@ const router = createBrowserRouter([
       { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/pricing", element: <Price /> },
       { path: "/admin", element: <AdminDashboard /> },
-      { path: "/producer", element: <ProducerDashboard /> },
+      {
+        path: "/producer",
+        element: (
+          <ProductsContextProvider>
+            <ProducerDashboard />
+          </ProductsContextProvider>
+        ),
+      },
       { path: "/evaluator", element: <EvaluatorDashboard /> },
       // Registration
       { path: '/registration', element: <Registration/>},
