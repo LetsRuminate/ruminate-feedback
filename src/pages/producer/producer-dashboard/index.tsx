@@ -1,6 +1,7 @@
 import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
+import { ProductsContext } from "@contexts/ProductsContext";
 
 import { Producer } from "src/types/users";
 
@@ -14,6 +15,8 @@ function checkProducer(user: Producer | unknown): user is Producer {
 // front-end create dashboards from mid-fi designs
 export default function ProducerDashboard() {
   const user = useContext(UserContext);
+  const userProducts = useContext(ProductsContext);
+  console.log(userProducts);
 
   const navigate = useNavigate();
 
@@ -55,7 +58,7 @@ export default function ProducerDashboard() {
 
   const displayBusinessInfo = () => {
     return (
-      <div className="bg-neutral-100 text-black p-1">
+      <div className="bg-neutral-100 p-1">
         <p>
           {user && checkProducer(user) && user.info.businessName
             ? user.info.businessName
@@ -95,8 +98,28 @@ export default function ProducerDashboard() {
     return null;
   };
 
+  const displayProducts = () => {
+    if (user && checkProducer(user)) {
+      return (
+        <div className="bg-neutral-100 p-1">
+          <h2>Products:</h2>
+          {userProducts ? (
+            userProducts.map((product) => {
+              return (
+                <div key={product.productId}>{product.info.productName}</div>
+              );
+            })
+          ) : (
+            <div>No Products =(</div>
+          )}
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="bg-blue-300 text-neutral-50 p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
@@ -108,6 +131,7 @@ export default function ProducerDashboard() {
         </div>
         {displayBusinessInfo()}
         {displayPlanInfo()}
+        {displayProducts()}
       </div>
     </div>
   );
