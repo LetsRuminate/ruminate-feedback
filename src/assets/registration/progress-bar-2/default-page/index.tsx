@@ -1,4 +1,4 @@
-export default function ProgressBar2() {
+export default function DefaultStep() {
     return (
         <div className="flex items-center justify-center py-3">
             <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
