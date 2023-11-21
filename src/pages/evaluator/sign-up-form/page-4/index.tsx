@@ -11,11 +11,11 @@ export default function EvaluatorPage4() {
             <img src={StepFour} alt="Default Progress Bar" width={648} className='mx-auto' />
             <FourthStep/>
             <div className='flex justify-between px-32'>
-            <p className='text-white text-sm font-manrope font-normal'>Product Info</p>
-            <p className='text-white text-sm font-manrope font-normal -ml-10'>Preferred Communication</p>
-            <p className='text-white text-sm font-manrope font-normal -ml-10'>Shipment</p>
-            <p className='text-white text-sm font-manrope font-normal -ml-4'>Form Review</p>
-            <p className='text-[#ffffff80] text-sm font-manrope font-normal -mr-2'>Completed</p>
+            <p className='text-white text-sm font-manrope font-normal -ml-2'>Personal Info</p>
+            <p className='text-white text-sm font-manrope font-normal ml-3'>Professional Info.</p>
+            <p className='text-white text-sm font-manrope font-normal'>Qualifications</p>
+            <p className='text-white text-sm font-manrope font-normal'>Contact & Shipment</p>
+            <p className='text-[#ffffff80] text-sm font-manrope font-normal'>Completed</p>
             </div>
         </div>
         <div className='border border-white mx-auto w-[874px] px-14 py-20'>
