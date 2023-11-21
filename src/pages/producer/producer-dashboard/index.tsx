@@ -58,7 +58,7 @@ export default function ProducerDashboard() {
 
   const displayBusinessInfo = () => {
     return (
-      <div className="bg-neutral-100 text-brand-black p-1">
+      <div className="bg-neutral-100 text-black p-1">
         <p>
           {user && checkProducer(user) && user.info.businessName
             ? user.info.businessName
@@ -79,7 +79,7 @@ export default function ProducerDashboard() {
   const displayPlanInfo = () => {
     if (user && checkProducer(user)) {
       return (
-        <div className="bg-neutral-100 text-brand-black p-1">
+        <div className="bg-neutral-100 text-black p-1">
           <p>{`Plan: ${user.info.plan ? user.info.plan : "N/A"}`}</p>
           <p>Plan info here?</p>
           <p>
@@ -119,7 +119,7 @@ export default function ProducerDashboard() {
   };
 
   return (
-    <div className="bg-brand-blue text-neutral-50 p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-neutral-50 p-8 min-h-[400px]">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
