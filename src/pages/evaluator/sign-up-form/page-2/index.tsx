@@ -1,6 +1,8 @@
 import StepTwo from '@assets/registration/progress-bar-1/step2.svg'
 import SecondStep from "@assets/registration/progress-bar-2/page-2"
 
+import Underline from '@assets/registration/progress-underline/underline.svg'
+
 import { Link } from 'react-router-dom';
 
 export default function EvaluatorPage2() {
@@ -17,6 +19,7 @@ export default function EvaluatorPage2() {
             <p className='text-[#ffffff80] text-sm font-manrope font-normal'>Contact & Shipment</p>
             <p className='text-[#ffffff80] text-sm font-manrope font-normal'>Completed</p>
             </div>
+            <img src={Underline} alt="Underline" width={98} className='ml-64'/>
         </div>
         <div className='border border-white mx-auto w-[874px] px-14 py-20'>
             <button className='text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5'><Link to='/evaluator-page-1'>Previous</Link></button>

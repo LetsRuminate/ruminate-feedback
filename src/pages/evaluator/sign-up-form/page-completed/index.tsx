@@ -1,6 +1,8 @@
 import LastStep from '@assets/registration/progress-bar-1/step5.svg'
 import FinalStep from "@assets/registration/progress-bar-2/page-5"
 
+import Underline from '@assets/registration/progress-underline/underline.svg'
+
 import { Link } from 'react-router-dom';
 
 export default function EvaluatorCompleted() {
@@ -16,6 +18,9 @@ export default function EvaluatorCompleted() {
             <p className='text-white text-sm font-manrope font-normal'>Qualifications</p>
             <p className='text-white text-sm font-manrope font-normal'>Contact & Shipment</p>
             <p className='text-white text-sm font-manrope font-normal'>Completed</p>
+            </div>
+            <div className="flex justify-end mr-28">
+            <img src={Underline} alt="Underline" width={98}/>
             </div>
         </div>
         <div className='border border-white mx-auto w-[874px] px-14 py-20'>
