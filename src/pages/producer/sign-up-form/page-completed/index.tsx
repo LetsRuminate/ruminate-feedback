@@ -19,8 +19,11 @@ export default function ProducerCompleted() {
             </div>
         </div>
         <div className='border border-white mx-auto w-[874px] px-14 py-20'>
-            <button className='text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5'><Link to='/producer-page-4'>Previous</Link></button>
-            <button className='text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl'><Link to='/thank-you'>Next</Link></button>
+           <h1 className='text-white text-2xl font-manrope font-normal'>Congratulations!</h1>
+           <p className='text-white text-base font-manrope font-medium pt-6 pb-12'>
+           You just signed up for an evaluation with Feedback! As you are reading this, we are reaching out to evaluators. Once evaluators have signed on to your evaluation, we’ll post their shipping addresses (and your next steps) in your dashboard.<br/><br/>Click below to access your Producer Dashboard!
+           </p>
+            <button className='text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl'><Link to='/login'>Dashboard</Link></button>
         </div>
     </div>
     );
