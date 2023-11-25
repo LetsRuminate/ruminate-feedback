@@ -18,9 +18,17 @@ export default function EvaluatorDefault() {
                 <p className='text-[#ffffff80] text-sm font-manrope font-normal'>Completed</p>
                 </div>
             </div>
-            <div className='border border-white mx-auto w-[874px] px-14 py-20'>
-                <button className='text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5'><Link to='/registration'>Previous</Link></button>
-                <button className='text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl'><Link to='/evaluator-page-1'>Next</Link></button>
+            <div className='border border-white mx-auto w-[874px] px-14 pb-14'>
+                <div className='py-14'>
+                    <h3 className='text-white text-2xl font-manrope font-bold'>Taking Your Products to the Next Level!</h3>
+                    <p className='text-white text-base font-manrope font-normal py-6'>
+                    We'll explore your background, your business, and your core values. This information will provide us with a deeper understanding of your profile and business, allowing us to assess compatibility more effectively.
+                    </p>
+                    <p className='pb-14 text-white'>
+                    Click “Sign up” below to get started!
+                    </p>
+                </div>
+                <button className='text-[#345EC9] text-base font-manrope font-semibold bg-white px-32 py-3 rounded-3xl'><Link to='/evaluator-page-1'>Sign Up</Link></button>
             </div>
         </div>
     );
