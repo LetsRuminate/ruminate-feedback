@@ -1,24 +1,38 @@
+// XXX
+// for firestore security rules, the following permissions apply to all fields
+// in the ways indicated, unless otherwise noted (marked next to the field)
+
+/* READ: */
+// only for the specific user + admin
+
+/* WRITE: */
+
+// CREATE only for current user (only applies at sign up, once we've got
+// an auth). we need to specify only those fields that can be CREATed,
+// in order to prevent potential malicious actors from filling the database
+// with junk info
+
+// UPDATE only for specific user + admin
+
+// DELETE nobody has delete permissions for now
+
 interface UserInfo {
   /* These are common to both producers and evaluators */
-
-  // From both forms:
 
   name: string;
   email: string;
   pronouns: null | string;
   address: Address;
-  // region will be used for matching
   region: string;
-
-  // Not from forms, but needed for admin:
-
-  // null if no product yet, ids of product documents if so
   products: null | string[];
-  signupDate: Date;
-  lastLogin: Date;
+  signupDate: Date; // XXX nobody should have UPDATE access to this
+  lastLogin: Date; // XXX only user should have UPDATE access
 }
 
 interface Address {
+  // XXX
+  // some producers need READ access to an evaluator's address for
+  // shipping purposes (only those evaluators who are working on their products)
   city: string;
   state: string;
   street: string;
@@ -30,7 +44,6 @@ interface ProducerInfo extends UserInfo {
   /* These are taken directly from the forms */
 
   // ABOUT YOU
-  // form designs have these as ranges, so they're essentially strings
   yearsInIndustry: string;
 
   // YOUR BUSINESS
@@ -42,7 +55,6 @@ interface ProducerInfo extends UserInfo {
   // YOUR VALUES
   companyStructure: string;
   certificationTypes: null | string[];
-  // 3rd party certified producers will have a doc (string = docRef)
   certificationDocument: null | string;
   otherPractices: string;
   underrepresentedGroup: null | string;
@@ -54,18 +66,13 @@ interface ProducerInfo extends UserInfo {
 
   /* Not explicity from forms, needed by admin, additional info, etc */
 
-  // for now we're only supporting producers with third party certs
   certification: "self" | "thirdParty";
-  deactivated: boolean;
-  deactivationReason: null | string;
-  // don't need payment info in this phase - for future devs
+  deactivated: boolean; // XXX only admin can UPDATE
+  deactivationReason: null | string; // XXX only admin can UPDATE
   paymentInfo: null;
   paymentReceived: boolean;
-  // this will name the type of plan they have, which affects # of evaluators
   plan: null | string;
-  // if not approvied, date will be 1 year from initial application
-  reapplyDate: null | Date;
-  // not dealing with self-certified producers in this phase
+  reapplyDate: null | Date; // XXX only admin can UPDATE
   selfCertificaionInfo: null;
 }
 
@@ -78,10 +85,8 @@ interface EvaluatorInfo extends UserInfo {
 
   // QUALIFICAIONS
   qualification: string;
-  // will be a docref to what they've uploaded in the form
   qualificationDocument: string;
-  // old forms ask for when they're NOT available
-  unavailableDates: Date[] | null;
+  unavailableDates: null | Date[];
 
   // CONTACT AND SHIPPING INFO
   shippingInstructions: null | string;
@@ -89,21 +94,16 @@ interface EvaluatorInfo extends UserInfo {
 
   /* Not explicity from forms, needed by admin, additional info, etc */
 
-  // null if they haven't selected any dates yet
   availability: null | Date[];
-  // don't need it in this phase - for future devs
   paymentInfo: null;
-  // evaluators have option to work bro bono
   paymentReceived: boolean;
   paymentRequested: boolean;
 }
 
 interface User {
-  // looks like all users need to be confirmed by an admin to access platform?
-  adminConfirmed: boolean;
-  // user document id = uid we get from auth
-  uid: string;
-  role: "admin" | "evaluator" | "producer";
+  adminConfirmed: boolean; // XXX only admin can UPDATE
+  uid: string; // XXX nobody should be able to UPDATE
+  role: "admin" | "evaluator" | "producer"; // XXX only admin can UPDATE
 }
 
 // can't think of any info unique to admin yet...
@@ -115,11 +115,11 @@ export interface Admin extends User {
 }
 
 export interface Evaluator extends User {
-  approved: boolean;
+  approved: boolean; // XXX only admin can UPDATE
   info: EvaluatorInfo;
 }
 
 export interface Producer extends User {
-  approved: boolean;
+  approved: boolean; // XXX only admin can UPDATE
   info: ProducerInfo;
 }

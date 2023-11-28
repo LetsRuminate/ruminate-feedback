@@ -103,8 +103,8 @@ export default function NavBar() {
             </button>
           </Link>
         </div>
-        <button className="text-[#0F7B41] shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
-          <Link to='/producer-registration'>
+        <button className="text-[#0F7B41] text-xl shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
+          <Link to='/registration'>
           GET STARTED
           </Link>
         </button>
