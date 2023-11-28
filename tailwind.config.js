@@ -28,25 +28,25 @@ export default {
           primary: {
             "p-h2": { 
               name: 'H2/Primary',
-              fontFamily: 'Manrope',
+              fontFamily: 'manrope',
               fontWeight: 700,
               fontSize: '48px',
              },
             "p-h3": {
               name: "H3/Primary",
-              fontFamily: "Manrope",
+              fontFamily: "manrope",
               fontWeight: 700,
               fontSize: "24px",
             },
             "p-h4": {
               name: "H4/Primary",
-              fontFamily: "Manrope",
+              fontFamily: "manrope",
               fontWeight: 700,
               fontSize: "20px",
             },
             "p-h6": {
               name: "H6/Primary",
-              fontFamily: "Manrope",
+              fontFamily: "manrope",
               fontWeight: 700,
               fontSize: "16px",
             }
@@ -56,7 +56,7 @@ export default {
           primary: {
             "p-b2": {
               name: "B2/Primary",
-              fontFamily: "Manrope",
+              fontFamily: "manrope",
               fontWeight: 400,
               fontSize: "16px",
             }

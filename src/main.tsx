@@ -26,6 +26,15 @@ import ProducerPage2 from "@pages/producer/sign-up-form/page-2/index.tsx";
 import ProducerPage3 from "@pages/producer/sign-up-form/page-3/index.tsx";
 import ProducerPage4 from "@pages/producer/sign-up-form/page-4/index.tsx";
 import ProducerCompleted from "@pages/producer/sign-up-form/page-completed/index.tsx";
+
+// ====== Registration for Product ======
+import IntakeDefault from "@pages/producer/product-intake/default-page/index.tsx";
+import ProductPage1 from "@pages/producer/product-intake/page-1/index.tsx";
+import ProductPage2 from "@pages/producer/product-intake/page-2/index.tsx";
+import ProductPage3 from "@pages/producer/product-intake/page-3/index.tsx";
+import ProductPage4 from "@pages/producer/product-intake/page-4/index.tsx";
+import ProductCompleted from "@pages/producer/product-intake/page-completed/index.tsx";
+
 // ====== Registration for Evaluator =====
 import EvaluatorDefault from "@pages/evaluator/sign-up-form/default-page/index.tsx";
 import EvaluatorPage1 from "@pages/evaluator/sign-up-form/page-1/index.tsx";
@@ -33,8 +42,14 @@ import EvaluatorPage2 from "@pages/evaluator/sign-up-form/page-2/index.tsx";
 import EvaluatorPage3 from "@pages/evaluator/sign-up-form/page-3/index.tsx";
 import EvaluatorPage4 from "@pages/evaluator/sign-up-form/page-4/index.tsx";
 import EvaluatorCompleted from "@pages/evaluator/sign-up-form/page-completed/index.tsx";
-// ===== Registration Completed ======
-import ThankYou from "@pages/registration/registration-complete/index.tsx";
+
+// ====== Product Evaluation ======
+import EvaluationDefault from "@pages/evaluator/product-evaluation/default-page/index.tsx";
+import EvaluationPage1 from "@pages/evaluator/product-evaluation/page-1/index.tsx";
+import EvaluationPage2 from "@pages/evaluator/product-evaluation/page-2/index.tsx";
+import EvaluationPage3 from "@pages/evaluator/product-evaluation/page-3/index.tsx";
+import EvaluationPage4 from "@pages/evaluator/product-evaluation/page-4/index.tsx";
+import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-completed/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +74,8 @@ const router = createBrowserRouter([
           </ProductsContextProvider>
         ),
       },
+      // ================================
+      // Producer Dashboard from this point
       {
         path: "/producer",
         element: (
@@ -67,6 +84,14 @@ const router = createBrowserRouter([
           </ProductsContextProvider>
         ),
       },
+      { path: "/product-default", element: <IntakeDefault /> },
+      { path: "/product-intake-1", element: <ProductPage1 /> },
+      { path: "/product-intake-2", element: <ProductPage2 /> },
+      { path: "/product-intake-3", element: <ProductPage3 /> },
+      { path: "/product-intake-4", element: <ProductPage4 /> },
+      { path: "/product-completed", element: <ProductCompleted /> },
+      // =================================
+      // Evaluator Dashboard from this point
       {
         path: "/evaluator",
         element: (
@@ -75,6 +100,13 @@ const router = createBrowserRouter([
           </ProductsContextProvider>
         ),
       },
+      { path: "/evaluation-default", element: <EvaluationDefault /> },
+      { path: "/evaluation-page-1", element: <EvaluationPage1 /> },
+      { path: "/evaluation-page-2", element: <EvaluationPage2 /> },
+      { path: "/evaluation-page-3", element: <EvaluationPage3 /> },
+      { path: "/evaluation-page-4", element: <EvaluationPage4 /> },
+      { path: "/evaluation-completed", element: <EvaluationCompleted /> },
+      // =================================
       // Registration
       { path: "/registration", element: <Registration /> },
       // == Producer Registration
@@ -91,8 +123,6 @@ const router = createBrowserRouter([
       { path: "/evaluator-page-3", element: <EvaluatorPage3 /> },
       { path: "/evaluator-page-4", element: <EvaluatorPage4 /> },
       { path: "/evaluator-completed", element: <EvaluatorCompleted /> },
-      // Registration Completed
-      { path: "/thank-you", element: <ThankYou /> },
     ],
   },
 ]);
