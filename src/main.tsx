@@ -35,7 +35,7 @@ import ProductPage3 from "@pages/producer/product-intake/page-3/index.tsx";
 import ProductPage4 from "@pages/producer/product-intake/page-4/index.tsx";
 import ProductCompleted from "@pages/producer/product-intake/page-completed/index.tsx";
 
-// ====== Registration for Evaluator ===== 
+// ====== Registration for Evaluator =====
 import EvaluatorDefault from "@pages/evaluator/sign-up-form/default-page/index.tsx";
 import EvaluatorPage1 from "@pages/evaluator/sign-up-form/page-1/index.tsx";
 import EvaluatorPage2 from "@pages/evaluator/sign-up-form/page-2/index.tsx";
@@ -50,8 +50,6 @@ import EvaluationPage2 from "@pages/evaluator/product-evaluation/page-2/index.ts
 import EvaluationPage3 from "@pages/evaluator/product-evaluation/page-3/index.tsx";
 import EvaluationPage4 from "@pages/evaluator/product-evaluation/page-4/index.tsx";
 import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-completed/index.tsx";
-
-
 
 const router = createBrowserRouter([
   {
@@ -68,7 +66,14 @@ const router = createBrowserRouter([
       { path: "/about-us", element: <AboutUs /> },
       { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/pricing", element: <Price /> },
-      { path: "/admin", element: <AdminDashboard /> },
+      {
+        path: "/admin",
+        element: (
+          <ProductsContextProvider>
+            <AdminDashboard />
+          </ProductsContextProvider>
+        ),
+      },
       // ================================
       // Producer Dashboard from this point
       {
@@ -79,38 +84,45 @@ const router = createBrowserRouter([
           </ProductsContextProvider>
         ),
       },
-      { path: '/product-default', element: <IntakeDefault/>},
-      { path: '/product-intake-1', element: <ProductPage1/>},
-      { path: '/product-intake-2', element: <ProductPage2/>},
-      { path: '/product-intake-3', element: <ProductPage3/>},
-      { path: '/product-intake-4', element: <ProductPage4/>},
-      { path: '/product-completed', element: <ProductCompleted/>},
+      { path: "/product-default", element: <IntakeDefault /> },
+      { path: "/product-intake-1", element: <ProductPage1 /> },
+      { path: "/product-intake-2", element: <ProductPage2 /> },
+      { path: "/product-intake-3", element: <ProductPage3 /> },
+      { path: "/product-intake-4", element: <ProductPage4 /> },
+      { path: "/product-completed", element: <ProductCompleted /> },
       // =================================
       // Evaluator Dashboard from this point
-      { path: "/evaluator", element: <EvaluatorDashboard /> },
-      { path: '/evaluation-default', element: <EvaluationDefault/>},
-      { path: '/evaluation-page-1', element: <EvaluationPage1/>},
-      { path: '/evaluation-page-2', element: <EvaluationPage2/>},
-      { path: '/evaluation-page-3', element: <EvaluationPage3/>},
-      { path: '/evaluation-page-4', element: <EvaluationPage4/>},
-      { path: '/evaluation-completed', element: <EvaluationCompleted/>},
+      {
+        path: "/evaluator",
+        element: (
+          <ProductsContextProvider>
+            <EvaluatorDashboard />
+          </ProductsContextProvider>
+        ),
+      },
+      { path: "/evaluation-default", element: <EvaluationDefault /> },
+      { path: "/evaluation-page-1", element: <EvaluationPage1 /> },
+      { path: "/evaluation-page-2", element: <EvaluationPage2 /> },
+      { path: "/evaluation-page-3", element: <EvaluationPage3 /> },
+      { path: "/evaluation-page-4", element: <EvaluationPage4 /> },
+      { path: "/evaluation-completed", element: <EvaluationCompleted /> },
       // =================================
       // Registration
-      { path: '/registration', element: <Registration/>},
+      { path: "/registration", element: <Registration /> },
       // == Producer Registration
-      { path: '/producer-default', element: <DefaultPage/>},
-      { path: '/producer-page-1', element: <ProducerPage1/>},
-      { path: '/producer-page-2', element: <ProducerPage2/>},
-      { path: '/producer-page-3', element: <ProducerPage3/>},
-      { path: '/producer-page-4', element: <ProducerPage4/>},
-      { path: '/producer-completed', element: <ProducerCompleted/>},
+      { path: "/producer-default", element: <DefaultPage /> },
+      { path: "/producer-page-1", element: <ProducerPage1 /> },
+      { path: "/producer-page-2", element: <ProducerPage2 /> },
+      { path: "/producer-page-3", element: <ProducerPage3 /> },
+      { path: "/producer-page-4", element: <ProducerPage4 /> },
+      { path: "/producer-completed", element: <ProducerCompleted /> },
       // == Evaluator Registration
-      { path: '/evaluator-default', element: <EvaluatorDefault/>},
-      { path: '/evaluator-page-1', element: <EvaluatorPage1/>},
-      { path: '/evaluator-page-2', element: <EvaluatorPage2/>},
-      { path: '/evaluator-page-3', element: <EvaluatorPage3/>},
-      { path: '/evaluator-page-4', element: <EvaluatorPage4/>},
-      { path: '/evaluator-completed', element: <EvaluatorCompleted/>},
+      { path: "/evaluator-default", element: <EvaluatorDefault /> },
+      { path: "/evaluator-page-1", element: <EvaluatorPage1 /> },
+      { path: "/evaluator-page-2", element: <EvaluatorPage2 /> },
+      { path: "/evaluator-page-3", element: <EvaluatorPage3 /> },
+      { path: "/evaluator-page-4", element: <EvaluatorPage4 /> },
+      { path: "/evaluator-completed", element: <EvaluatorCompleted /> },
     ],
   },
 ]);

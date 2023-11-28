@@ -1,16 +1,55 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import { collection, query, where, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  query,
+  where,
+  onSnapshot,
+  WhereFilterOp,
+} from "firebase/firestore";
 import { db } from "@components/api/firebase";
 import { UserContext } from "./UserContext";
 import Product from "src/types/product";
-import { Producer } from "src/types/users";
+import { Admin, Evaluator, Producer } from "src/types/users";
 
 interface ContextProps {
   children: React.ReactNode;
 }
 
+function checkAdmin(user: Admin | unknown): user is Admin {
+  return (user as Admin).role === "admin";
+}
+
+function checkEvaluator(user: Evaluator | unknown): user is Evaluator {
+  return (user as Evaluator).role === "evaluator";
+}
+
 function checkProducer(user: Producer | unknown): user is Producer {
   return (user as Producer).role === "producer";
+}
+
+function getQueryParameters(user: Admin | Evaluator | Producer) {
+  const { uid } = user;
+
+  if (checkEvaluator(user)) {
+    return {
+      operandOne: "evaluatorIds",
+      operator: "array-contains" as WhereFilterOp,
+      operandTwo: uid,
+    };
+  }
+  if (checkProducer(user)) {
+    return {
+      operandOne: "producerId",
+      operator: "==" as WhereFilterOp,
+      operandTwo: uid,
+    };
+  }
+  // if for some reason we don't have a good user, give it a junk query
+  return {
+    operandOne: "nothing",
+    operator: "==" as WhereFilterOp,
+    operandTwo: "nonexistant",
+  };
 }
 
 export const ProductsContext = createContext<Product[] | null>(null);
@@ -22,17 +61,19 @@ export default function ProductsContextProvider({ children }: ContextProps) {
 
   useEffect(() => {
     if (user) {
-      const q = query(
-        collection(db, "products"),
-        where(
-          "producerId",
-          "==",
-          // XXX
-          // needs more granularity - different user roles = differnt queries
-          // so far, only working for producers
-          user && checkProducer(user) ? user.uid : null,
-        ),
-      );
+      const queryParameters = getQueryParameters(user);
+      // if admin, get all products
+      const q = checkAdmin(user)
+        ? query(collection(db, "products"))
+        : // otherwise just those that are needed
+          query(
+            collection(db, "products"),
+            where(
+              queryParameters.operandOne,
+              queryParameters.operator,
+              queryParameters.operandTwo,
+            ),
+          );
       onSnapshot(q, (querySnapshot) => {
         const products: Product[] = [];
         querySnapshot.forEach((docu) => {
