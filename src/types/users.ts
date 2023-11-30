@@ -67,6 +67,7 @@ interface ProducerInfo extends UserInfo {
   /* Not explicity from forms, needed by admin, additional info, etc */
 
   certification: "self" | "thirdParty";
+  certificationURL: null | string;
   deactivated: boolean; // XXX only admin can UPDATE
   deactivationReason: null | string; // XXX only admin can UPDATE
   paymentInfo: null;
