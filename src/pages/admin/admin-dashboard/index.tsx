@@ -1,6 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { query, collection, onSnapshot } from "firebase/firestore";
+import {
+  query,
+  collection,
+  onSnapshot,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "@components/api/firebase";
 import { UserContext } from "@contexts/UserContext";
 import { ProductsContext } from "@contexts/ProductsContext";
@@ -9,6 +15,10 @@ import { Admin, Evaluator, Producer } from "src/types/users";
 
 function checkAdmin(user: Admin | unknown): user is Admin {
   return (user as Admin).role === "admin";
+}
+
+function checkProducer(user: Producer | unknown): user is Producer {
+  return (user as Producer).role === "producer";
 }
 
 interface AllUsers {
@@ -35,6 +45,7 @@ export default function AdminDashboard() {
   const [userDetailId, setUserDetailId] = useState<null | string>(null);
 
   useEffect(() => {
+    // this loads up all users & their info for the admin to view
     if (user && checkAdmin(user)) {
       const q = query(collection(db, "users"));
       onSnapshot(q, (querySnapshot) => {
@@ -120,11 +131,90 @@ export default function AdminDashboard() {
   const displayAddress = (currentUser: Evaluator | Producer) => {
     const { address } = currentUser.info;
     return (
-      <div>
+      <>
+        {checkProducer(currentUser) ? (
+          <div>{currentUser.info.businessName}</div>
+        ) : null}
         <div>{address.street}</div>
         {address.unit ? <div>{`Unit ${address.unit}`}</div> : null}
         <div>{`${address.city}, ${address.state}`}</div>
         <div>{address.zip}</div>
+      </>
+    );
+  };
+
+  const displayCertInfo = (currentUser: Producer) => {
+    const { info } = currentUser;
+
+    return (
+      <>
+        <h2>Certification Info:</h2>
+        <div>
+          Type:{" "}
+          {info.certification === "thirdParty"
+            ? "Third Party"
+            : "Self-Certified"}
+        </div>
+        {info.certificationURL ? (
+          <div>
+            <a
+              className="text-blue-800 underline"
+              target="_blank"
+              href={info.certificationURL}
+            >
+              Download certification
+            </a>
+          </div>
+        ) : (
+          "No certification document provided"
+        )}
+      </>
+    );
+  };
+
+  const changeConfirmation = async (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const { uid } = target.dataset;
+    if (allUsers && uid) {
+      const userRef = doc(db, "users", uid);
+      await updateDoc(userRef, {
+        adminConfirmed: !allUsers[uid].adminConfirmed,
+      });
+    }
+  };
+
+  const deactivateUser = async (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const { uid } = target.dataset;
+    if (allUsers && uid) {
+      const userRef = doc(db, "users", uid);
+      await updateDoc(userRef, {
+        deactivated: !allUsers[uid].deactivated,
+      });
+    }
+  };
+
+  const displayUserActions = (currentUser: Admin | Evaluator | Producer) => {
+    return (
+      <div className="flex flex-col items-start">
+        <button
+          className="bg-yellow-200 p-1"
+          data-uid={currentUser.uid}
+          onClick={changeConfirmation}
+          type="button"
+        >
+          Change confirmation status
+        </button>
+        <button
+          className={`${
+            currentUser.deactivated ? "bg-green-200" : "bg-red-200"
+          } p-1`}
+          data-uid={currentUser.uid}
+          onClick={deactivateUser}
+          type="button"
+        >
+          {currentUser.deactivated ? "Activate user" : "Deactivate user"}
+        </button>
       </div>
     );
   };
@@ -134,31 +224,46 @@ export default function AdminDashboard() {
       const currentUser = allUsers[userDetailId];
       console.log(currentUser);
       return (
-        <div className="bg-neutral-50 flex gap-2">
-          <div className="p-1 flex flex-col gap-1">
-            <h2>Selected User Detail:</h2>
-            <div>{currentUser.info.name}</div>
-            <div>{currentUser.info.email}</div>
-            <div>role: {currentUser.role}</div>
-            <div
-              className={currentUser.approved ? "bg-green-400" : "bg-red-400"}
-            >
-              {currentUser.approved ? "Approved" : "Not Approved"}
+        <>
+          <h2>Selected User Detail:</h2>
+          {currentUser.deactivated ? (
+            <div className="bg-red-400">DEACTIVATED</div>
+          ) : null}
+          <div
+            className={`${
+              currentUser.deactivated ? "bg-red-200" : "bg-neutral-50"
+            } flex gap-2`}
+          >
+            <div className="p-1 flex flex-col gap-1">
+              <div>{currentUser.info.name}</div>
+              <div>{currentUser.info.email}</div>
+              <div>role: {currentUser.role}</div>
+              <div
+                className={currentUser.approved ? "bg-green-400" : "bg-red-400"}
+              >
+                {currentUser.approved ? "Approved" : "Not Approved"}
+              </div>
+              <div
+                className={
+                  currentUser.adminConfirmed ? "bg-green-400" : "bg-red-400"
+                }
+              >
+                {currentUser.adminConfirmed
+                  ? "Admin Confirmed"
+                  : "Not Admin Confirmed"}
+              </div>
             </div>
-            <div
-              className={
-                currentUser.adminConfirmed ? "bg-green-400" : "bg-red-400"
-              }
-            >
-              {currentUser.adminConfirmed
-                ? "Admin Confirmed"
-                : "Not Admin Confirmed"}
+            <div className="p-1 flex flex-col gap-1">
+              {!checkAdmin(currentUser) ? displayAddress(currentUser) : null}
+            </div>
+            <div className="p-1 flex flex-col gap-1">
+              {checkProducer(currentUser) ? displayCertInfo(currentUser) : null}
+            </div>
+            <div className="p-1 flex flex-col gap-1">
+              {displayUserActions(currentUser)}
             </div>
           </div>
-          <div className="mt-6 p-1 flex flex-col gap-1">
-            {!checkAdmin(currentUser) ? displayAddress(currentUser) : null}
-          </div>
-        </div>
+        </>
       );
     }
     return null;
