@@ -102,6 +102,7 @@ interface EvaluatorInfo extends UserInfo {
 
 interface User {
   adminConfirmed: boolean; // XXX only admin can UPDATE
+  approved: boolean; // XXX only admin can UPDATE
   uid: string; // XXX nobody should be able to UPDATE
   role: "admin" | "evaluator" | "producer"; // XXX only admin can UPDATE
 }
@@ -115,11 +116,9 @@ export interface Admin extends User {
 }
 
 export interface Evaluator extends User {
-  approved: boolean; // XXX only admin can UPDATE
   info: EvaluatorInfo;
 }
 
 export interface Producer extends User {
-  approved: boolean; // XXX only admin can UPDATE
   info: ProducerInfo;
 }

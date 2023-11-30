@@ -11,6 +11,10 @@ function checkAdmin(user: Admin | unknown): user is Admin {
   return (user as Admin).role === "admin";
 }
 
+interface AllUsers {
+  [key: string]: Admin | Evaluator | Producer;
+}
+
 // XXX
 // this is a mock-up, ad-hoc dashboard just for experimenting with
 // database interactions - not for realsies. this will all change, as
@@ -18,7 +22,6 @@ function checkAdmin(user: Admin | unknown): user is Admin {
 export default function AdminDashboard() {
   const user = useContext(UserContext);
   const userProducts = useContext(ProductsContext);
-  console.log(userProducts);
 
   const navigate = useNavigate();
 
@@ -28,20 +31,19 @@ export default function AdminDashboard() {
     }
   }, [navigate, user]);
 
-  const [allUsers, setAllUsers] = useState<
-    (Admin | Evaluator | Producer)[] | null
-  >(null);
+  const [allUsers, setAllUsers] = useState<null | AllUsers>(null);
+  const [userDetailId, setUserDetailId] = useState<null | string>(null);
 
   useEffect(() => {
     if (user && checkAdmin(user)) {
       const q = query(collection(db, "users"));
       onSnapshot(q, (querySnapshot) => {
-        const users: (Admin | Evaluator | Producer)[] = [];
+        const users: AllUsers = {};
         querySnapshot.forEach((docu) => {
           const data = docu.data() as Admin | Evaluator | Producer;
-          users.push(data);
+          users[data.uid] = data;
         });
-        if (users.length) {
+        if (Object.keys(users).length) {
           setAllUsers(users);
         } else {
           setAllUsers(null);
@@ -79,17 +81,31 @@ export default function AdminDashboard() {
     return null;
   };
 
+  const getDetailUser = (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const { uid } = target.dataset;
+    if (uid) {
+      setUserDetailId(uid);
+    }
+  };
+
   const displayUsers = () => {
     if (user && checkAdmin(user)) {
       return (
-        <div className="bg-neutral-100 p-1">
+        <div className="bg-neutral-100 p-1 flex flex-col items-start">
           <h2>All Users:</h2>
           {allUsers ? (
-            allUsers.map((singleUser) => {
+            Object.keys(allUsers).map((singleId) => {
+              const currentUser = allUsers[singleId];
               return (
-                <div
-                  key={singleUser.uid}
-                >{`${singleUser.info.name} (${singleUser.info.email})`}</div>
+                <button
+                  data-uid={currentUser.uid}
+                  key={currentUser.uid}
+                  onClick={getDetailUser}
+                  type="button"
+                >
+                  {`${currentUser.info.name} (${currentUser.info.email})`}
+                </button>
               );
             })
           ) : (
@@ -101,8 +117,55 @@ export default function AdminDashboard() {
     return null;
   };
 
+  const displayAddress = (currentUser: Evaluator | Producer) => {
+    const { address } = currentUser.info;
+    return (
+      <div>
+        <div>{address.street}</div>
+        {address.unit ? <div>{`Unit ${address.unit}`}</div> : null}
+        <div>{`${address.city}, ${address.state}`}</div>
+        <div>{address.zip}</div>
+      </div>
+    );
+  };
+
+  const displayUserDetail = () => {
+    if (allUsers && userDetailId) {
+      const currentUser = allUsers[userDetailId];
+      console.log(currentUser);
+      return (
+        <div className="bg-neutral-50 flex gap-2">
+          <div className="p-1 flex flex-col gap-1">
+            <h2>Selected User Detail:</h2>
+            <div>{currentUser.info.name}</div>
+            <div>{currentUser.info.email}</div>
+            <div>role: {currentUser.role}</div>
+            <div
+              className={currentUser.approved ? "bg-green-400" : "bg-red-400"}
+            >
+              {currentUser.approved ? "Approved" : "Not Approved"}
+            </div>
+            <div
+              className={
+                currentUser.adminConfirmed ? "bg-green-400" : "bg-red-400"
+              }
+            >
+              {currentUser.adminConfirmed
+                ? "Admin Confirmed"
+                : "Not Admin Confirmed"}
+            </div>
+          </div>
+          <div className="mt-6 p-1 flex flex-col gap-1">
+            {!checkAdmin(currentUser) ? displayAddress(currentUser) : null}
+          </div>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px] flex flex-col items-start gap-2">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
@@ -114,6 +177,7 @@ export default function AdminDashboard() {
         {displayUsers()}
         {displayProducts()}
       </div>
+      {displayUserDetail()}
     </div>
   );
 }
