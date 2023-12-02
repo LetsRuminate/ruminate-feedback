@@ -1,8 +1,4 @@
-// OUR PLANS section - images in .svg
-import Plan from '@assets/our-plans/plans.svg'
-import PlayIcon from '@assets/banner/red-button/play-icon.svg'
-import CheckMark from '@assets/how-it-works/checkmark.svg'
-import MoreInfo from '@assets/our-plans/more-info.svg'
+import { FaCheckCircle } from "react-icons/fa";
 
 export default function Plans() {
   return (
@@ -11,43 +7,103 @@ export default function Plans() {
     {/* the below is our plans section */}
     <section className='bg-[#4670D9] -skew-y-3 -mt-20 border-t-[24px] border-black pt-48 pb-48'>
       <section className='skew-y-3'>
-        <h1 className='text-white text-[140px] font-anton font-normal text-right pr-44 relative z-[11]'>
+        <h1 className='text-white text-[140px] font-anton font-normal text-right pr-36 relative z-[11]'>
           Our Plans
         </h1>
-        <div className='gap-6 flex justify-center -mt-16 relative -z-10'>
-          <div className='bg-[#10212B] w-[400px]'>
-            <h1>Explore</h1>
-              <p className='text-[#B3E6FF] text-center'>Sense check your product-think field testing with friends... if your friends were experts</p>
-              <img src={Plan} alt="Our Plans Decoration" width={201} className='h-28 py-7 mx-auto'/>
-              <div className='flex gap-1 items-baseline justify-center'>
-                <h2 className='text-white text-4xl'>$ 199</h2>
-                <p className='text-white'>/ year</p>
+        <div className="md:flex px-32 md:gap-9">
+          <div className="bg-white py-8 px-12">
+            <header className="pb-6 border-b border-black">
+              <h3 className="text-2xl font-manrope font-bold">Explore</h3>
+              <h2 className="text-5xl font-manrope font-bold pt-2">$99</h2>
+              <p className="text-sm font-manrope font-medium">per package</p>
+            </header>
+            <main>
+              {/* for the below title, check with Designer Sally because it does not look bold enough */}
+              <h6 className="text-base font-manrope font-bold py-6">What's included:</h6>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Evaluation Matrix</p>
               </div>
-              <button className='bg-[#EF4E5D] rounded-full items-center text-center flex my-4 py-4 px-7 gap-4 mx-auto'>
-                <span className='text-5xl text-white font-anton font-normal'>GET STARTED</span>
-                <img src={PlayIcon} alt="Play Icon" width={30} className='text-white h-[40px]'/>
-              </button>
-              <div>
-                <div className='flex gap-2 items-start pl-5'>
-                  <img src={CheckMark} alt="Check Mark" width={28} className='text-[#0090B2]' />
-                  <p className='text-white w-60'>Use of our evaluation matrix, tailored to YOUR product</p>
+                <div className="pl-5">
+                  <li className="text-sm font-manrope font-normal">Brand Packaging & Design</li>
+                  <li className="text-sm font-manrope font-normal">Product & Pricing performance</li>
                 </div>
-                <div className='flex gap-2 items-start pl-5 py-8'>
-                  <img src={CheckMark} alt="Check Mark" width={28} className='text-[#0090B2]' />
-                  <p className='text-white w-60'>1 product evaluated</p>
-                </div>
-                <div className='flex gap-2 items-start pl-5'>
-                  <img src={CheckMark} alt="Check Mark" width={28} className='text-[#0090B2]' />
-                  <p className='text-white w-60'>Ability to exclude one U.S region for evaluations/shipment</p>
-                </div>
+              <div className="py-4">
+              <div className="flex items-start gap-2">
+                <FaCheckCircle className="text-xl" />
+                <p className="text-sm font-manrope font-normal">Ability to exclude 1 U.S. region for evaluation / shipment</p>
               </div>
-              <img src={MoreInfo} alt="More Info" width={110} className='mx-auto pt-8 pb-16' />
+              </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Access to Feedback library of tools</p>
+              </div>
+            </main>
+            <footer className="text-center">
+              <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 w-full rounded-3xl mt-9">Learn more</button>
+            </footer>
           </div>
-          <div className='bg-[#10212B] w-[400px] h-[691px]'>
-            <p>.</p>
+          {/* second box */}
+          <div className="bg-white py-8 px-12">
+            <header className="pb-6 border-b border-black">
+              <h3 className="text-2xl font-manrope font-bold">Explore</h3>
+              <h2 className="text-5xl font-manrope font-bold pt-2">$99</h2>
+              <p className="text-sm font-manrope font-medium">per package</p>
+            </header>
+            <main>
+              {/* for the below title, check with Designer Sally because it does not look bold enough */}
+              <h6 className="text-base font-manrope font-bold py-6">What's included:</h6>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Evaluation Matrix</p>
+              </div>
+                <div className="pl-5">
+                  <li className="text-sm font-manrope font-normal">Brand Packaging & Design</li>
+                  <li className="text-sm font-manrope font-normal">Product & Pricing performance</li>
+                </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Ability to exclude 1 U.S. region for evaluation / shipment</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Access to Feedback library of tools</p>
+              </div>
+            </main>
+            <footer>
+              <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 px-9 rounded-3xl mt-9">Learn more</button>
+            </footer>
           </div>
-          <div className='bg-[#10212B] w-[400px] h-[691px]'>
-            <p>.</p>
+          {/* third box */}
+          <div className="bg-white py-8 px-12">
+            <header className="pb-6 border-b border-black">
+              <h3 className="text-2xl font-manrope font-bold">Explore</h3>
+              <h2 className="text-5xl font-manrope font-bold pt-2">$99</h2>
+              <p className="text-sm font-manrope font-medium">per package</p>
+            </header>
+            <main>
+              {/* for the below title, check with Designer Sally because it does not look bold enough */}
+              <h6 className="text-base font-manrope font-bold py-6">What's included:</h6>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Evaluation Matrix</p>
+              </div>
+                <div className="pl-5">
+                  <li className="text-sm font-manrope font-normal">Brand Packaging & Design</li>
+                  <li className="text-sm font-manrope font-normal">Product & Pricing performance</li>
+                </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Ability to exclude 1 U.S. region for evaluation / shipment</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <FaCheckCircle />
+                <p className="text-sm font-manrope font-normal">Access to Feedback library of tools</p>
+              </div>
+            </main>
+            <footer>
+              <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 px-9 rounded-3xl mt-9">Learn more</button>
+            </footer>
           </div>
         </div>
       </section>
