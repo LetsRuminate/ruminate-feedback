@@ -74,11 +74,6 @@ export default function EvaluatorDashboard() {
     <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
       <div className="flex flex-wrap gap-2">
         <div>
-          <p className="rounded-full w-10 h-10 bg-white text-black text-center text-3xl items-center">P</p>
-          <p className="text-black">Profile Name</p>
-          {/* <Profile user={photoURL, displayName}/> => I want to have a profile component being inserted here */}
-        </div>
-        <div>
           <h1 className="text-3xl">
             Welcome {user && user.info.name ? user.info.name : "Evaluator"}!
           </h1>
@@ -88,9 +83,13 @@ export default function EvaluatorDashboard() {
         {displayAddress()}
         {displayProducts()}
       </div>
-      <button className="bg-white text-blue-500 py-5 px-10 my-3 rounded-3xl"><Link to='/evaluation-default'>Review Products</Link></button>
+      <button className="bg-white text-blue-500 py-5 px-10 my-3 rounded-3xl">
+        <Link to="/evaluation-default">Review Products</Link>
+      </button>
       <div>
-      <button className="bg-white text-blue-500 py-5 px-10 my-3 rounded-3xl"><Link to=''>Calendar</Link></button>
+        <button className="bg-white text-blue-500 py-5 px-10 my-3 rounded-3xl">
+          <Link to="">Calendar</Link>
+        </button>
       </div>
     </div>
   );

@@ -20,11 +20,10 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 export default function EvaluatorPage1() {
-  const [input, setInput] = useState<string>("");
   const [showWarning, setShowWarning] = useState<boolean>(false);
   const [showWarning2, setShowWarning2] = useState<boolean>(false);
 
-  const [fullName, setFullName] = useState<string>("");
+  const [, setFullName] = useState<string>("");
   const [fullNameError, setFullNameError] = useState<string>("");
 
   // Related to Names
@@ -36,7 +35,8 @@ export default function EvaluatorPage1() {
     if (validatedFullName) {
       setFullName(validatedFullName);
     }
-    updateNextButtonState();
+
+    handleInputChange(e);
   };
 
   const validateFullName = (name: string) => {
@@ -56,21 +56,23 @@ export default function EvaluatorPage1() {
   };
 
   // Related to Password
+  const [password, setPassword] = useState<string>("");
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setInput(value);
+    setPassword(value);
 
     if (value.length >= 8) {
       setShowWarning(false);
     } else {
       setShowWarning(true);
     }
-    updateNextButtonState();
+    handleInputChange(e);
   };
 
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
   const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setInput(value);
+    setConfirmPassword(value);
     let numSpecials = 0;
 
     for (let i = 0; i < value.length; i++) {
@@ -85,7 +87,14 @@ export default function EvaluatorPage1() {
     } else {
       setShowWarning2(true);
     }
-    updateNextButtonState();
+
+    const passwordMatch = checkPasswordMatch(password, value);
+
+    if (passwordMatch) {
+      setPasswordError("");
+    } else {
+      setPasswordError("Please check your password");
+    }
   };
 
   function isAlphaNumeric(char: string) {
@@ -119,29 +128,11 @@ export default function EvaluatorPage1() {
     }
 
     setEmailError("");
-    updateNextButtonState();
     return true;
   };
 
   // Validating to see if the password matches
   const [passwordError, setPasswordError] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState<string>("");
-
-  const handleConfirmPasswordChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
-    const password = input;
-    const confirmPassword = e.target.value;
-    setConfirmPassword(confirmPassword);
-    const passwordMatch = checkPasswordMatch(password, confirmPassword);
-
-    if (passwordMatch) {
-      setPasswordError("");
-    } else {
-      setPasswordError("Please check your password");
-    }
-    updateNextButtonState();
-  };
 
   function checkPasswordMatch(password: string, confirmPassword: string) {
     if (password === confirmPassword) {
@@ -150,20 +141,42 @@ export default function EvaluatorPage1() {
     return false;
   }
 
+  // For Pronoun
+  const [, setPronoun] = useState<string>("");
+  const handlePronounChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setPronoun(value);
+    handleInputChange(e);
+  };
+
   // Disable the Next Button until all the input fields are filled out
   // I need to come back to this code to make sure this works.
-  const [, setIsNextButtonDisabled] = useState<boolean>(true);
-  const updateNextButtonState = () => {
-    // Check all validation conditions and update the state accordingly
-    const isValid =
-      validateFullName(fullName) &&
-      validateEmail() &&
-      !showWarning &&
-      !showWarning2 &&
-      !passwordError &&
-      checkPasswordMatch(input, confirmPassword);
+  const [inputValues, setInputValues] = useState({
+    name: "",
+    email: "",
+    password: "",
+    pronoun: "",
+  });
 
-    setIsNextButtonDisabled(!isValid);
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setInputValues((prevState) => ({ ...prevState, [name]: value }));
+  };
+
+  const areAllInputsFilled = Object.values(inputValues).every(
+    (value) => value !== ""
+  );
+
+  const handleButtonClick = () => {
+    if (areAllInputsFilled) {
+      <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+        <Link to="/evaluator-page-2">Next</Link>
+      </button>;
+    } else {
+      <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl opacity-50 cursor-not-allowed">
+        <Link to="">Next</Link>
+      </button>;
+    }
   };
 
   return (
@@ -224,11 +237,10 @@ export default function EvaluatorPage1() {
           <div className="mb-4">
             <input
               name="name"
-              id="nameField"
               type="text"
               placeholder="Type your full name"
               className="w-full bg-transparent border-b-2 border-white text-white"
-              value={fullName}
+              value={inputValues.name}
               onChange={handleFullNameChange}
               required
             />
@@ -273,11 +285,8 @@ export default function EvaluatorPage1() {
               type="password"
               placeholder="**********"
               className="w-full bg-transparent border-b-2 border-white text-white"
-              value={input}
-              onChange={(e) => {
-                handleChange(e);
-                handleChange2(e);
-              }}
+              value={inputValues.password}
+              onChange={handleChange}
             />
             {showWarning && (
               <p className="text-amber-500">
@@ -301,12 +310,12 @@ export default function EvaluatorPage1() {
               </label>
             </div>
             <input
-              name="password"
+              name="confirmPassword"
               autoComplete="new-password"
               type="password"
               className="w-full bg-transparent border-b-2 border-white text-white"
               value={confirmPassword}
-              onChange={(e) => handleConfirmPasswordChange(e)}
+              onChange={handleChange2}
               required
             />
             {passwordError && (
@@ -326,6 +335,8 @@ export default function EvaluatorPage1() {
             type="text"
             placeholder="him/her"
             className="w-full bg-transparent border-b-2 border-white mb-8 text-white"
+            value={inputValues.pronoun}
+            onChange={handlePronounChange}
             required
           />
         </form>
@@ -333,7 +344,10 @@ export default function EvaluatorPage1() {
           <Link to="/evaluator-default">Previous</Link>
         </button>
         <Link to="/evaluator-page-2">
-          <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+          <button
+            className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
+            onClick={handleButtonClick}
+          >
             Next
           </button>
         </Link>
