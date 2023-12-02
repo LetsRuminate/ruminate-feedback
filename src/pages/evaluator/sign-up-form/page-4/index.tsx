@@ -68,7 +68,7 @@ export default function EvaluatorPage4() {
         </div>
       </div>
       <div className="border border-white mx-auto w-[874px] px-14 py-14">
-        <main>
+        <form>
           <h4 className="text-white text-2xl font-manrope font-bold pb-8">
             This is the address that will be used for product shipment. We will
             always reach out to re-confirm your shipping address prior to each
@@ -144,7 +144,7 @@ export default function EvaluatorPage4() {
               />
             </div>
           </div>
-        </main>
+        </form>
         <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
           <Link to="/evaluator-page-3">Previous</Link>
         </button>

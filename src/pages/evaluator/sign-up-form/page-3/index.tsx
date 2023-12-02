@@ -81,7 +81,7 @@ export default function EvaluatorPage3() {
         <img src={Underline} alt="Underline" width={98} className="mx-auto" />
       </div>
       <div className="border border-white mx-auto w-[874px] px-14 py-16">
-        <main>
+        <form>
           <h4 className="text-white text-2xl font-manrope font-bold">
             What industry sector, within food, do you currently work in? &#42;
           </h4>
@@ -141,7 +141,7 @@ export default function EvaluatorPage3() {
               <Calendar />
             </div>
           </div>
-        </main>
+        </form>
         <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
           <Link to="/evaluator-page-2">Previous</Link>
         </button>

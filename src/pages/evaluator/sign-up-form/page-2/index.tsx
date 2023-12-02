@@ -127,7 +127,7 @@ export default function EvaluatorPage2() {
         <img src={Underline} alt="Underline" width={98} className="ml-64" />
       </div>
       <div className="border border-white mx-auto w-[874px] px-14 py-20">
-        <main>
+        <form>
           <div>
             <h4 className="text-white text-2xl font-manrope font-bold">
               Years working in the specialty food industry &#42;
@@ -409,7 +409,7 @@ export default function EvaluatorPage2() {
             If you're a food producer, what do you produce?
           </h4> */}
           </div>
-        </main>
+        </form>
         <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
           <Link to="/evaluator-page-1">Previous</Link>
         </button>

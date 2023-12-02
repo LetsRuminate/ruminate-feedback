@@ -36,6 +36,7 @@ export default function EvaluatorPage1() {
     if (validatedFullName) {
       setFullName(validatedFullName);
     }
+    updateNextButtonState();
   };
 
   const validateFullName = (name: string) => {
@@ -64,6 +65,7 @@ export default function EvaluatorPage1() {
     } else {
       setShowWarning(true);
     }
+    updateNextButtonState();
   };
 
   const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -83,6 +85,7 @@ export default function EvaluatorPage1() {
     } else {
       setShowWarning2(true);
     }
+    updateNextButtonState();
   };
 
   function isAlphaNumeric(char: string) {
@@ -116,10 +119,30 @@ export default function EvaluatorPage1() {
     }
 
     setEmailError("");
+    updateNextButtonState();
     return true;
   };
 
   // Validating to see if the password matches
+  const [passwordError, setPasswordError] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState<string>("");
+
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const password = input;
+    const confirmPassword = e.target.value;
+    setConfirmPassword(confirmPassword);
+    const passwordMatch = checkPasswordMatch(password, confirmPassword);
+
+    if (passwordMatch) {
+      setPasswordError("");
+    } else {
+      setPasswordError("Please check your password");
+    }
+    updateNextButtonState();
+  };
+
   function checkPasswordMatch(password: string, confirmPassword: string) {
     if (password === confirmPassword) {
       return true;
@@ -127,15 +150,21 @@ export default function EvaluatorPage1() {
     return false;
   }
 
-  const password = "password";
-  const confirmPassword = "password";
-  const passwordResult = checkPasswordMatch(password, confirmPassword);
+  // Disable the Next Button until all the input fields are filled out
+  // I need to come back to this code to make sure this works.
+  const [, setIsNextButtonDisabled] = useState<boolean>(true);
+  const updateNextButtonState = () => {
+    // Check all validation conditions and update the state accordingly
+    const isValid =
+      validateFullName(fullName) &&
+      validateEmail() &&
+      !showWarning &&
+      !showWarning2 &&
+      !passwordError &&
+      checkPasswordMatch(input, confirmPassword);
 
-  if (passwordResult) {
-    console.log("Passwords match!");
-  } else {
-    console.log("Passwords do not match.");
-  }
+    setIsNextButtonDisabled(!isValid);
+  };
 
   return (
     <div className="py-20 bg-[#345EC9] overflow-x-scroll">
@@ -183,7 +212,7 @@ export default function EvaluatorPage1() {
         <img src={Underline} alt="Underline" width={98} className="ml-28" />
       </div>
       <div className="border border-white mx-auto w-[874px] px-14 pt-14 pb-20">
-        <main>
+        <form>
           <div>
             <label
               htmlFor="Name"
@@ -195,6 +224,7 @@ export default function EvaluatorPage1() {
           <div className="mb-4">
             <input
               name="name"
+              id="nameField"
               type="text"
               placeholder="Type your full name"
               className="w-full bg-transparent border-b-2 border-white text-white"
@@ -215,6 +245,7 @@ export default function EvaluatorPage1() {
           <div className="mb-4">
             <input
               name="email"
+              autoComplete="username"
               type="text"
               placeholder="i.e. ruminate@ruminate.com"
               className="w-full bg-transparent border-b-2 border-white text-white"
@@ -238,6 +269,7 @@ export default function EvaluatorPage1() {
           <div className="mb-8">
             <input
               name="password"
+              autoComplete="new-password"
               type="password"
               placeholder="**********"
               className="w-full bg-transparent border-b-2 border-white text-white"
@@ -270,12 +302,14 @@ export default function EvaluatorPage1() {
             </div>
             <input
               name="password"
+              autoComplete="new-password"
               type="password"
-              className="w-full bg-transparent border-b-2 border-white"
-              onChange={() => checkPasswordMatch(password, confirmPassword)}
+              className="w-full bg-transparent border-b-2 border-white text-white"
+              value={confirmPassword}
+              onChange={(e) => handleConfirmPasswordChange(e)}
               required
             />
-            {passwordResult && (
+            {passwordError && (
               <p className="text-amber-500">Please check your password.</p>
             )}
           </div>
@@ -291,16 +325,18 @@ export default function EvaluatorPage1() {
             name="pronoun"
             type="text"
             placeholder="him/her"
-            className="w-full bg-transparent border-b-2 border-white mb-8"
+            className="w-full bg-transparent border-b-2 border-white mb-8 text-white"
             required
           />
-        </main>
+        </form>
         <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
           <Link to="/evaluator-default">Previous</Link>
         </button>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-          <Link to="/evaluator-page-2">Next</Link>
-        </button>
+        <Link to="/evaluator-page-2">
+          <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+            Next
+          </button>
+        </Link>
       </div>
     </div>
   );
