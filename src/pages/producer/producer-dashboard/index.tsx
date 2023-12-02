@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
 import { ProductsContext } from "@contexts/ProductsContext";
 
-import Dashboard from '@pages/producer/producer-dashboard/dashboard.svg'
+import Dashboard from "@pages/producer/producer-dashboard/dashboard.svg";
 
 import { Producer } from "src/types/users";
 
@@ -13,7 +13,7 @@ function checkProducer(user: Producer | unknown): user is Producer {
 
 // XXX
 // this is a mock-up, ad-hoc dashboard just for experimenting with
-// database interactions - not for realsies. this will all change, as
+// database interactions - not for releases. this will all change, as
 // front-end create dashboards from mid-fi designs
 export default function ProducerDashboard() {
   const user = useContext(UserContext);
@@ -121,7 +121,7 @@ export default function ProducerDashboard() {
   };
 
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px] flex-1">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
@@ -136,21 +136,31 @@ export default function ProducerDashboard() {
         {displayProducts()}
       </div>
       <div className="my-2">
-      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl"><Link to=''>My Profile</Link></button>
+        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl">
+          <Link to="">My Profile</Link>
+        </button>
       </div>
-      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2"><Link to='/product-default'>Product Application</Link></button>
+      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
+        <Link to="/product-default">Product Application</Link>
+      </button>
       <div className="my-2">
-      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl"><Link to=''>Payment Update</Link></button>
+        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl">
+          <Link to="">Payment Update</Link>
+        </button>
       </div>
       <div className="my-2">
-      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2"><Link to=''>Application Status</Link></button>
+        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
+          <Link to="">Application Status</Link>
+        </button>
       </div>
       <div className="my-2">
-      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2"><Link to=''>Product Detail</Link></button>
+        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
+          <Link to="">Product Detail</Link>
+        </button>
       </div>
       <div className="py-60">
         <h1>Below is the tentative idea</h1>
-      <img src={Dashboard} alt="Dashboard" />
+        <img src={Dashboard} alt="Dashboard" />
       </div>
     </div>
   );
