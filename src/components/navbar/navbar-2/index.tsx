@@ -58,28 +58,51 @@ export default function Navbar2() {
       </header>
       <main className="flex flex-col pl-2">
         {/* buttons for Producer Dashboard here */}
-        <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
-          <Link to="/product-default">Product Evaluations</Link>
-        </button>
-        <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
-          Pricing Plans
-        </button>
-        <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
-          Payment Settings
-        </button>
+        {isProducerDashboard && (
+          <>
+            <button
+              className={`text-left ${isProducerDashboard ? "active" : ""}`}
+            >
+              <Link to="/product-default">Product Evaluations</Link>
+            </button>
+            <button
+              className={`text-left ${isProducerDashboard ? "active" : ""}`}
+            >
+              Pricing Plans
+            </button>
+            <button
+              className={`text-left ${isProducerDashboard ? "active" : ""}`}
+            >
+              Payment Settings
+            </button>
+          </>
+        )}
+
         {/* buttons for Evaluator Dashboard here */}
-        <button className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}>
-          Evaluation
-        </button>
-        <button className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}>
-          Availability
-        </button>
-        <button className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}>
-          Payment History
-        </button>
-        <button className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}>
-          Notifications
-        </button>
+        {isEvaluatorDashboard && (
+          <>
+            <button
+              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
+            >
+              <Link to="/evaluation-default">Evaluation</Link>
+            </button>
+            <button
+              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
+            >
+              Availability
+            </button>
+            <button
+              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
+            >
+              Payment History
+            </button>
+            <button
+              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
+            >
+              Notifications
+            </button>
+          </>
+        )}
       </main>
       {/* Stuff for both Producer & Evaluator */}
       <footer className="flex flex-col pl-2">
