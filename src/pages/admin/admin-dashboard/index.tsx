@@ -1,6 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { query, collection, onSnapshot } from "firebase/firestore";
+import {
+  query,
+  collection,
+  onSnapshot,
+  updateDoc,
+  doc,
+} from "firebase/firestore";
 import { db } from "@components/api/firebase";
 import { UserContext } from "@contexts/UserContext";
 import { ProductsContext } from "@contexts/ProductsContext";
@@ -11,6 +17,14 @@ function checkAdmin(user: Admin | unknown): user is Admin {
   return (user as Admin).role === "admin";
 }
 
+function checkProducer(user: Producer | unknown): user is Producer {
+  return (user as Producer).role === "producer";
+}
+
+interface AllUsers {
+  [key: string]: Admin | Evaluator | Producer;
+}
+
 // XXX
 // this is a mock-up, ad-hoc dashboard just for experimenting with
 // database interactions - not for realsies. this will all change, as
@@ -18,7 +32,6 @@ function checkAdmin(user: Admin | unknown): user is Admin {
 export default function AdminDashboard() {
   const user = useContext(UserContext);
   const userProducts = useContext(ProductsContext);
-  console.log(userProducts);
 
   const navigate = useNavigate();
 
@@ -28,20 +41,20 @@ export default function AdminDashboard() {
     }
   }, [navigate, user]);
 
-  const [allUsers, setAllUsers] = useState<
-    (Admin | Evaluator | Producer)[] | null
-  >(null);
+  const [allUsers, setAllUsers] = useState<null | AllUsers>(null);
+  const [userDetailId, setUserDetailId] = useState<null | string>(null);
 
   useEffect(() => {
+    // this loads up all users & their info for the admin to view
     if (user && checkAdmin(user)) {
       const q = query(collection(db, "users"));
       onSnapshot(q, (querySnapshot) => {
-        const users: (Admin | Evaluator | Producer)[] = [];
+        const users: AllUsers = {};
         querySnapshot.forEach((docu) => {
           const data = docu.data() as Admin | Evaluator | Producer;
-          users.push(data);
+          users[data.uid] = data;
         });
-        if (users.length) {
+        if (Object.keys(users).length) {
           setAllUsers(users);
         } else {
           setAllUsers(null);
@@ -79,17 +92,31 @@ export default function AdminDashboard() {
     return null;
   };
 
+  const getDetailUser = (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const { uid } = target.dataset;
+    if (uid) {
+      setUserDetailId(uid);
+    }
+  };
+
   const displayUsers = () => {
     if (user && checkAdmin(user)) {
       return (
-        <div className="bg-neutral-100 p-1">
+        <div className="bg-neutral-100 p-1 flex flex-col items-start">
           <h2>All Users:</h2>
           {allUsers ? (
-            allUsers.map((singleUser) => {
+            Object.keys(allUsers).map((singleId) => {
+              const currentUser = allUsers[singleId];
               return (
-                <div
-                  key={singleUser.uid}
-                >{`${singleUser.info.name} (${singleUser.info.email})`}</div>
+                <button
+                  data-uid={currentUser.uid}
+                  key={currentUser.uid}
+                  onClick={getDetailUser}
+                  type="button"
+                >
+                  {`${currentUser.info.name} (${currentUser.info.email})`}
+                </button>
               );
             })
           ) : (
@@ -101,8 +128,149 @@ export default function AdminDashboard() {
     return null;
   };
 
+  const displayAddress = (currentUser: Evaluator | Producer) => {
+    const { address } = currentUser.info;
+    return (
+      <>
+        {checkProducer(currentUser) ? (
+          <div>{currentUser.info.businessName}</div>
+        ) : null}
+        <div>{address.street}</div>
+        {address.unit ? <div>{`Unit ${address.unit}`}</div> : null}
+        <div>{`${address.city}, ${address.state}`}</div>
+        <div>{address.zip}</div>
+      </>
+    );
+  };
+
+  const displayCertInfo = (currentUser: Producer) => {
+    const { info } = currentUser;
+
+    return (
+      <>
+        <h2>Certification Info:</h2>
+        <div>
+          Type:{" "}
+          {info.certification === "thirdParty"
+            ? "Third Party"
+            : "Self-Certified"}
+        </div>
+        {info.certificationURL ? (
+          <div>
+            <a
+              className="text-blue-800 underline"
+              target="_blank"
+              href={info.certificationURL}
+            >
+              Download certification
+            </a>
+          </div>
+        ) : (
+          "No certification document provided"
+        )}
+      </>
+    );
+  };
+
+  const changeConfirmation = async (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const { uid } = target.dataset;
+    if (allUsers && uid) {
+      const userRef = doc(db, "users", uid);
+      await updateDoc(userRef, {
+        adminConfirmed: !allUsers[uid].adminConfirmed,
+      });
+    }
+  };
+
+  const deactivateUser = async (event: React.SyntheticEvent) => {
+    const target = event.target as HTMLButtonElement;
+    const { uid } = target.dataset;
+    if (allUsers && uid) {
+      const userRef = doc(db, "users", uid);
+      await updateDoc(userRef, {
+        deactivated: !allUsers[uid].deactivated,
+      });
+    }
+  };
+
+  const displayUserActions = (currentUser: Admin | Evaluator | Producer) => {
+    return (
+      <div className="flex flex-col items-start">
+        <button
+          className="bg-yellow-200 p-1"
+          data-uid={currentUser.uid}
+          onClick={changeConfirmation}
+          type="button"
+        >
+          Change confirmation status
+        </button>
+        <button
+          className={`${
+            currentUser.deactivated ? "bg-green-200" : "bg-red-200"
+          } p-1`}
+          data-uid={currentUser.uid}
+          onClick={deactivateUser}
+          type="button"
+        >
+          {currentUser.deactivated ? "Activate user" : "Deactivate user"}
+        </button>
+      </div>
+    );
+  };
+
+  const displayUserDetail = () => {
+    if (allUsers && userDetailId) {
+      const currentUser = allUsers[userDetailId];
+      console.log(currentUser);
+      return (
+        <>
+          <h2>Selected User Detail:</h2>
+          {currentUser.deactivated ? (
+            <div className="bg-red-400">DEACTIVATED</div>
+          ) : null}
+          <div
+            className={`${
+              currentUser.deactivated ? "bg-red-200" : "bg-neutral-50"
+            } flex gap-2`}
+          >
+            <div className="p-1 flex flex-col gap-1">
+              <div>{currentUser.info.name}</div>
+              <div>{currentUser.info.email}</div>
+              <div>role: {currentUser.role}</div>
+              <div
+                className={currentUser.approved ? "bg-green-400" : "bg-red-400"}
+              >
+                {currentUser.approved ? "Approved" : "Not Approved"}
+              </div>
+              <div
+                className={
+                  currentUser.adminConfirmed ? "bg-green-400" : "bg-red-400"
+                }
+              >
+                {currentUser.adminConfirmed
+                  ? "Admin Confirmed"
+                  : "Not Admin Confirmed"}
+              </div>
+            </div>
+            <div className="p-1 flex flex-col gap-1">
+              {!checkAdmin(currentUser) ? displayAddress(currentUser) : null}
+            </div>
+            <div className="p-1 flex flex-col gap-1">
+              {checkProducer(currentUser) ? displayCertInfo(currentUser) : null}
+            </div>
+            <div className="p-1 flex flex-col gap-1">
+              {displayUserActions(currentUser)}
+            </div>
+          </div>
+        </>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px] flex flex-col items-start gap-2">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
@@ -114,6 +282,7 @@ export default function AdminDashboard() {
         {displayUsers()}
         {displayProducts()}
       </div>
+      {displayUserDetail()}
     </div>
   );
 }
