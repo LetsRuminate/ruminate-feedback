@@ -7,6 +7,7 @@ import { Outlet, useLocation } from "react-router-dom";
 function App() {
   const location = useLocation();
   const noFooter = [
+    // Producer pages list
     "/producer",
     "/product-default",
     "/product-intake-1",
@@ -14,6 +15,7 @@ function App() {
     "/product-intake-3",
     "/product-intake-4",
     "/product-completed",
+    // Evaluator pages list
     "/evaluator",
     // "/evaluation-default",
     // "/evaluation-page-1",
@@ -21,10 +23,13 @@ function App() {
     // "/evaluation-page-3",
     // "/evaluation-page-4",
     // "/evaluation-completed",
+    // Administrator pages list
+    "/admin",
   ];
   const hideFooter = noFooter.includes(location.pathname);
 
   const newNav = [
+    // Producer pages list
     "/producer",
     "/product-default",
     "/product-intake-1",
@@ -32,6 +37,7 @@ function App() {
     "/product-intake-3",
     "/product-intake-4",
     "/product-completed",
+    // Evaluator pages list
     "/evaluator",
     // "/evaluation-default",
     // "/evaluation-page-1",
@@ -39,11 +45,13 @@ function App() {
     // "/evaluation-page-3",
     // "/evaluation-page-4",
     // "/evaluation-completed",
+    // Admin pages list
+    "/admin",
   ];
-  const NavFooter2 = newNav.includes(location.pathname);
+  const newNav2 = newNav.includes(location.pathname);
   return (
     <>
-      {NavFooter2 ? <></> : <NavBar />}
+      {newNav2 ? <></> : <NavBar />}
       <Outlet />
       {!hideFooter && <Footer />}
     </>

@@ -3,8 +3,6 @@ import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
 import { ProductsContext } from "@contexts/ProductsContext";
 
-import Dashboard from "@pages/producer/producer-dashboard/dashboard.svg";
-
 import { Producer } from "src/types/users";
 
 function checkProducer(user: Producer | unknown): user is Producer {
@@ -157,10 +155,6 @@ export default function ProducerDashboard() {
         <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
           <Link to="">Product Detail</Link>
         </button>
-      </div>
-      <div className="py-60">
-        <h1>Below is the tentative idea</h1>
-        <img src={Dashboard} alt="Dashboard" />
       </div>
     </div>
   );

@@ -6,24 +6,6 @@ import { Link, useLocation } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "@components/api/firebase";
 
-// User Context
-import { createContext, useContext } from "react";
-
-type User = "producer" | "evaluator" | "admin";
-type UserContextType = {
-  role: User | null;
-};
-
-const UserContext = createContext<UserContextType | undefined>(undefined);
-
-const useUserContext = () => {
-  const context = useContext(UserContext);
-  if (!context) {
-    throw new Error("useUserContext must be used within a UserContextProvider");
-  }
-  return context;
-};
-
 export default function Navbar2() {
   const userProfile = {
     photoURL: "url-to-user-photo",
@@ -35,16 +17,7 @@ export default function Navbar2() {
 
   const isProducerDashboard = location.pathname.startsWith("/producer");
   const isEvaluatorDashboard = location.pathname.startsWith("/evaluator");
-
-  const { role } = useUserContext();
-
-  function getDashboardRoute(role: User | null) {
-    if (role) {
-      return `/${role}`;
-    }
-    // Handle the case where role is null (if needed)
-    return "/";
-  }
+  const isAdminDashboard = location.pathname.startsWith("/admin");
 
   async function signOutUser() {
     try {
@@ -65,16 +38,28 @@ export default function Navbar2() {
         <Profile user={userProfile} />
         <button
           className={`text-left ${
-            isProducerDashboard || isEvaluatorDashboard ? "active" : ""
+            isProducerDashboard || isEvaluatorDashboard || isAdminDashboard
+              ? "active"
+              : ""
           }`}
         >
-          <Link to={getDashboardRoute(role)}>Dashboard Home</Link>
+          <Link
+            to={
+              isAdminDashboard
+                ? "/admin"
+                : isEvaluatorDashboard
+                  ? "/evaluator"
+                  : "/producer"
+            }
+          >
+            Dashboard Home
+          </Link>
         </button>
       </header>
       <main className="flex flex-col pl-2">
         {/* buttons for Producer Dashboard here */}
         <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
-          Product Evaluations
+          <Link to="/product-default">Product Evaluations</Link>
         </button>
         <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
           Pricing Plans
@@ -109,15 +94,17 @@ export default function Navbar2() {
           className={`text-left ${
             isProducerDashboard || isEvaluatorDashboard ? "active" : ""
           }`}
-          onClick={signOutUser}
-          type="button"
         >
           Messages
         </button>
         <button
           className={`text-left ${
-            isProducerDashboard || isEvaluatorDashboard ? "active" : ""
+            isProducerDashboard || isEvaluatorDashboard || isAdminDashboard
+              ? "active"
+              : ""
           }`}
+          onClick={signOutUser}
+          type="button"
         >
           Log out
         </button>
