@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
 import { ProductsContext } from "@contexts/ProductsContext";
 
@@ -119,7 +119,7 @@ export default function ProducerDashboard() {
   };
 
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px] flex-1">
+    <div className="bg-blue-300 text-brand-black p-8 h-full flex-1">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
@@ -132,29 +132,6 @@ export default function ProducerDashboard() {
         {displayBusinessInfo()}
         {displayPlanInfo()}
         {displayProducts()}
-      </div>
-      <div className="my-2">
-        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl">
-          <Link to="">My Profile</Link>
-        </button>
-      </div>
-      <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
-        <Link to="/product-default">Product Application</Link>
-      </button>
-      <div className="my-2">
-        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl">
-          <Link to="">Payment Update</Link>
-        </button>
-      </div>
-      <div className="my-2">
-        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
-          <Link to="">Application Status</Link>
-        </button>
-      </div>
-      <div className="my-2">
-        <button className="bg-white text-blue-500 py-5 px-10 rounded-3xl my-2">
-          <Link to="">Product Detail</Link>
-        </button>
       </div>
     </div>
   );
