@@ -2,8 +2,12 @@ import BrandLogo from "@assets/brand/brand-logo.svg";
 import Profile from "@components/user-profile";
 import { Link, useLocation } from "react-router-dom";
 
+// Firebase Authentication
+import { signOut } from "firebase/auth";
+import { auth } from "@components/api/firebase";
+
 export default function Navbar2() {
-  const user = {
+  const userProfile = {
     photoURL: "url-to-user-photo",
     displayName: "User Display Name",
     userRole: "User Role",
@@ -13,6 +17,17 @@ export default function Navbar2() {
 
   const isProducerDashboard = location.pathname.startsWith("/producer");
   const isEvaluatorDashboard = location.pathname.startsWith("/evaluator");
+  const isAdminDashboard = location.pathname.startsWith("/admin");
+
+  async function signOutUser() {
+    try {
+      await signOut(auth);
+    } catch (err) {
+      // XXX
+      // Handle better
+      console.error(err);
+    }
+  }
 
   return (
     <div className="bg-[#D9D9D9] h-full">
@@ -20,12 +35,31 @@ export default function Navbar2() {
         <Link to="/">
           <img alt="Feedback logo" src={BrandLogo} className="shrink-0" />
         </Link>
-        <Profile user={user} />
+        <Profile user={userProfile} />
+        <button
+          className={`text-left ${
+            isProducerDashboard || isEvaluatorDashboard || isAdminDashboard
+              ? "active"
+              : ""
+          }`}
+        >
+          <Link
+            to={
+              isAdminDashboard
+                ? "/admin"
+                : isEvaluatorDashboard
+                  ? "/evaluator"
+                  : "/producer"
+            }
+          >
+            Dashboard Home
+          </Link>
+        </button>
       </header>
       <main className="flex flex-col pl-2">
         {/* buttons for Producer Dashboard here */}
         <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
-          Product Evaluations
+          <Link to="/product-default">Product Evaluations</Link>
         </button>
         <button className={`text-left ${isProducerDashboard ? "active" : ""}`}>
           Pricing Plans
@@ -65,8 +99,12 @@ export default function Navbar2() {
         </button>
         <button
           className={`text-left ${
-            isProducerDashboard || isEvaluatorDashboard ? "active" : ""
+            isProducerDashboard || isEvaluatorDashboard || isAdminDashboard
+              ? "active"
+              : ""
           }`}
+          onClick={signOutUser}
+          type="button"
         >
           Log out
         </button>

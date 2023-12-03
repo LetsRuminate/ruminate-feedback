@@ -71,7 +71,12 @@ const router = createBrowserRouter([
         path: "/admin",
         element: (
           <ProductsContextProvider>
-            <AdminDashboard />
+            <div className="flex h-screen">
+              <Navbar2 />
+              <div className="flex-1">
+                <AdminDashboard />
+              </div>
+            </div>
           </ProductsContextProvider>
         ),
       },
@@ -82,7 +87,9 @@ const router = createBrowserRouter([
         element: (
           <ProductsContextProvider>
             <div className="flex h-screen">
-              <Navbar2 />
+              <UserContextProvider>
+                <Navbar2 />
+              </UserContextProvider>
               <div className="flex-1">
                 <ProducerDashboard />
               </div>
