@@ -15,8 +15,27 @@ export default function Navbar2() {
 
   const location = useLocation();
 
-  const isProducerDashboard = location.pathname.startsWith("/producer");
-  const isEvaluatorDashboard = location.pathname.startsWith("/evaluator");
+  // For Producer Dashboard
+  const isProducerDashboard =
+    location.pathname.startsWith("/producer") ||
+    location.pathname.startsWith("/product-default") ||
+    location.pathname.startsWith("/product-intake-1") ||
+    location.pathname.startsWith("/product-intake-2") ||
+    location.pathname.startsWith("/product-intake-3") ||
+    location.pathname.startsWith("/product-intake-4") ||
+    location.pathname.startsWith("/product-completed");
+
+  // For Evaluator Dashboard
+  const isEvaluatorDashboard =
+    location.pathname.startsWith("/evaluator") ||
+    location.pathname.startsWith("/evaluation-default") ||
+    location.pathname.startsWith("/evaluation-page-1") ||
+    location.pathname.startsWith("/evaluation-page-2") ||
+    location.pathname.startsWith("/evaluation-page-3") ||
+    location.pathname.startsWith("/evaluation-page-4") ||
+    location.pathname.startsWith("/evaluation-completed");
+
+  // For Administrator Dashboard
   const isAdminDashboard = location.pathname.startsWith("/admin");
 
   async function signOutUser() {
@@ -60,47 +79,23 @@ export default function Navbar2() {
         {/* buttons for Producer Dashboard here */}
         {isProducerDashboard && (
           <>
-            <button
-              className={`text-left ${isProducerDashboard ? "active" : ""}`}
-            >
+            <button className="text-left">
               <Link to="/product-default">Product Evaluations</Link>
             </button>
-            <button
-              className={`text-left ${isProducerDashboard ? "active" : ""}`}
-            >
-              Pricing Plans
-            </button>
-            <button
-              className={`text-left ${isProducerDashboard ? "active" : ""}`}
-            >
-              Payment Settings
-            </button>
+            <button className="text-left">Pricing Plans</button>
+            <button className="text-left">Payment Settings</button>
           </>
         )}
 
         {/* buttons for Evaluator Dashboard here */}
         {isEvaluatorDashboard && (
           <>
-            <button
-              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
-            >
+            <button className="text-left">
               <Link to="/evaluation-default">Evaluation</Link>
             </button>
-            <button
-              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
-            >
-              Availability
-            </button>
-            <button
-              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
-            >
-              Payment History
-            </button>
-            <button
-              className={`text-left ${isEvaluatorDashboard ? "active" : ""}`}
-            >
-              Notifications
-            </button>
+            <button className="text-left">Availability</button>
+            <button className="text-left">Payment History</button>
+            <button className="text-left">Notifications</button>
           </>
         )}
       </main>

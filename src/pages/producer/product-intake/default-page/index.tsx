@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 export default function IntakeDefault() {
   return (
-    <div className="py-20 bg-[#345EC9]">
+    <div className="py-20 bg-[#345EC9] h-full">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
           PRODUCT INTAKE FORM

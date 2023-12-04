@@ -50,7 +50,7 @@ import EvaluationPage2 from "@pages/evaluator/product-evaluation/page-2/index.ts
 import EvaluationPage3 from "@pages/evaluator/product-evaluation/page-3/index.tsx";
 import EvaluationPage4 from "@pages/evaluator/product-evaluation/page-4/index.tsx";
 import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-completed/index.tsx";
-import Navbar2 from "@components/navbar/navbar-2/index.tsx";
+import Navbar2 from "@components/navbar/dashboard-navbar/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -163,22 +163,6 @@ const router = createBrowserRouter([
           </div>
         ),
       },
-      // =========================================================
-      // Original Navigation example below
-      // {
-      //   path: "/producer",
-      //   element: (
-      //     <ProductsContextProvider>
-      //       <ProducerDashboard />
-      //     </ProductsContextProvider>
-      //   ),
-      // },
-      // { path: "/product-default", element: <IntakeDefault /> },
-      // { path: "/product-intake-1", element: <ProductPage1 /> },
-      // { path: "/product-intake-2", element: <ProductPage2 /> },
-      // { path: "/product-intake-3", element: <ProductPage3 /> },
-      // { path: "/product-intake-4", element: <ProductPage4 /> },
-      // { path: "/product-completed", element: <ProductCompleted /> },
       // =================================
       // Evaluator Dashboard from this point
       {
@@ -194,12 +178,72 @@ const router = createBrowserRouter([
           </ProductsContextProvider>
         ),
       },
-      { path: "/evaluation-default", element: <EvaluationDefault /> },
-      { path: "/evaluation-page-1", element: <EvaluationPage1 /> },
-      { path: "/evaluation-page-2", element: <EvaluationPage2 /> },
-      { path: "/evaluation-page-3", element: <EvaluationPage3 /> },
-      { path: "/evaluation-page-4", element: <EvaluationPage4 /> },
-      { path: "/evaluation-completed", element: <EvaluationCompleted /> },
+      {
+        path: "/evaluation-default",
+        element: (
+          <div className="flex h-screen">
+            <Navbar2 />
+            <div className="flex-1">
+              <EvaluationDefault />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluation-page-1",
+        element: (
+          <div className="flex h-screen">
+            <Navbar2 />
+            <div className="flex-1">
+              <EvaluationPage1 />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluation-page-2",
+        element: (
+          <div className="flex h-screen">
+            <Navbar2 />
+            <div className="flex-1">
+              <EvaluationPage2 />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluation-page-3",
+        element: (
+          <div className="flex h-screen">
+            <Navbar2 />
+            <div className="flex-1">
+              <EvaluationPage3 />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluation-page-4",
+        element: (
+          <div className="flex h-screen">
+            <Navbar2 />
+            <div className="flex-1">
+              <EvaluationPage4 />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluation-completed",
+        element: (
+          <div className="flex h-screen">
+            <Navbar2 />
+            <div className="flex-1">
+              <EvaluationCompleted />
+            </div>
+          </div>
+        ),
+      },
       // --------------------------------------------------
       // Original version below
       // {
