@@ -36,7 +36,7 @@ export default function EvaluatorPage1() {
       setFullName(validatedFullName);
     }
 
-    handleInputChange(e);
+    // handleInputChange(e);
   };
 
   const validateFullName = (name: string) => {
@@ -57,6 +57,7 @@ export default function EvaluatorPage1() {
 
   // Related to Password
   const [password, setPassword] = useState<string>("");
+  const [isPasswordFilled, setIsPasswordFilled] = useState<boolean>(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
@@ -66,13 +67,11 @@ export default function EvaluatorPage1() {
     } else {
       setShowWarning(true);
     }
-    handleInputChange(e);
   };
 
   const [confirmPassword, setConfirmPassword] = useState<string>("");
   const handleChange2 = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
-    setConfirmPassword(value);
     let numSpecials = 0;
 
     for (let i = 0; i < value.length; i++) {
@@ -86,14 +85,6 @@ export default function EvaluatorPage1() {
       setShowWarning2(false);
     } else {
       setShowWarning2(true);
-    }
-
-    const passwordMatch = checkPasswordMatch(password, value);
-
-    if (passwordMatch) {
-      setPasswordError("");
-    } else {
-      setPasswordError("Please check your password");
     }
   };
 
@@ -131,53 +122,65 @@ export default function EvaluatorPage1() {
     return true;
   };
 
+  const [passwordError, setPasswordError] = useState<string>();
   // Validating to see if the password matches
-  const [passwordError, setPasswordError] = useState("");
-
-  function checkPasswordMatch(password: string, confirmPassword: string) {
-    if (password === confirmPassword) {
-      return true;
+  const handlePasswordFilled = (value: string, confirmPassword: string) => {
+    if (value.length > 0 && !isPasswordFilled) {
+      setIsPasswordFilled(true);
     }
-    return false;
-  }
+
+    if (isPasswordFilled) {
+      if (value.length >= 8) {
+        setShowWarning(false);
+      } else {
+        setShowWarning(true);
+      }
+    }
+
+    if (password === confirmPassword) {
+      setPasswordError("");
+    } else {
+      setPasswordError("Please check your password");
+    }
+  };
 
   // For Pronoun
   const [, setPronoun] = useState<string>("");
   const handlePronounChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPronoun(value);
-    handleInputChange(e);
+    // handleInputChange(e);
   };
 
   // Disable the Next Button until all the input fields are filled out
   // I need to come back to this code to make sure this works.
-  const [inputValues, setInputValues] = useState({
-    name: "",
-    email: "",
-    password: "",
-    pronoun: "",
-  });
+  // const [inputValues, setInputValues] = useState({
+  //   name: "",
+  //   email: "",
+  //   password: "",
+  //   pronoun: "",
+  // });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setInputValues((prevState) => ({ ...prevState, [name]: value }));
-  };
+  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const { name, value } = e.target;
+  //   setInputValues((prevState) => ({ ...prevState, [name]: value }));
+  // };
 
-  const areAllInputsFilled = Object.values(inputValues).every(
-    (value) => value !== ""
-  );
+  // const areAllInputsFilled = Object.values(inputValues).every(
+  //   (value) => value !== ""
+  // );
 
-  const handleButtonClick = () => {
-    if (areAllInputsFilled) {
-      <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-        <Link to="/evaluator-page-2">Next</Link>
-      </button>;
-    } else {
-      <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl opacity-50 cursor-not-allowed">
-        <Link to="">Next</Link>
-      </button>;
-    }
-  };
+  // const handleButtonClick = () => {
+  //   if (areAllInputsFilled) {
+  //     <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+  //       <Link to="/evaluator-page-2">Next</Link>
+  //     </button>;
+  //   } else {
+  //     <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl opacity-50 cursor-not-allowed">
+  //       <Link to="">Next</Link>
+  //     </button>;
+  //   }
+  // };
 
   return (
     <div className="py-20 bg-[#345EC9] overflow-x-scroll">
@@ -240,7 +243,7 @@ export default function EvaluatorPage1() {
               type="text"
               placeholder="Type your full name"
               className="w-full bg-transparent border-b-2 border-white text-white"
-              value={inputValues.name}
+              // value={inputValues.name}
               onChange={handleFullNameChange}
               required
             />
@@ -285,8 +288,11 @@ export default function EvaluatorPage1() {
               type="password"
               placeholder="**********"
               className="w-full bg-transparent border-b-2 border-white text-white"
-              value={inputValues.password}
-              onChange={handleChange}
+              value={password}
+              onChange={(e) => {
+                handleChange(e);
+                handleChange2(e);
+              }}
             />
             {showWarning && (
               <p className="text-amber-500">
@@ -315,7 +321,10 @@ export default function EvaluatorPage1() {
               type="password"
               className="w-full bg-transparent border-b-2 border-white text-white"
               value={confirmPassword}
-              onChange={handleChange2}
+              onChange={(e) => {
+                setConfirmPassword(e.target.value);
+                handlePasswordFilled(password, e.target.value);
+              }}
               required
             />
             {passwordError && (
@@ -335,7 +344,7 @@ export default function EvaluatorPage1() {
             type="text"
             placeholder="him/her"
             className="w-full bg-transparent border-b-2 border-white mb-8 text-white"
-            value={inputValues.pronoun}
+            // value={inputValues.pronoun}
             onChange={handlePronounChange}
             required
           />
@@ -346,7 +355,7 @@ export default function EvaluatorPage1() {
         <Link to="/evaluator-page-2">
           <button
             className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
-            onClick={handleButtonClick}
+            // onClick={handleButtonClick}
           >
             Next
           </button>
