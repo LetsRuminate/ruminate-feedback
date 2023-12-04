@@ -17,12 +17,12 @@ function App() {
     "/product-completed",
     // Evaluator pages list
     "/evaluator",
-    // "/evaluation-default",
-    // "/evaluation-page-1",
-    // "/evaluation-page-2",
-    // "/evaluation-page-3",
-    // "/evaluation-page-4",
-    // "/evaluation-completed",
+    "/evaluation-default",
+    "/evaluation-page-1",
+    "/evaluation-page-2",
+    "/evaluation-page-3",
+    "/evaluation-page-4",
+    "/evaluation-completed",
     // Administrator pages list
     "/admin",
   ];
@@ -39,12 +39,12 @@ function App() {
     "/product-completed",
     // Evaluator pages list
     "/evaluator",
-    // "/evaluation-default",
-    // "/evaluation-page-1",
-    // "/evaluation-page-2",
-    // "/evaluation-page-3",
-    // "/evaluation-page-4",
-    // "/evaluation-completed",
+    "/evaluation-default",
+    "/evaluation-page-1",
+    "/evaluation-page-2",
+    "/evaluation-page-3",
+    "/evaluation-page-4",
+    "/evaluation-completed",
     // Admin pages list
     "/admin",
   ];
