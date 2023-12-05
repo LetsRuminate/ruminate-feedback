@@ -80,7 +80,7 @@ export default function EvaluatorCompleted() {
           Click below to access your Producer Dashboard!
         </p>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-          <Link to="/evaluator">Dashboard Home</Link>
+          <Link to="/login">Dashboard</Link>
         </button>
       </div>
     </div>
