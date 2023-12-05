@@ -23,7 +23,7 @@ export default function EvaluatorPage1() {
   const [showWarning, setShowWarning] = useState<boolean>(false);
   const [showWarning2, setShowWarning2] = useState<boolean>(false);
 
-  const [, setFullName] = useState<string>("");
+  const [fullName, setFullName] = useState<string>("");
   const [fullNameError, setFullNameError] = useState<string>("");
 
   // Related to Names
@@ -43,10 +43,10 @@ export default function EvaluatorPage1() {
     const names = name.split(" ");
 
     const firstName = names[0];
-    const lastName = names[1];
+    const lastName = names.slice(1).join(" ");
     const fullName = firstName + " " + lastName;
 
-    if (names.length < 2) {
+    if (names.length < 2 || !fullName || lastName.trim().length === 0) {
       setFullNameError("Please provide both first and last name.");
       return false;
     }
@@ -55,6 +55,38 @@ export default function EvaluatorPage1() {
     return fullName;
   };
 
+  // ======================================================================
+  // Validating Email
+
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState("");
+
+  const validateEmail = () => {
+    const parts = email.split("@");
+    if (parts.length !== 2) {
+      setEmailError("Please enter a valid email address");
+      return false;
+    }
+
+    const username = parts[0];
+    const domain = parts[1];
+
+    if (!username || !domain) {
+      setEmailError("Please enter a valid email address");
+      return false;
+    }
+
+    const domainParts = domain.split(".");
+    if (domainParts.length !== 2) {
+      setEmailError("Please enter a valid email address");
+      return false;
+    }
+
+    setEmailError("");
+    return true;
+  };
+
+  // ===========================================================================
   // Related to Password
   const [password, setPassword] = useState<string>("");
   const [isPasswordFilled, setIsPasswordFilled] = useState<boolean>(false);
@@ -92,38 +124,8 @@ export default function EvaluatorPage1() {
     return char.match(/[a-zA-Z0-9]/) ? true : false;
   }
 
-  // Validating Email
-
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
-
-  const validateEmail = () => {
-    const parts = email.split("@");
-    if (parts.length !== 2) {
-      setEmailError("Please enter a valid email address");
-      return false;
-    }
-
-    const username = parts[0];
-    const domain = parts[1];
-
-    if (!username || !domain) {
-      setEmailError("Please enter a valid email address");
-      return false;
-    }
-
-    const domainParts = domain.split(".");
-    if (domainParts.length !== 2) {
-      setEmailError("Please enter a valid email address");
-      return false;
-    }
-
-    setEmailError("");
-    return true;
-  };
-
-  const [passwordError, setPasswordError] = useState<string>();
   // Validating to see if the password matches
+  const [passwordError, setPasswordError] = useState<string>();
   const handlePasswordFilled = (value: string, confirmPassword: string) => {
     if (value.length > 0 && !isPasswordFilled) {
       setIsPasswordFilled(true);
@@ -145,7 +147,7 @@ export default function EvaluatorPage1() {
   };
 
   // For Pronoun
-  const [, setPronoun] = useState<string>("");
+  const [pronoun, setPronoun] = useState<string>("");
   const handlePronounChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPronoun(value);
@@ -243,7 +245,7 @@ export default function EvaluatorPage1() {
               type="text"
               placeholder="Type your full name"
               className="w-full bg-transparent border-b-2 border-white text-white"
-              // value={inputValues.name}
+              value={fullName}
               onChange={handleFullNameChange}
               required
             />
@@ -344,7 +346,7 @@ export default function EvaluatorPage1() {
             type="text"
             placeholder="him/her"
             className="w-full bg-transparent border-b-2 border-white mb-8 text-white"
-            // value={inputValues.pronoun}
+            value={pronoun}
             onChange={handlePronounChange}
             required
           />
