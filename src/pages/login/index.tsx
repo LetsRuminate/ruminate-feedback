@@ -68,11 +68,11 @@ export default function Login() {
 
   const [loginInfo, dispatchLoginInfo] = useReducer(
     loginReducer,
-    initialLoginState,
+    initialLoginState
   );
 
   const [className, setClassName] = useState(
-    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full",
+    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
   );
 
   const [showError, setShowError] = useState(false);
@@ -91,12 +91,12 @@ export default function Login() {
     const input = target.value;
     if (!input || !isValidEmail(input)) {
       setClassName(
-        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full placeholder-[#E46D64]",
+        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full placeholder-[#E46D64]"
       );
       setShowError(true);
     } else {
       setClassName(
-        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full",
+        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
       );
       setShowError(false);
     }
@@ -109,7 +109,7 @@ export default function Login() {
   }
 
   const [className2, setClassName2] = useState(
-    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full",
+    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
   );
   const [showError2, setShowError2] = useState(false);
 
@@ -126,12 +126,12 @@ export default function Login() {
     const input = target.value;
     if (!input) {
       setClassName2(
-        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full",
+        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full"
       );
       setShowError2(true);
     } else {
       setClassName2(
-        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full",
+        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
       );
       setShowError2(false);
     }
@@ -144,12 +144,18 @@ export default function Login() {
       await signInWithEmailAndPassword(
         auth,
         loginInfo.email,
-        loginInfo.password,
+        loginInfo.password
       );
     } catch (err) {
       // XXX
       // Handle better (display to user)
       console.error(err);
+    }
+  };
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      loginUser();
     }
   };
 
@@ -182,6 +188,7 @@ export default function Login() {
               className={className}
               onChange={handleChange}
               onBlur={handleBlur}
+              onKeyDown={handleKeyDown}
               value={loginInfo.email || ""}
             />
             {showError ? (
@@ -210,6 +217,7 @@ export default function Login() {
               onChange={handleChange2}
               onBlur={handleBlur2}
               value={loginInfo.password || ""}
+              onKeyDown={handleKeyDown}
             />
             {showError2 ? (
               <img
