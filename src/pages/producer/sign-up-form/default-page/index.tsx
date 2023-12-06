@@ -72,9 +72,7 @@ export default function DefaultPage() {
             profile and business, allowing us to assess compatibility more
             effectively.
           </p>
-          <p className="pb-14 text-white">
-            Click “Sign up” below to get started!
-          </p>
+          <p className="text-white">Click “Sign up” below to get started!</p>
         </div>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-32 py-3 rounded-3xl">
           <Link to="/producer-page-1">Sign Up</Link>
