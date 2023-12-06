@@ -20,6 +20,7 @@ import { Link } from "react-router-dom";
 
 // React Icons
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
+import { MdOutlineRadioButtonChecked } from "react-icons/md";
 import { IoFolderSharp } from "react-icons/io5";
 import FileUploadButton from "@components/forms/upload";
 import List from "@components/forms/upload-list";
@@ -33,6 +34,19 @@ export default function EvaluatorPage3() {
 
   const display = () => {
     setShowCalendar(true);
+  };
+
+  const [clickedButton, setClickedButton] = useState(null);
+
+  const handleClick = (buttonId) => {
+    // Check if the clicked button is already selected
+    if (clickedButton === buttonId) {
+      // If yes, unselect it
+      setClickedButton(null);
+    } else {
+      // If not, select the clicked button
+      setClickedButton(buttonId);
+    }
   };
 
   return (
@@ -89,23 +103,55 @@ export default function EvaluatorPage3() {
             Select one
           </span>
           <div className="border-white border-b mb-4">
-            <div className="flex gap-2 items-center mt-4">
-              <MdOutlineRadioButtonUnchecked className="text-white" />
-              <span className="text-white text-base font-manrope font-normal">
-                Resume
-              </span>
-            </div>
+            <button
+              className="flex gap-2 items-center mt-4"
+              type="button"
+              onClick={() => handleClick("button1")}
+              disabled={clickedButton === "button2"}
+            >
+              {clickedButton === "button1" ? (
+                <>
+                  <MdOutlineRadioButtonChecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    Resume
+                  </span>
+                </>
+              ) : (
+                <>
+                  <MdOutlineRadioButtonUnchecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    Resume
+                  </span>
+                </>
+              )}
+            </button>
             <span className="text-white text-sm font-manrope pl-6">
               4+ years of relevant experience (does not need to be sequential)
             </span>
           </div>
           <div className="border-white border-b mb-4">
-            <div className="flex gap-2 items-center mt-4">
-              <MdOutlineRadioButtonUnchecked className="text-white" />
-              <span className="text-white text-base font-manrope font-normal">
-                CCP
-              </span>
-            </div>
+            <button
+              className="flex gap-2 items-center mt-4"
+              type="button"
+              onClick={() => handleClick("button2")}
+              disabled={clickedButton === "button1"}
+            >
+              {clickedButton === "button2" ? (
+                <>
+                  <MdOutlineRadioButtonChecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    CCP
+                  </span>
+                </>
+              ) : (
+                <>
+                  <MdOutlineRadioButtonUnchecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    CCP
+                  </span>
+                </>
+              )}
+            </button>
             <span className="text-white text-sm font-manrope pl-6">
               Certified Cheese Professional Certification
             </span>

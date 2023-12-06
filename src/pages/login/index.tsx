@@ -241,7 +241,6 @@ export default function Login() {
       </section>
       <section>
         <button
-          onClick={loginUser}
           className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8"
           type="button"
         >
