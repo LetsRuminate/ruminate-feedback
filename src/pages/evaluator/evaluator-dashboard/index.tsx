@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
 import { ProductsContext } from "@contexts/ProductsContext";
 import { Evaluator } from "src/types/users";
@@ -11,7 +11,7 @@ function checkEvaluator(user: Evaluator | unknown): user is Evaluator {
 
 // XXX
 // this is a mock-up, ad-hoc dashboard just for experimenting with
-// database interactions - not for realsies. this will all change, as
+// database interactions - not for releases. this will all change, as
 // front-end create dashboards from mid-fi designs
 export default function EvaluatorDashboard() {
   const user = useContext(UserContext);
@@ -71,13 +71,8 @@ export default function EvaluatorDashboard() {
   };
 
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px]">
+    <div className="bg-blue-300 text-brand-black p-8 h-full">
       <div className="flex flex-wrap gap-2">
-        <div>
-          <p className="rounded-full w-10 h-10 bg-white text-black text-center text-3xl items-center">P</p>
-          <p className="text-black">Profile Name</p>
-          {/* <Profile user={photoURL, displayName}/> => I want to have a profile component being inserted here */}
-        </div>
         <div>
           <h1 className="text-3xl">
             Welcome {user && user.info.name ? user.info.name : "Evaluator"}!
@@ -87,10 +82,6 @@ export default function EvaluatorDashboard() {
         </div>
         {displayAddress()}
         {displayProducts()}
-      </div>
-      <button className="bg-white text-blue-500 py-5 px-10 my-3 rounded-3xl"><Link to='/evaluation-default'>Review Products</Link></button>
-      <div>
-      <button className="bg-white text-blue-500 py-5 px-10 my-3 rounded-3xl"><Link to=''>Calendar</Link></button>
       </div>
     </div>
   );
