@@ -67,8 +67,7 @@ interface ProducerInfo extends UserInfo {
   /* Not explicity from forms, needed by admin, additional info, etc */
 
   certification: "self" | "thirdParty";
-  deactivated: boolean; // XXX only admin can UPDATE
-  deactivationReason: null | string; // XXX only admin can UPDATE
+  certificationURL: null | string;
   paymentInfo: null;
   paymentReceived: boolean;
   plan: null | string;
@@ -102,6 +101,9 @@ interface EvaluatorInfo extends UserInfo {
 
 interface User {
   adminConfirmed: boolean; // XXX only admin can UPDATE
+  approved: boolean; // XXX only admin can UPDATE
+  deactivated: boolean; // XXX only admin can UPDATE
+  deactivationReason: null | string; // XXX only admin can UPDATE
   uid: string; // XXX nobody should be able to UPDATE
   role: "admin" | "evaluator" | "producer"; // XXX only admin can UPDATE
 }
@@ -115,11 +117,9 @@ export interface Admin extends User {
 }
 
 export interface Evaluator extends User {
-  approved: boolean; // XXX only admin can UPDATE
   info: EvaluatorInfo;
 }
 
 export interface Producer extends User {
-  approved: boolean; // XXX only admin can UPDATE
   info: ProducerInfo;
 }
