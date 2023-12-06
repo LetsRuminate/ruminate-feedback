@@ -11,7 +11,7 @@ export default function Plans() {
             Our Plans
           </h1>
           <div className="md:flex px-32 md:gap-9">
-            <div className="bg-white py-8 px-12 h-[520px]">
+            <div className="bg-white py-8 px-12 mt-10 border-black border">
               <header className="pb-6 border-b border-black">
                 <h3 className="text-2xl font-manrope font-bold">Explore</h3>
                 <h2 className="text-5xl font-manrope font-bold pt-2">$99</h2>
@@ -58,45 +58,54 @@ export default function Plans() {
               </footer>
             </div>
             {/* second box */}
-            <div className="bg-white py-8 px-12">
-              <header className="pb-6 border-b border-black">
-                <h3 className="text-2xl font-manrope font-bold">Consider</h3>
-                <h2 className="text-5xl font-manrope font-bold pt-2">$349</h2>
-                <p className="text-sm font-manrope font-medium">per package</p>
-              </header>
-              <main className="w-64">
-                {/* for the below title, check with Designer Sally because it does not look bold enough */}
-                <h6 className="text-base font-manrope font-bold py-6">
-                  Everything in Explore, plus:
-                </h6>
-                <div className="flex items-start gap-2">
-                  <FaCheckCircle className="text-2xl" />
-                  <p className="text-sm font-manrope font-normal">
-                    Quick review summaries by the Feedback (admin) team
+            <div className="">
+              <div className="bg-black py-2 text-center">
+                <p className="text-white text-base font-manrope font-medium">
+                  Most Popular
+                </p>
+              </div>
+              <div className="bg-white py-8 px-12 border-black border-4">
+                <header className="pb-6 border-b border-black">
+                  <h3 className="text-2xl font-manrope font-bold">Consider</h3>
+                  <h2 className="text-5xl font-manrope font-bold pt-2">$349</h2>
+                  <p className="text-sm font-manrope font-medium">
+                    per package
                   </p>
-                </div>
-                <div className="flex items-start gap-2 py-4">
-                  <FaCheckCircle className="text-3xl" />
-                  <p className="text-sm font-manrope font-normal">
-                    Additional evaluators ($58 charge for each evaluator, max is
-                    2 evaluators)
-                  </p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <FaCheckCircle />
-                  <p className="text-sm font-manrope font-normal">
-                    6 products can be evaluated
-                  </p>
-                </div>
-              </main>
-              <footer className="text-center">
-                <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 w-full rounded-3xl mt-9">
-                  Learn more
-                </button>
-              </footer>
+                </header>
+                <main className="w-64">
+                  {/* for the below title, check with Designer Sally because it does not look bold enough */}
+                  <h6 className="text-base font-manrope font-bold py-6">
+                    Everything in Explore, plus:
+                  </h6>
+                  <div className="flex items-start gap-2">
+                    <FaCheckCircle className="text-2xl" />
+                    <p className="text-sm font-manrope font-normal">
+                      Quick review summaries by the Feedback (admin) team
+                    </p>
+                  </div>
+                  <div className="flex items-start gap-2 py-4">
+                    <FaCheckCircle className="text-3xl" />
+                    <p className="text-sm font-manrope font-normal">
+                      Additional evaluators ($58 charge for each evaluator, max
+                      is 2 evaluators)
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <FaCheckCircle />
+                    <p className="text-sm font-manrope font-normal">
+                      6 products can be evaluated
+                    </p>
+                  </div>
+                </main>
+                <footer className="text-center">
+                  <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 w-full rounded-3xl mt-9">
+                    Learn more
+                  </button>
+                </footer>
+              </div>
             </div>
             {/* third box */}
-            <div className="bg-white py-8 px-12 h-[520px]">
+            <div className="bg-white py-8 px-12 mt-10 border-black border">
               <header className="pb-6 border-b border-black">
                 <h3 className="text-2xl font-manrope font-bold">Examine</h3>
                 <h2 className="text-5xl font-manrope font-bold pt-2">$569</h2>
