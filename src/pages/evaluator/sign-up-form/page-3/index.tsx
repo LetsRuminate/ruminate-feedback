@@ -36,16 +36,16 @@ export default function EvaluatorPage3() {
     setShowCalendar(true);
   };
 
-  const [clickedButton, setClickedButton] = useState(null);
+  const [resumeClicked, setResumeClicked] = useState(false);
+  const [ccpClicked, setCcpClicked] = useState(false);
 
-  const handleClick = (buttonId) => {
-    // Check if the clicked button is already selected
-    if (clickedButton === buttonId) {
-      // If yes, unselect it
-      setClickedButton(null);
-    } else {
-      // If not, select the clicked button
-      setClickedButton(buttonId);
+  const display2 = (buttonType: string) => {
+    if (buttonType === "resume") {
+      setResumeClicked(true);
+      setCcpClicked(false);
+    } else if (buttonType === "ccp") {
+      setCcpClicked(true);
+      setResumeClicked(false);
     }
   };
 
@@ -106,10 +106,9 @@ export default function EvaluatorPage3() {
             <button
               className="flex gap-2 items-center mt-4"
               type="button"
-              onClick={() => handleClick("button1")}
-              disabled={clickedButton === "button2"}
+              onClick={() => display2("resume")}
             >
-              {clickedButton === "button1" ? (
+              {resumeClicked ? (
                 <>
                   <MdOutlineRadioButtonChecked className="text-white" />
                   <span className="text-white text-base font-manrope font-normal">
@@ -133,10 +132,9 @@ export default function EvaluatorPage3() {
             <button
               className="flex gap-2 items-center mt-4"
               type="button"
-              onClick={() => handleClick("button2")}
-              disabled={clickedButton === "button1"}
+              onClick={() => display2("ccp")}
             >
-              {clickedButton === "button2" ? (
+              {ccpClicked ? (
                 <>
                   <MdOutlineRadioButtonChecked className="text-white" />
                   <span className="text-white text-base font-manrope font-normal">
