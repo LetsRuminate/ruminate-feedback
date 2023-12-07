@@ -84,7 +84,8 @@ interface EvaluatorInfo extends UserInfo {
 
   // QUALIFICAIONS
   qualification: string;
-  qualificationDocument: string;
+  qualificationDocument: null | string;
+  qualificationURL: null | string;
   unavailableDates: null | Date[];
 
   // CONTACT AND SHIPPING INFO
