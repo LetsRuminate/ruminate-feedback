@@ -1,9 +1,9 @@
 import { doc, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
-import { auth, db, storage } from "../firebase";
+import { auth, db, storage } from "@components/api/firebase";
 
-import { Producer } from "../types/users";
+import { Producer } from "@customTypes/users";
 
 // XXX
 // These are just mockups for testing purposes - need real info from forms
