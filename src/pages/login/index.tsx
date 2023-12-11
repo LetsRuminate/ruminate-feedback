@@ -1,10 +1,10 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useReducer, useState } from "react";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import {
-  GoogleAuthProvider,
+  // GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  // signInWithPopup,
 } from "firebase/auth";
 import { UserContext } from "@contexts/UserContext";
 import { auth } from "@components/api/firebase";
@@ -137,7 +137,26 @@ export default function Login() {
     }
   };
 
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const maxLoginAttempts = 5;
+  const remainingAttempts = maxLoginAttempts - loginAttempts;
+
   const loginUser = async () => {
+    // Check if the user is exceeding the number of attempts that they can try before being locked-out
+    if (loginAttempts >= maxLoginAttempts) {
+      setErrorMessage(
+        "Maximum login attempts reached. Please try again later."
+      );
+      return;
+    }
+    setLoginAttempts(0);
+    // Validate input before attempting login
+    if (!isValidEmail(loginInfo.email) || !loginInfo.password) {
+      // Display an error message to the user
+      setErrorMessage("Invalid email or password");
+      return;
+    }
     // XXX
     // gotta validate input before attempting login
     try {
@@ -147,9 +166,9 @@ export default function Login() {
         loginInfo.password
       );
     } catch (err) {
-      // XXX
-      // Handle better (display to user)
-      console.error(err);
+      console.log(err);
+      setLoginAttempts(loginAttempts + 1);
+      setErrorMessage("Incorrect email or password");
     }
   };
 
@@ -159,22 +178,46 @@ export default function Login() {
     }
   };
 
-  const provider = new GoogleAuthProvider();
+  // const provider = new GoogleAuthProvider();
 
-  const loginUserGoogle = async () => {
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      // XXX
-      // Handle better (display to user)
-      console.error(err);
-    }
-  };
+  // const loginUserGoogle = async () => {
+  //   try {
+  //     await signInWithPopup(auth, provider);
+  //   } catch (err) {
+  //     // XXX
+  //     // Handle better (display to user)
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <div className="py-[142px] w-[316px] mx-auto">
       <section>
         <form>
+          {errorMessage && remainingAttempts > 0 && (
+            <div className="flex justify-center w-full border-red border-2 bg-red-100 rounded-xl mb-5">
+              <p className="text-[#CC4B3B] text-xs font-Manrope font-normal leading-5 py-4">
+                Please check your email and password.
+                <br />
+                you can try {remainingAttempts} more times.
+              </p>
+            </div>
+          )}
+          {remainingAttempts === 0 && (
+            <div className="flex justify-center w-full border-red border-2 bg-red-100 rounded-xl mb-5 px-5">
+              <p className="text-[#CC4B3B] text-xs font-Manrope font-normal leading-5 py-4">
+                You have reached the number of attempts that you can try. Please
+                contact our Administrators at{" "}
+                <a
+                  href="mailto:info@letsruminate.org"
+                  className="text-[blue] underline"
+                >
+                  info@letsruminate.org
+                </a>{" "}
+                for assistance.
+              </p>
+            </div>
+          )}
           <h1 className="font-Manrope text-2xl font-normal leading-7 mb-6">
             Log in
           </h1>
@@ -242,12 +285,17 @@ export default function Login() {
       <section>
         <button
           onClick={loginUser}
-          className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8"
+          className={
+            remainingAttempts === 0
+              ? "text-white text-base text-center font-normal leading-5 rounded-md bg-[#878da3] px-6 w-full h-8"
+              : "text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8"
+          }
           type="button"
+          disabled={remainingAttempts === 0}
         >
           Log in
         </button>
-        <p className="text-center py-4">OR</p>
+        {/* <p className="text-center py-4">OR</p>
         <div className="border border-[#BE493A] w-full h-8 rounded-md mb-4">
           <button
             onClick={loginUserGoogle}
@@ -257,8 +305,8 @@ export default function Login() {
             <FcGoogle />
             Login with Google
           </button>
-        </div>
-        <p className="text-[#344054] text-xs font-normal leading-7 text-center">
+        </div> */}
+        <p className="text-[#344054] text-xs font-normal leading-7 text-center pt-4">
           By using Feedback you agree to the{" "}
           <span className="text-[#0563E0] text-xs font-normal leading-7">
             <Link to="/">Terms of Service</Link>
