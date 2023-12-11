@@ -50,7 +50,8 @@ import EvaluationPage2 from "@pages/evaluator/product-evaluation/page-2/index.ts
 import EvaluationPage3 from "@pages/evaluator/product-evaluation/page-3/index.tsx";
 import EvaluationPage4 from "@pages/evaluator/product-evaluation/page-4/index.tsx";
 import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-completed/index.tsx";
-import Navbar2 from "@components/navbar/dashboard-navbar/index.tsx";
+// import Navbar2 from "@components/navbar/dashboard-navbar/index.tsx";
+import ProducerNav from "@components/navbar/producer-dashboard/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -72,7 +73,7 @@ const router = createBrowserRouter([
         element: (
           <ProductsContextProvider>
             <div className="flex h-screen">
-              <Navbar2 />
+              {/* <Navbar2 /> */}
               <div className="flex-1">
                 <AdminDashboard />
               </div>
@@ -88,7 +89,7 @@ const router = createBrowserRouter([
           <ProductsContextProvider>
             <div className="flex h-screen">
               <UserContextProvider>
-                <Navbar2 />
+                <ProducerNav />
               </UserContextProvider>
               <div className="flex-1">
                 <ProducerDashboard />
@@ -101,7 +102,7 @@ const router = createBrowserRouter([
         path: "/product-default",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            <ProducerNav />
             <div className="flex-1">
               <IntakeDefault />
             </div>
@@ -112,7 +113,7 @@ const router = createBrowserRouter([
         path: "/product-intake-1",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            <ProducerNav />
             <div className="flex-1">
               <ProductPage1 />
             </div>
@@ -123,7 +124,7 @@ const router = createBrowserRouter([
         path: "/product-intake-2",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            <ProducerNav />
             <div className="flex-1">
               <ProductPage2 />
             </div>
@@ -134,7 +135,7 @@ const router = createBrowserRouter([
         path: "/product-intake-3",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            <ProducerNav />
             <div className="flex-1">
               <ProductPage3 />{" "}
             </div>
@@ -145,7 +146,7 @@ const router = createBrowserRouter([
         path: "/product-intake-4",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            <ProducerNav />
             <div className="flex-1">
               <ProductPage4 />
             </div>
@@ -156,7 +157,7 @@ const router = createBrowserRouter([
         path: "/product-completed",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            <ProducerNav />
             <div className="flex-1">
               <ProductCompleted />
             </div>
@@ -170,7 +171,7 @@ const router = createBrowserRouter([
         element: (
           <ProductsContextProvider>
             <div className="flex h-screen">
-              <Navbar2 />
+              {/* <Navbar2 /> */}
               <div className="flex-1">
                 <EvaluatorDashboard />
               </div>
@@ -182,7 +183,7 @@ const router = createBrowserRouter([
         path: "/evaluation-default",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            {/* <Navbar2 /> */}
             <div className="flex-1">
               <EvaluationDefault />
             </div>
@@ -193,7 +194,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-1",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            {/* <Navbar2 /> */}
             <div className="flex-1">
               <EvaluationPage1 />
             </div>
@@ -204,7 +205,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-2",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            {/* <Navbar2 /> */}
             <div className="flex-1">
               <EvaluationPage2 />
             </div>
@@ -215,7 +216,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-3",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            {/* <Navbar2 /> */}
             <div className="flex-1">
               <EvaluationPage3 />
             </div>
@@ -226,7 +227,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-4",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            {/* <Navbar2 /> */}
             <div className="flex-1">
               <EvaluationPage4 />
             </div>
@@ -237,7 +238,7 @@ const router = createBrowserRouter([
         path: "/evaluation-completed",
         element: (
           <div className="flex h-screen">
-            <Navbar2 />
+            {/* <Navbar2 /> */}
             <div className="flex-1">
               <EvaluationCompleted />
             </div>

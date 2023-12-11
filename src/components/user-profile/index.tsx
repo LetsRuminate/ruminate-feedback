@@ -8,12 +8,12 @@ export default function Profile({
       <img
         src={photoURL}
         alt=""
-        className=" bg-gray-400 w-20 h-20 my-5 rounded-full"
+        className=" bg-gray-400 w-20 h-20 mt-10 mx-auto rounded-full"
         width={20}
         height={20}
       />
-      <span className="hidden md:block py-5">{displayName}</span>
-      <p>{userRole}</p>
+      <span className="hidden md:block pt-3 text-center">{displayName}</span>
+      <p className="hidden md:block text-left">{userRole}</p>
     </div>
   );
 }
