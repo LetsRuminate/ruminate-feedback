@@ -106,7 +106,7 @@ export default function ProducerDashboard() {
           {userProducts ? (
             userProducts.map((product) => {
               return (
-                <div key={product.productId}>{product.info.productName}</div>
+                <div key={product.productId}>{product.productName}</div>
               );
             })
           ) : (
