@@ -38,12 +38,12 @@ export default function EvaluatorDashboard() {
       return (
         <div className="bg-neutral-100 text-black p-1">
           <p>Shipping Address:</p>
-          <p>{user.info.address.street}</p>
-          <p>{`${user.info.address.city}, ${user.info.address.state}`}</p>
-          {user.info.address.unit ? (
-            <p>{`unit ${user.info.address.unit}`}</p>
+          <p>{user.address.street}</p>
+          <p>{`${user.address.city}, ${user.address.state}`}</p>
+          {user.address.unit ? (
+            <p>{`unit ${user.address.unit}`}</p>
           ) : null}
-          <p>{user.info.address.zip}</p>
+          <p>{user.address.zip}</p>
         </div>
       );
     }
@@ -75,9 +75,9 @@ export default function EvaluatorDashboard() {
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
-            Welcome {user && user.info.name ? user.info.name : "Evaluator"}!
+            Welcome {user && user.name ? user.name : "Evaluator"}!
           </h1>
-          <p>{user ? user.info.email : null}</p>
+          <p>{user ? user.email : null}</p>
           {displayApprovalStatus()}
         </div>
         {displayAddress()}

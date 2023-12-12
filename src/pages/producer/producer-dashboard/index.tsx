@@ -30,12 +30,12 @@ export default function ProducerDashboard() {
     if (user && checkProducer(user)) {
       return (
         <>
-          <p>{user.info.address.street}</p>
-          <p>{`${user.info.address.city}, ${user.info.address.state}`}</p>
-          {user.info.address.unit ? (
-            <p>{`unit ${user.info.address.unit}`}</p>
+          <p>{user.address.street}</p>
+          <p>{`${user.address.city}, ${user.address.state}`}</p>
+          {user.address.unit ? (
+            <p>{`unit ${user.address.unit}`}</p>
           ) : null}
-          <p>{user.info.address.zip}</p>
+          <p>{user.address.zip}</p>
         </>
       );
     }
@@ -60,16 +60,16 @@ export default function ProducerDashboard() {
     return (
       <div className="bg-neutral-100 p-1">
         <p>
-          {user && checkProducer(user) && user.info.businessName
-            ? user.info.businessName
+          {user && checkProducer(user) && user.businessName
+            ? user.businessName
             : null}
         </p>
         <p>
-          {user && checkProducer(user) && user.info.website
-            ? user.info.website
+          {user && checkProducer(user) && user.website
+            ? user.website
             : null}
         </p>
-        {user && checkProducer(user) && user.info.address
+        {user && checkProducer(user) && user.address
           ? displayAddress()
           : null}
       </div>
@@ -80,16 +80,16 @@ export default function ProducerDashboard() {
     if (user && checkProducer(user)) {
       return (
         <div className="bg-neutral-100 text-black p-1">
-          <p>{`Plan: ${user.info.plan ? user.info.plan : "N/A"}`}</p>
+          <p>{`Plan: ${user.plan ? user.plan : "N/A"}`}</p>
           <p>Plan info here?</p>
           <p>
             {"Payment: "}
             <span
               className={`p-1 ${
-                user.info.paymentReceived ? "bg-green-300" : "bg-rose-300"
+                user.paymentReceived ? "bg-green-300" : "bg-rose-300"
               }`}
             >
-              {user.info.paymentReceived ? "Received" : "Not Received"}
+              {user.paymentReceived ? "Received" : "Not Received"}
             </span>
           </p>
         </div>
@@ -123,9 +123,9 @@ export default function ProducerDashboard() {
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
-            Welcome {user && user.info.name ? user.info.name : "Producer"}!
+            Welcome {user && user.name ? user.name : "Producer"}!
           </h1>
-          <p>{user ? user.info.email : null}</p>
+          <p>{user ? user.email : null}</p>
           {displayApprovalStatus()}
           {displayAdminConfirmation()}
         </div>
