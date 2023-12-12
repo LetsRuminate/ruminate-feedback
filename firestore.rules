@@ -20,12 +20,28 @@ service cloud.firestore {
     // RULES FOR "USER" DOCUMENTS
     // ==========================
     match /users/{userId} {
+      function checkAllowedEvaluatorUpdates() {
+        // XXX TODO: just allow some basic updates for now, ultimately a decision needs to be made about which fields users are allowed to update
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'email', 'pronouns', 'address', 'region', 'products', 'lastLogin'])
+      }
+      function checkAllowedProducerUpdates() {
+        // XXX TODO: just allow some basic updates for now, ultimately a decision needs to be made about which fields users are allowed to update
+        return request.resource.data.diff(resource.data).affectedKeys().hasOnly(['name', 'name', 'email', 'pronouns', 'address', 'region', 'products', 'lastLogin'])
+      }
+      function checkForbiddenAdminUpdates() {
+        // admin can update most, but shouldn't be able to change these fields
+        return !request.resource.data.diff(resource.data).affectedKeys().hasAny(['signupDate', 'lastLogin', 'uid', ])
+      }
     	// admin can read any user's info, other roles can only read their own
       allow read: if request.auth != null && (isAdmin(request.auth.uid) || request.auth.uid == userId)
-      // XXX
+      // update rules get pretty hairy...
+      // admin can update almost anything for any user, except a few specific fields
+      // other user types can only change specific fields within their own document
+      allow update: if request.auth != null && (isAdmin(request.auth.uid) && checkForbiddenAdminUpdates()) || (request.auth.uid == userId && ((isProducer(request.auth.uid) && checkAllowedProducerUpdates()) || ((isEvaluator(request.auth.uid) && checkAllowedEvaluatorUpdates()))))
+      // XXX TODO
       // no delete for now
       allow delete: if false
-      // XXX
+      // XXX TODO
       // need to flesh out rules that only allow creation of specific fields
       allow create: if request.auth != null
     }
