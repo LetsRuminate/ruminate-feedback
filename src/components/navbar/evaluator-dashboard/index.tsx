@@ -24,7 +24,7 @@ async function signOutUser() {
   }
 }
 
-export default function ProducerNav() {
+export default function EvaluatorNav() {
   // Dashboard button CSS
   const dashboardButton =
     "px-4 py-4 my-1 rounded-xl text-xl font-manrope font-bold w-full";
@@ -34,8 +34,9 @@ export default function ProducerNav() {
   const navigate = useNavigate();
 
   const [dashboard, setDashboard] = useState(false);
-  const [product, setProduct] = useState(false);
-  const [pricing, setPricing] = useState(false);
+  const [evaluation, setEvaluation] = useState(false);
+  const [available, setAvailable] = useState(false);
+  const [history, setHistory] = useState(false);
 
   // Common Buttons
   const [message, setMessage] = useState(false);
@@ -44,45 +45,58 @@ export default function ProducerNav() {
   const clicked = (buttonType: string) => {
     if (buttonType === "dashboard") {
       setDashboard(true);
-      navigate("/producer");
-      setProduct(false);
-      setPricing(false);
+      navigate("/evaluator");
+      setEvaluation(false);
+      setAvailable(false);
+      setHistory(false);
       setMessage(false);
       setHelp(false);
-    } else if (buttonType === "product") {
-      setProduct(true);
-      navigate("/product-default");
+    } else if (buttonType === "evaluation") {
+      setEvaluation(true);
+      navigate("/evaluation-default");
       setDashboard(false);
-      setPricing(false);
+      setAvailable(false);
+      setHistory(false);
       setMessage(false);
       setHelp(false);
-    } else if (buttonType === "pricing") {
-      setPricing(true);
-      navigate("/producer-pricing");
+    } else if (buttonType === "availabilities") {
+      setAvailable(true);
+      navigate("/calendar");
       setDashboard(false);
-      setProduct(false);
+      setHistory(false);
+      setEvaluation(false);
+      setMessage(false);
+      setHelp(false);
+    } else if (buttonType === "payment-history") {
+      setHistory(true);
+      navigate("/evaluator-payment");
+      setDashboard(false);
+      setEvaluation(false);
+      setAvailable(false);
       setMessage(false);
       setHelp(false);
     } else if (buttonType === "message") {
       setMessage(true);
-      navigate("/producer-message");
+      navigate("/evaluator-message");
       setDashboard(false);
-      setProduct(false);
-      setPricing(false);
+      setEvaluation(false);
+      setAvailable(false);
+      setHistory(false);
       setMessage(false);
       setHelp(false);
     } else if (buttonType === "help") {
       setHelp(true);
-      navigate("/producer-help");
+      navigate("/evaluator-help");
       setDashboard(false);
-      setProduct(false);
-      setPricing(false);
+      setEvaluation(false);
+      setAvailable(false);
+      setHistory(false);
       setMessage(false);
     }
   };
 
   return (
-    <div className="bg-[#D9D9D9] px-5">
+    <div className="bg-[#D9D9D9] px-5 overflow-y-scroll">
       <header>
         <img
           alt="Feedback logo"
@@ -98,14 +112,19 @@ export default function ProducerNav() {
       </header>
       {/* For buttons that are Producer-Only */}
       <section>
-        <div className={product ? dashboardButtonActive : dashboardButton}>
-          <button type="button" onClick={() => clicked("product")}>
-            <p>Product Evaluation</p>
+        <div className={evaluation ? dashboardButtonActive : dashboardButton}>
+          <button type="button" onClick={() => clicked("evaluation")}>
+            <p>Evaluation</p>
           </button>
         </div>
-        <div className={pricing ? dashboardButtonActive : dashboardButton}>
-          <button type="button" onClick={() => clicked("pricing")}>
-            <p>Pricing Plans</p>
+        <div className={available ? dashboardButtonActive : dashboardButton}>
+          <button type="button" onClick={() => clicked("availabilities")}>
+            <p>Availabilities</p>
+          </button>
+        </div>
+        <div className={history ? dashboardButtonActive : dashboardButton}>
+          <button type="button" onClick={() => clicked("payment-history")}>
+            <p>Payment History</p>
           </button>
         </div>
       </section>

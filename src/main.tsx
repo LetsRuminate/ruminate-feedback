@@ -12,7 +12,6 @@ import Home from "@pages/home/index.tsx";
 import Login from "@pages/login/index.tsx";
 import AboutUs from "@pages/about-us/index.tsx";
 import HowItWorks from "@pages/how-it-works/index.tsx";
-import Price from "@pages/pricing/index.tsx";
 
 // Detail page for Members
 import AdminDashboard from "@pages/admin/admin-dashboard/index.tsx";
@@ -50,8 +49,24 @@ import EvaluationPage2 from "@pages/evaluator/product-evaluation/page-2/index.ts
 import EvaluationPage3 from "@pages/evaluator/product-evaluation/page-3/index.tsx";
 import EvaluationPage4 from "@pages/evaluator/product-evaluation/page-4/index.tsx";
 import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-completed/index.tsx";
-// import Navbar2 from "@components/navbar/dashboard-navbar/index.tsx";
+
+// import Navigation menu for Administrator Dashboard
+import AdministratorNav from "@components/navbar/administrator-dashboard/index.tsx";
+
+// import Navigation menu for Producer Dashboard
 import ProducerNav from "@components/navbar/producer-dashboard/index.tsx";
+import ProducerPricing from "@pages/pricing/producer/index.tsx";
+import PricingOverview from "@pages/pricing/overview/index.tsx";
+import ProducerMessages from "@pages/messages/producer/index.tsx";
+import Support from "@pages/help/FAQ/producer/index.tsx";
+import ProducerProfile from "@pages/profile/producer-profile/index.tsx";
+
+// import Navigation menu for Evaluator Dashboard
+import EvaluatorNav from "@components/navbar/evaluator-dashboard/index.tsx";
+import Calendar from "@pages/evaluator/calendar/index.tsx";
+import PaidEvaluator from "@pages/payment-history/index.tsx";
+import EvaluatorMessage from "@pages/messages/evaluator/index.tsx";
+import EvaluatorSupport from "@pages/help/FAQ/evaluator/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -67,13 +82,13 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/about-us", element: <AboutUs /> },
       { path: "/how-it-works", element: <HowItWorks /> },
-      { path: "/pricing", element: <Price /> },
+      { path: "/pricing-overview", element: <PricingOverview /> },
       {
         path: "/admin",
         element: (
           <ProductsContextProvider>
             <div className="flex h-screen">
-              {/* <Navbar2 /> */}
+              <AdministratorNav />
               <div className="flex-1">
                 <AdminDashboard />
               </div>
@@ -164,6 +179,50 @@ const router = createBrowserRouter([
           </div>
         ),
       },
+      {
+        path: "/producer-pricing",
+        element: (
+          <div className="flex h-screen">
+            <ProducerNav />
+            <div className="flex-1">
+              <ProducerPricing />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/producer-message",
+        element: (
+          <div className="flex h-screen">
+            <ProducerNav />
+            <div className="flex-1">
+              <ProducerMessages />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/producer-help",
+        element: (
+          <div className="flex h-screen">
+            <ProducerNav />
+            <div className="flex-1">
+              <Support />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/producer-profile",
+        element: (
+          <div className="flex h-screen">
+            <ProducerNav />
+            <div className="flex-1">
+              <ProducerProfile />
+            </div>
+          </div>
+        ),
+      },
       // =================================
       // Evaluator Dashboard from this point
       {
@@ -171,7 +230,7 @@ const router = createBrowserRouter([
         element: (
           <ProductsContextProvider>
             <div className="flex h-screen">
-              {/* <Navbar2 /> */}
+              <EvaluatorNav />
               <div className="flex-1">
                 <EvaluatorDashboard />
               </div>
@@ -183,7 +242,7 @@ const router = createBrowserRouter([
         path: "/evaluation-default",
         element: (
           <div className="flex h-screen">
-            {/* <Navbar2 /> */}
+            <EvaluatorNav />
             <div className="flex-1">
               <EvaluationDefault />
             </div>
@@ -194,7 +253,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-1",
         element: (
           <div className="flex h-screen">
-            {/* <Navbar2 /> */}
+            <EvaluatorNav />
             <div className="flex-1">
               <EvaluationPage1 />
             </div>
@@ -205,7 +264,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-2",
         element: (
           <div className="flex h-screen">
-            {/* <Navbar2 /> */}
+            <EvaluatorNav />
             <div className="flex-1">
               <EvaluationPage2 />
             </div>
@@ -216,7 +275,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-3",
         element: (
           <div className="flex h-screen">
-            {/* <Navbar2 /> */}
+            <EvaluatorNav />
             <div className="flex-1">
               <EvaluationPage3 />
             </div>
@@ -227,7 +286,7 @@ const router = createBrowserRouter([
         path: "/evaluation-page-4",
         element: (
           <div className="flex h-screen">
-            {/* <Navbar2 /> */}
+            <EvaluatorNav />
             <div className="flex-1">
               <EvaluationPage4 />
             </div>
@@ -238,9 +297,55 @@ const router = createBrowserRouter([
         path: "/evaluation-completed",
         element: (
           <div className="flex h-screen">
-            {/* <Navbar2 /> */}
+            <EvaluatorNav />
             <div className="flex-1">
               <EvaluationCompleted />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/calendar",
+        element: (
+          <div className="flex h-screen">
+            <EvaluatorNav />
+            <div className="flex-1">
+              <Calendar />
+              {/* for availabilities */}
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-payment",
+        element: (
+          <div className="flex h-screen">
+            <EvaluatorNav />
+            <div className="flex-1">
+              <PaidEvaluator />
+              {/* for payment history */}
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-message",
+        element: (
+          <div className="flex h-screen">
+            <EvaluatorNav />
+            <div className="flex-1">
+              <EvaluatorMessage />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-help",
+        element: (
+          <div className="flex h-screen">
+            <EvaluatorNav />
+            <div className="flex-1">
+              <EvaluatorSupport />
             </div>
           </div>
         ),

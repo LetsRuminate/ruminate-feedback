@@ -1,4 +1,4 @@
-// styles.ts
+// this is just an experiment for tailwind.config.js
 export const typography = {
   title: {
     primary: {
