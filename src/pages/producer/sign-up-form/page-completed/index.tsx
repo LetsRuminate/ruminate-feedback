@@ -85,7 +85,7 @@ export default function ProducerCompleted() {
             className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
             type="button"
           >
-            My Dashboard
+            Go to My Dashboard
           </button>
         </Link>
       </div>
