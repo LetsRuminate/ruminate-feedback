@@ -24,6 +24,7 @@ import { BiSolidCheckboxChecked } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+// I do think that there might be a better way to have these check marks, but I just can't think of it at the moment...
 export default function EvaluatorPage2() {
   const [selected, setSelected] = useState(0);
   const [checked, setChecked] = useState(false);

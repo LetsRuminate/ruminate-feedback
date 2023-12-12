@@ -22,46 +22,25 @@ export default {
         neutral: {
           N150: "#BFBFBF",
         },
+        input: "#6D778C",
+        borderInput: "#888D95",
+        buttonActive: "#3E5BD1",
+        buttonDisabled: "#878da3",
+        error: "#C80000",
+        errorBG: "#fee2e2",
       },
-      typography: {
-        title: {
-          primary: {
-            "p-h2": {
-              name: "H2/Primary",
-              fontFamily: "manrope",
-              fontWeight: 700,
-              fontSize: "48px",
-            },
-            "p-h3": {
-              name: "H3/Primary",
-              fontFamily: "manrope",
-              fontWeight: 700,
-              fontSize: "24px",
-            },
-            "p-h4": {
-              name: "H4/Primary",
-              fontFamily: "manrope",
-              fontWeight: 700,
-              fontSize: "20px",
-            },
-            "p-h6": {
-              name: "H6/Primary",
-              fontFamily: "manrope",
-              fontWeight: 700,
-              fontSize: "16px",
-            },
-          },
-        },
-        body: {
-          primary: {
-            "p-b2": {
-              name: "B2/Primary",
-              fontFamily: "manrope",
-              fontWeight: 400,
-              fontSize: "16px",
-            },
-          },
-        },
+      fontSize: {
+        // Heading only
+        headingOne: "48px",
+        headingTwo: "48px", // for heading2, only boldness is different
+        headingThree: "24px",
+        headingFour: "20px",
+        headingFive: "18px",
+        headingSix: "16px",
+        // Body only
+        bodyOne: "20px",
+        bodyTwo: "16px",
+        bodyThree: "14px",
       },
     },
   },
