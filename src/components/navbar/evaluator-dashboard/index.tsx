@@ -142,10 +142,10 @@ export default function EvaluatorNav() {
           </button>
         </div>
       </section>
-      <footer>
+      <footer className="mt-2 mb-5">
         <button
           onClick={signOutUser}
-          className="text-xl text-left font-manrope font-bold w-full pl-4 mt-2"
+          className="text-xl text-left font-manrope font-bold w-full pl-4"
         >
           Logout
         </button>
