@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 export default function IntakeDefault() {
   return (
-    <div className="py-20 bg-[#345EC9] h-full">
+    <div className="py-20 bg-[#345EC9] overflow-auto">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
           PRODUCT INTAKE FORM
@@ -60,11 +60,21 @@ export default function IntakeDefault() {
           </p>
         </div>
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
-          <Link to="/producer">Previous</Link>
-        </button>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+      <div className="border border-white mx-auto w-[874px] px-48 py-14">
+        <div>
+          <h3 className="text-white text-2xl font-manrope font-bold">
+            Next Level Products!
+          </h3>
+          <p className="text-white text-base font-manrope font-normal py-6">
+            Feedback exists to specifically support producers who contribute to
+            an ethical, equitable, and environmentally sustainable food system.
+            Our team will evaluate your products.
+          </p>
+          <p className="text-white">
+            Click below to start your product intake form.
+          </p>
+        </div>
+        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-32 py-3 rounded-3xl mt-14">
           <Link to="/product-intake-1">Next</Link>
         </button>
       </div>

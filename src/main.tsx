@@ -108,7 +108,7 @@ const router = createBrowserRouter([
               <UserContextProvider>
                 <ProducerNav />
               </UserContextProvider>
-              <div className="flex-1">
+              <div className="flex-1 overflow-y-scroll">
                 <ProducerDashboard />
               </div>
             </div>
@@ -120,7 +120,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <IntakeDefault />
             </div>
           </div>
@@ -131,7 +131,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage1 />
             </div>
           </div>
@@ -142,7 +142,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage2 />
             </div>
           </div>
@@ -153,7 +153,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage3 />{" "}
             </div>
           </div>
@@ -164,7 +164,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage4 />
             </div>
           </div>
@@ -175,7 +175,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductCompleted />
             </div>
           </div>
