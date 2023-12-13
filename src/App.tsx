@@ -15,6 +15,10 @@ function App() {
     "/product-intake-3",
     "/product-intake-4",
     "/product-completed",
+    "/producer-pricing",
+    "/producer-message",
+    "/producer-help",
+    "/producer-profile",
     // Evaluator pages list
     "/evaluator",
     "/evaluation-default",
@@ -23,6 +27,12 @@ function App() {
     "/evaluation-page-3",
     "/evaluation-page-4",
     "/evaluation-completed",
+    "/calendar",
+    "/evaluator-payment",
+    "/evaluator-notification",
+    "/evaluator-message",
+    "/evaluator-help",
+    "/evaluator-profile",
     // Administrator pages list
     "/admin",
   ];
@@ -37,6 +47,10 @@ function App() {
     "/product-intake-3",
     "/product-intake-4",
     "/product-completed",
+    "/producer-pricing",
+    "/producer-message",
+    "/producer-help",
+    "/producer-profile",
     // Evaluator pages list
     "/evaluator",
     "/evaluation-default",
@@ -45,6 +59,12 @@ function App() {
     "/evaluation-page-3",
     "/evaluation-page-4",
     "/evaluation-completed",
+    "/calendar",
+    "/evaluator-payment",
+    "/evaluator-notification",
+    "/evaluator-message",
+    "/evaluator-help",
+    "/evaluator-profile",
     // Admin pages list
     "/admin",
   ];

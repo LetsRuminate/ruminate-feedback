@@ -120,7 +120,7 @@ export default function AdminDashboard() {
               );
             })
           ) : (
-            <div>No Users =(</div>
+            <div>No Users 😭</div>
           )}
         </div>
       );
@@ -270,7 +270,7 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px] flex flex-col items-start gap-2">
+    <div className="bg-blue-300 text-brand-black p-8 h-full flex flex-col items-start gap-2">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">

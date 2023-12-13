@@ -19,7 +19,7 @@ import { Link } from "react-router-dom";
 
 export default function ProductCompleted() {
   return (
-    <div className="py-20 bg-[#345EC9] h-full">
+    <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
           PRODUCT INTAKE FORM
@@ -64,7 +64,7 @@ export default function ProductCompleted() {
           <img src={Underline} alt="Underline" width={98} />
         </div>
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
         <h1 className="text-white text-2xl font-manrope font-normal">
           Your application has been submitted!
         </h1>

@@ -17,10 +17,18 @@ import ConnectorActive from "@assets/registration/progress-bar-2/progress-bar-co
 
 import Underline from "@assets/registration/progress-underline/underline.svg";
 import { Link } from "react-router-dom";
+import Region from "./region";
 
 export default function ProductPage4() {
+  const handleDropdownChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedNumber = event.target.value;
+    console.log(`Selected Number: ${selectedNumber}`);
+  };
+
   return (
-    <div className="py-20 bg-[#345EC9] h-full">
+    <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
           PRODUCT INTAKE FORM
@@ -65,8 +73,55 @@ export default function ProductPage4() {
           <img src={Underline} alt="Underline" width={98} />
         </div>
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
+        <Region />
+        {/* ======================= Dropdown 1 =========================== */}
+        <div className="mt-9">
+          <label htmlFor="numberDropdown" className="text-white">
+            <span className="font-bold">Optional:</span> I prefer to have a
+            minimum of X evaluators who are interested in video conferencing or
+            telephone communications after feedback is received.{" "}
+          </label>
+          <br />
+          <br />
+          <select
+            id="numberDropdown"
+            onChange={handleDropdownChange}
+            className="w-full p-5 rounded-lg"
+          >
+            <option value="0" selected disabled></option>
+            {/* Dynamically generate options from 1 to 50 */}
+            {[...Array(4)].map((_, index) => (
+              <option key={index + 1} value={index + 1}>
+                {index + 1}
+              </option>
+            ))}
+          </select>
+        </div>
+        {/* ======================= Dropdown 2 =========================== */}
+        <div className="mt-9">
+          <label htmlFor="numberDropdown" className="text-white">
+            <span className="font-bold">Optional:</span> I prefer to have a
+            minimum of X evaluators who are interested in multiple rounds of
+            feedback.{" "}
+          </label>
+          <br />
+          <br />
+          <select
+            id="numberDropdown"
+            onChange={handleDropdownChange}
+            className="w-full p-5 rounded-lg"
+          >
+            <option value="0" selected disabled></option>
+            {/* Dynamically generate options from 1 to 50 */}
+            {[...Array(4)].map((_, index) => (
+              <option key={index + 1} value={index + 1}>
+                {index + 1}
+              </option>
+            ))}
+          </select>
+        </div>
+        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5 mt-36">
           <Link to="/product-intake-3">Previous</Link>
         </button>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
