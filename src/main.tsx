@@ -58,7 +58,7 @@ import ProducerNav from "@components/navbar/producer-dashboard/index.tsx";
 import ProducerPricing from "@pages/pricing/producer/index.tsx";
 import PricingOverview from "@pages/pricing/overview/index.tsx";
 import ProducerMessages from "@pages/messages/producer/index.tsx";
-import Support from "@pages/help/FAQ/producer/index.tsx";
+import ProducerSupport from "@pages/help/FAQ/producer/index.tsx";
 import ProducerProfile from "@pages/profile/producer-profile/index.tsx";
 
 // import Navigation menu for Evaluator Dashboard
@@ -207,7 +207,7 @@ const router = createBrowserRouter([
           <div className="flex h-screen">
             <ProducerNav />
             <div className="flex-1">
-              <Support />
+              <ProducerSupport />
             </div>
           </div>
         ),

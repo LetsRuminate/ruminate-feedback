@@ -27,9 +27,9 @@ async function signOutUser() {
 export default function ProducerNav() {
   // Dashboard button CSS
   const dashboardButton =
-    "px-4 py-4 my-1 rounded-xl text-xl font-manrope font-bold w-full";
+    "px-4 py-4 my-1 text-xl font-manrope font-bold w-full";
   const dashboardButtonActive =
-    "px-4 py-4 my-1 bg-[#BBB3B3] rounded-xl text-xl font-manrope font-bold w-full";
+    "px-4 py-4 my-1 text-xl font-manrope font-bold w-full bg-[#BBB3B3] rounded-xl";
   // Producer Dashboard only
   const navigate = useNavigate();
 
@@ -123,10 +123,10 @@ export default function ProducerNav() {
           </button>
         </div>
       </section>
-      <footer>
+      <footer className="mt-2 mb-10 overflow-y-scroll">
         <button
           onClick={signOutUser}
-          className="text-xl text-left font-manrope font-bold w-full pl-4 mt-2"
+          className="text-xl text-left font-manrope font-bold w-full pl-4"
         >
           Logout
         </button>
