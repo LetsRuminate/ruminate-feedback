@@ -17,7 +17,7 @@ service cloud.firestore {
       let role = get(/databases/$(database)/documents/users/$(uid)).data.role;
       return role == "evaluator";
     }
-    // RULES FOR "USER" DOCUMENTS
+    // RULES FOR "USERS" DOCUMENTS
     // ==========================
     match /users/{userId} {
       function checkAllowedEvaluatorUpdates() {
@@ -34,16 +34,47 @@ service cloud.firestore {
       }
     	// admin can read any user's info, other roles can only read their own
       allow read: if request.auth != null && (isAdmin(request.auth.uid) || request.auth.uid == userId)
-      // update rules get pretty hairy...
-      // admin can update almost anything for any user, except a few specific fields
-      // other user types can only change specific fields within their own document
+      // admin can update almost anything for any user, except a few specific fields, other user types can only change specific fields within their own document
       allow update: if request.auth != null && (isAdmin(request.auth.uid) && checkForbiddenAdminUpdates()) || (request.auth.uid == userId && ((isProducer(request.auth.uid) && checkAllowedProducerUpdates()) || ((isEvaluator(request.auth.uid) && checkAllowedEvaluatorUpdates()))))
-      // XXX TODO
-      // no delete for now
+      // XXX TODO no delete for now
       allow delete: if false
       // XXX TODO
       // need to flesh out rules that only allow creation of specific fields
       allow create: if request.auth != null
+    }
+    // RULES FOR "PRODUCTS" DOCUMENTS
+    // ==========================
+    match /products/{productId} {
+      function checkIfOwnProduct(uid) {
+        return uid == resource.data.producerId
+      }
+      function checkIfEvaluatingProduct(uid) {
+        return resource.data.evaluatorIds.hasAny([uid])
+      }
+      // admin can read all products, producer can read their own, evaluators can read those they are evaluating
+      allow read: if request.auth != null && (isAdmin(request.auth.uid) || ((isProducer(request.auth.uid) && checkIfOwnProduct(request.auth.uid)) || (isEvaluator(request.auth.uid) && checkIfEvaluatingProduct(request.auth.uid))))
+      // only producers & admins can create new products
+      // XXX TODO: will need rules that allow creation of specific fields only
+      allow create: if request.auth != null && (isAdmin(request.auth.uid) || isProducer(request.auth.uid))
+      // XXX TODO simple update allow for now
+      allow update: if request.auth != null && (isAdmin(request.auth.uid) || (isProducer(request.auth.uid) && checkIfOwnProduct(request.auth.uid)))
+      // XXX TODO no delete for now
+      allow delete: if  false
+    }
+    // RULES FOR "EVALUATIONS" DOCUMENTS
+    // ==========================
+    match /evaluations/{evaluationId} {
+      function checkIfOwnEvaluation(uid) {
+        return uid == resource.data.evaluatorId
+      }
+      // admin can read all evaluations, evaluator can read their own
+      allow read: if request.auth != null && (isAdmin(request.auth.uid) || (isEvaluator(request.auth.uid) && checkIfOwnEvaluation(request.auth.uid)))
+      // XXX TODO: will need rules that allow creation of specific fields only
+      allow create: if request.auth != null && (isAdmin(request.auth.uid) || isEvaluator(request.auth.uid))
+      // XXX TODO simple update forbid for now
+      allow update: if request.auth != null && (isAdmin(request.auth.uid) || (isEvaluator(request.auth.uid) && checkIfOwnEvaluation(request.auth.uid)))
+      // XXX TODO no delete for now
+      allow delete: if  false
     }
   }
 }
