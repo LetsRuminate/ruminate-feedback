@@ -1,9 +1,13 @@
 import { useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
 // import { ProductsContext } from "@contexts/ProductsContext";
 
 import { Producer } from "src/types/users";
+
+// React Icons
+import { FaListUl } from "react-icons/fa";
+import Grid from "@assets/producer-dashboard/main-page/grid.svg";
 
 function checkProducer(user: Producer | unknown): user is Producer {
   return (user as Producer).role === "producer";
@@ -119,19 +123,42 @@ export default function ProducerDashboard() {
   // };
 
   return (
-    <div className="bg-blue-300 text-brand-black p-8 h-full flex-1">
-      <div className="flex flex-wrap gap-2">
-        <div>
+    <div className="text-brand-black p-8 h-full flex-1 pt-24 px-10">
+      <div className="border-t border-[#D9D9D9]">
+        <div className="pt-6 flex justify-between items-center">
           <h1 className="text-3xl">
             Welcome {user && user.info.name ? user.info.name : "Producer"}!
           </h1>
+          <Link to="/product-default">
+            <button className="p-5 rounded-xl bg-gray-200">
+              START PRODUCT INTAKE
+            </button>
+          </Link>
+        </div>
+        <div className="flex gap-2 items-center justify-end mt-10 mb-7">
+          <img src={Grid} alt="grid" />
+          <div className="bg-gray-200 p-2 w-fit rounded-lg">
+            <FaListUl />
+          </div>
+        </div>
+        <div className="bg-gray-200 px-10 py-5">
+          <h1 className="text-3xl font-manrope font-medium mb-9">
+            Your Current Product Evaluations
+          </h1>
+          <div className="gap-20">
+            <button>In Progress {/* how many? */}</button>
+            <button>Completed {/* how many? */}</button>
+          </div>
+        </div>
+        <div></div>
+        <div className="mt-56">
           <p>{user ? user.info.email : null}</p>
           {displayApprovalStatus()}
           {displayAdminConfirmation()}
+          {displayBusinessInfo()}
+          {displayPlanInfo()}
+          {/* {displayProducts()} */}
         </div>
-        {displayBusinessInfo()}
-        {displayPlanInfo()}
-        {/* {displayProducts()} */}
       </div>
     </div>
   );
