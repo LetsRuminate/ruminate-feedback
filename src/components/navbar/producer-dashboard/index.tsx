@@ -40,6 +40,7 @@ export default function ProducerNav() {
   // Common Buttons
   const [message, setMessage] = useState(false);
   const [help, setHelp] = useState(false);
+  const [profile, setProfile] = useState(false);
 
   const clicked = (buttonType: string) => {
     if (buttonType === "dashboard") {
@@ -49,6 +50,7 @@ export default function ProducerNav() {
       setPricing(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "product") {
       setProduct(true);
       navigate("/product-default");
@@ -56,6 +58,7 @@ export default function ProducerNav() {
       setPricing(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "pricing") {
       setPricing(true);
       navigate("/producer-pricing");
@@ -63,6 +66,7 @@ export default function ProducerNav() {
       setProduct(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "message") {
       setMessage(true);
       navigate("/producer-message");
@@ -71,6 +75,7 @@ export default function ProducerNav() {
       setPricing(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "help") {
       setHelp(true);
       navigate("/producer-help");
@@ -78,11 +83,20 @@ export default function ProducerNav() {
       setProduct(false);
       setPricing(false);
       setMessage(false);
+      setProfile(false);
+    } else if (buttonType === "profile") {
+      setProfile(true);
+      navigate("/producer-profile");
+      setDashboard(false);
+      setProduct(false);
+      setPricing(false);
+      setMessage(false);
+      setHelp(false);
     }
   };
 
   return (
-    <div className="bg-[#D9D9D9] px-5">
+    <div className="bg-[#D9D9D9] px-5 overflow-y-scroll">
       <header>
         <img
           alt="Feedback logo"
@@ -100,30 +114,37 @@ export default function ProducerNav() {
       <section>
         <div className={product ? dashboardButtonActive : dashboardButton}>
           <button type="button" onClick={() => clicked("product")}>
-            <p>Product Evaluation</p>
+            <p>Evaluations</p>
           </button>
         </div>
         <div className={pricing ? dashboardButtonActive : dashboardButton}>
           <button type="button" onClick={() => clicked("pricing")}>
-            <p>Pricing Plans</p>
+            <p>Payment Settings</p>
           </button>
         </div>
       </section>
       {/* ================================================================================= */}
       {/* Icons that are common for Dashboards here */}
-      <section className="pt-6">
+      <section>
         <div className={message ? dashboardButtonActive : dashboardButton}>
           <button type="button" onClick={() => clicked("message")}>
             <p>Messages</p>
           </button>
         </div>
-        <div className={help ? dashboardButtonActive : dashboardButton}>
-          <button type="button" onClick={() => clicked("help")}>
-            <p>Help / FAQ</p>
-          </button>
+        <div className="mt-10">
+          <div className={help ? dashboardButtonActive : dashboardButton}>
+            <button type="button" onClick={() => clicked("help")}>
+              <p>Help / FAQ</p>
+            </button>
+          </div>
+          <div className={profile ? dashboardButtonActive : dashboardButton}>
+            <button type="button" onClick={() => clicked("profile")}>
+              <p>Profile</p>
+            </button>
+          </div>
         </div>
       </section>
-      <footer className="mt-2 mb-10 overflow-y-scroll">
+      <footer className="mt-2 mb-10">
         <button
           onClick={signOutUser}
           className="text-xl text-left font-manrope font-bold w-full pl-4"

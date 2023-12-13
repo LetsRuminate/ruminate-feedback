@@ -37,10 +37,12 @@ export default function EvaluatorNav() {
   const [evaluation, setEvaluation] = useState(false);
   const [available, setAvailable] = useState(false);
   const [history, setHistory] = useState(false);
+  const [notification, setNotification] = useState(false);
 
   // Common Buttons
   const [message, setMessage] = useState(false);
   const [help, setHelp] = useState(false);
+  const [profile, setProfile] = useState(false);
 
   const clicked = (buttonType: string) => {
     if (buttonType === "dashboard") {
@@ -49,32 +51,50 @@ export default function EvaluatorNav() {
       setEvaluation(false);
       setAvailable(false);
       setHistory(false);
+      setNotification(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "evaluation") {
       setEvaluation(true);
       navigate("/evaluation-default");
       setDashboard(false);
       setAvailable(false);
       setHistory(false);
+      setNotification(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "availabilities") {
       setAvailable(true);
       navigate("/calendar");
       setDashboard(false);
       setHistory(false);
+      setNotification(false);
       setEvaluation(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "payment-history") {
       setHistory(true);
       navigate("/evaluator-payment");
       setDashboard(false);
+      setNotification(false);
       setEvaluation(false);
       setAvailable(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
+    } else if (buttonType === "notification") {
+      setNotification(true);
+      navigate("/evaluator-notification");
+      setDashboard(false);
+      setHistory(false);
+      setEvaluation(false);
+      setAvailable(false);
+      setMessage(false);
+      setHelp(false);
+      setProfile(false);
     } else if (buttonType === "message") {
       setMessage(true);
       navigate("/evaluator-message");
@@ -82,8 +102,10 @@ export default function EvaluatorNav() {
       setEvaluation(false);
       setAvailable(false);
       setHistory(false);
+      setNotification(false);
       setMessage(false);
       setHelp(false);
+      setProfile(false);
     } else if (buttonType === "help") {
       setHelp(true);
       navigate("/evaluator-help");
@@ -91,7 +113,19 @@ export default function EvaluatorNav() {
       setEvaluation(false);
       setAvailable(false);
       setHistory(false);
+      setNotification(false);
       setMessage(false);
+      setProfile(false);
+    } else if (buttonType === "profile") {
+      setProfile(true);
+      navigate("/evaluator-profile");
+      setDashboard(false);
+      setEvaluation(false);
+      setAvailable(false);
+      setHistory(false);
+      setNotification(false);
+      setMessage(false);
+      setHelp(false);
     }
   };
 
@@ -127,19 +161,31 @@ export default function EvaluatorNav() {
             <p>Payment History</p>
           </button>
         </div>
+        <div className={notification ? dashboardButtonActive : dashboardButton}>
+          <button type="button" onClick={() => clicked("notification")}>
+            <p>Notifications</p>
+          </button>
+        </div>
       </section>
       {/* ================================================================================= */}
       {/* Icons that are common for Dashboards here */}
-      <section className="pt-6">
+      <section>
         <div className={message ? dashboardButtonActive : dashboardButton}>
           <button type="button" onClick={() => clicked("message")}>
             <p>Messages</p>
           </button>
         </div>
-        <div className={help ? dashboardButtonActive : dashboardButton}>
-          <button type="button" onClick={() => clicked("help")}>
-            <p>Help / FAQ</p>
-          </button>
+        <div className="mt-10">
+          <div className={help ? dashboardButtonActive : dashboardButton}>
+            <button type="button" onClick={() => clicked("help")}>
+              <p>Help / FAQ</p>
+            </button>
+          </div>
+          <div className={profile ? dashboardButtonActive : dashboardButton}>
+            <button type="button" onClick={() => clicked("profile")}>
+              <p>Profile</p>
+            </button>
+          </div>
         </div>
       </section>
       <footer className="mt-2 mb-5">

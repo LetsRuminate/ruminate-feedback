@@ -67,6 +67,8 @@ import Calendar from "@pages/evaluator/calendar/index.tsx";
 import PaidEvaluator from "@pages/payment-history/index.tsx";
 import EvaluatorMessage from "@pages/messages/evaluator/index.tsx";
 import EvaluatorSupport from "@pages/help/FAQ/evaluator/index.tsx";
+import EvaluatorProfile from "@pages/profile/evaluator-profile/index.tsx";
+import EvaluatorNotification from "@pages/evaluator/notification/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -106,7 +108,7 @@ const router = createBrowserRouter([
               <UserContextProvider>
                 <ProducerNav />
               </UserContextProvider>
-              <div className="flex-1">
+              <div className="flex-1 overflow-y-scroll">
                 <ProducerDashboard />
               </div>
             </div>
@@ -118,7 +120,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <IntakeDefault />
             </div>
           </div>
@@ -129,7 +131,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage1 />
             </div>
           </div>
@@ -140,7 +142,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage2 />
             </div>
           </div>
@@ -151,7 +153,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage3 />{" "}
             </div>
           </div>
@@ -162,7 +164,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductPage4 />
             </div>
           </div>
@@ -173,7 +175,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProductCompleted />
             </div>
           </div>
@@ -329,6 +331,18 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "/evaluator-notification",
+        element: (
+          <div className="flex h-screen">
+            <EvaluatorNav />
+            <div className="flex-1">
+              <EvaluatorNotification />
+              {/* for notification */}
+            </div>
+          </div>
+        ),
+      },
+      {
         path: "/evaluator-message",
         element: (
           <div className="flex h-screen">
@@ -346,6 +360,17 @@ const router = createBrowserRouter([
             <EvaluatorNav />
             <div className="flex-1">
               <EvaluatorSupport />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-profile",
+        element: (
+          <div className="flex h-screen">
+            <EvaluatorNav />
+            <div className="flex-1">
+              <EvaluatorProfile />
             </div>
           </div>
         ),

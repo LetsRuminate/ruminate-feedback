@@ -13,17 +13,53 @@ import PageFourInactive from "@assets/registration/progress-bar-2/step-4/step-4-
 import PageFiveInactive from "@assets/registration/progress-bar-2/step-5/step-5-inactive.svg";
 
 import Connector from "@assets/registration/progress-bar-2/progress-bar-connector/inactive.svg";
-
 import Underline from "@assets/registration/progress-underline/underline.svg";
 
 import { Link } from "react-router-dom";
 
+// Component Import
+import CheeseStyle from "./cheese-style-component";
+import Reason from "./reason-component";
+import MilkType from "./milk-type-component";
+import RenntType from "./rennt-type-component";
+import Status from "./status-component";
+
+// Component Import - file uploader
+import { IoFolderSharp } from "react-icons/io5";
+import FileUploadButton from "@components/forms/upload";
+import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
+import { MdOutlineRadioButtonChecked } from "react-icons/md";
+import { useState } from "react";
+
 export default function ProductPage1() {
+  const inputTitle = "text-white text-xl font-manrope font-bold";
+  const inputField = "w-full bg-white p-4 rounded-lg";
+
+  const handleDropdownChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    const selectedNumber = event.target.value;
+    console.log(`Selected Number: ${selectedNumber}`);
+  };
+
+  const [yesClicked, setYesClicked] = useState(false);
+  const [noClicked, setNoClicked] = useState(false);
+
+  const display2 = (buttonType: string) => {
+    if (buttonType === "resume") {
+      setYesClicked(true);
+      setNoClicked(false);
+    } else if (buttonType === "ccp") {
+      setNoClicked(true);
+      setYesClicked(false);
+    }
+  };
+
   return (
-    <div className="py-20 bg-[#345EC9] h-full">
+    <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
-          PRODUCT INTAKE FORM
+          PRODUCT DETAILS
         </h1>
         <div className="flex justify-between px-32 items-end py-7">
           <img src={StepOneActive} alt="Step One Active" />
@@ -63,8 +99,187 @@ export default function ProductPage1() {
         </div>
         <img src={Underline} alt="Underline" width={98} className="ml-28" />
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
+        <form>
+          <div>
+            <label htmlFor="Name" className={inputTitle}>
+              Product Name &#42;
+            </label>
+          </div>
+          <div className="mb-16 mt-4">
+            <input
+              name="name"
+              type="text"
+              className={inputField}
+              // value={fullName}
+              // onChange={handleFullNameChange}
+              required
+            />
+            {/* {fullNameError && <p className="text-amber-500">{fullNameError}</p>} */}
+          </div>
+          <div>
+            <label htmlFor="input" className={inputTitle}>
+              Year of Product Release &#42;
+            </label>
+          </div>
+          <div className="mb-16 mt-4">
+            <input
+              name="input"
+              type="text"
+              className={inputField}
+              // value={email}
+              // onChange={(e) => {
+              //   setEmail(e.target.value);
+              //   validateEmail();
+              // }}
+              required
+            />
+            {/* {emailError && <p className="mb-8 text-amber-500">{emailError}</p>} */}
+          </div>
+          <Reason />
+          {/* ================================================================ */}
+          {/* I made multiple choice responses in components */}
+          <CheeseStyle />
+          <MilkType />
+          <RenntType />
+          {/* ================================================================ */}
+          <div className="mt-9">
+            <label htmlFor="numberDropdown" className={inputTitle}>
+              Age in Months
+            </label>
+            <br />
+            <br />
+            <select
+              id="numberDropdown"
+              onChange={handleDropdownChange}
+              className={inputField}
+              placeholder="Select from Dropdown"
+            >
+              <option value="0" selected disabled></option>
+              {/* Dynamically generate options from 1 to 50 */}
+              {[...Array(50)].map((_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </select>
+          </div>
+          {/* ================================================================ */}
+          <Status />
+          {/* ================================================================ */}
+          <div className="mt-9">
+            <h3 className={inputTitle}>
+              What are the care instructions for the product? (Eg: Remove from
+              refrigeration x time before eating) &#42;
+            </h3>
+            <div className="mb-16 mt-4">
+              <textarea
+                name="textarea"
+                className="border border-white rounded-lg w-full h-full overflow-y-scroll p-5"
+              ></textarea>
+            </div>
+          </div>
+          <div className="mt-9">
+            <h3 className={inputTitle}>
+              How would you send this product to shops? Does it differ from how
+              it will be packaged or shipped to evaluators? If so, please
+              describe: &#42;
+            </h3>
+            <div className="mb-16 mt-4">
+              <textarea
+                name="textarea"
+                className="border border-white rounded-lg w-full h-full overflow-y-scroll p-5"
+              ></textarea>
+            </div>
+          </div>
+          {/* ============================= File Uploader ================================ */}
+          <div className="mb-16">
+            <h3 className="text-white text-xl font-manrope font-semibold">
+              If you’d like, upload a photo of how the product is usually
+              shipped in a retail scenario. This image will be provided to
+              evaluators for context. &#42;
+            </h3>
+            <div className="border-dashed border-white border">
+              <IoFolderSharp className="text-5xl text-[#B5B3B3] mx-auto mt-2" />
+              <FileUploadButton />
+            </div>
+          </div>
+          {/* ============================================================================ */}
+          <h3 className="mt-4 text-white text-xl">
+            Will your product be shipped/wrapped in branded packaging?
+          </h3>
+          <div className="mb-4">
+            <button
+              className="flex gap-2 items-center mt-4"
+              type="button"
+              onClick={() => display2("resume")}
+            >
+              {yesClicked ? (
+                <>
+                  <MdOutlineRadioButtonChecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    Yes
+                  </span>
+                </>
+              ) : (
+                <>
+                  <MdOutlineRadioButtonUnchecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    Yes
+                  </span>
+                </>
+              )}
+            </button>
+          </div>
+          <div className="mb-4">
+            <button
+              className="flex gap-2 items-center mt-4"
+              type="button"
+              onClick={() => display2("ccp")}
+            >
+              {noClicked ? (
+                <>
+                  <MdOutlineRadioButtonChecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    No
+                  </span>
+                </>
+              ) : (
+                <>
+                  <MdOutlineRadioButtonUnchecked className="text-white" />
+                  <span className="text-white text-base font-manrope font-normal">
+                    No
+                  </span>
+                </>
+              )}
+            </button>
+          </div>
+          {/* ============================== Shipping File Uploader ================ */}
+          <div className="mb-16 mt-9">
+            <h3 className="text-white text-xl font-manrope font-semibold">
+              If you’d like, upload a photo of how the product is usually
+              shipped in a retail scenario. This image will be provided to
+              evaluators for context. &#42;
+            </h3>
+            <div className="border-dashed border-white border">
+              <IoFolderSharp className="text-5xl text-[#B5B3B3] mx-auto mt-2" />
+              <FileUploadButton />
+            </div>
+          </div>
+          {/* I might need the warning thing for later */}
+          {/* {showWarning && (
+              <p className="text-amber-500">
+                Password needs to be more than 8 characters long
+              </p>
+            )}
+            {showWarning2 && (
+              <p className="text-amber-500">
+                Password should have at least 2 of special characters (i.e.
+                !@%#&)
+              </p>
+            )} */}
+        </form>
+        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5 mt-36">
           <Link to="/product-default">Previous</Link>
         </button>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
