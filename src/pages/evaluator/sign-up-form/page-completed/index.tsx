@@ -71,16 +71,16 @@ export default function EvaluatorCompleted() {
           Congratulations!
         </h1>
         <p className="text-white text-base font-manrope font-medium pt-6 pb-12">
-          You just signed up for an evaluation with Feedback! As you are reading
-          this, we are reaching out to evaluators. Once evaluators have signed
-          on to your evaluation, we’ll post their shipping addresses (and your
-          next steps) in your dashboard.
+          Thank you for signing up to offer your help to assess the food with
+          Feedback! As you are reading this, we are seeking if anyone needs your
+          help. Once we receive the request from food producers, we will let you
+          know how you could help them via your dashboard.
           <br />
           <br />
-          Click below to access your Producer Dashboard!
+          Click below to access your Evaluator Dashboard!
         </p>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-          <Link to="/login">Dashboard</Link>
+          <Link to="/login">Go to My Dashboard</Link>
         </button>
       </div>
     </div>

@@ -74,6 +74,10 @@ export default function EvaluatorDashboard() {
     <div className="bg-blue-300 text-brand-black p-8 h-full">
       <div className="flex flex-wrap gap-2">
         <div>
+          <h1 className="text-3xl my-40 text-center text-red-500">
+            PLEASE NOTE: Phase 4 Development Team will not build Evaluator
+            Dashboard until further notice.
+          </h1>
           <h1 className="text-3xl">
             Welcome {user && user.name ? user.name : "Evaluator"}!
           </h1>

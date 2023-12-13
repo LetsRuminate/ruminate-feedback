@@ -19,11 +19,13 @@ import Underline from "@assets/registration/progress-underline/underline.svg";
 import { Link } from "react-router-dom";
 
 export default function ProductPage2() {
+  const inputTitle = "text-white text-xl font-manrope font-bold";
+  const inputField = "w-full bg-white p-4 rounded-lg";
   return (
-    <div className="py-20 bg-[#345EC9] h-full">
+    <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
-          PRODUCT INTAKE FORM
+          YOUR GOALS
         </h1>
         <div className="flex justify-between px-32 items-end py-7">
           <img src={StepOneActive} alt="Step One Active" />
@@ -63,7 +65,19 @@ export default function ProductPage2() {
         </div>
         <img src={Underline} alt="Underline" width={98} className="ml-64" />
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
+        <h3 className={inputTitle}>
+          What specific goals do you have with this product? Use some of the
+          following questions to guide your response: What are your challenges?
+          What are the big questions you want answered? Who are you trying to
+          reach? What competitor(s) are you trying to match or outshine? Your
+          response is shared with evaluators and helps them frame their
+          feedback. Evaluators will note changes you can make to meet this goal,
+          when applicable.
+        </h3>
+        <div className="mt-4 mb-36">
+          <textarea name="describe" className={inputField}></textarea>
+        </div>
         <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
           <Link to="/product-intake-1">Previous</Link>
         </button>

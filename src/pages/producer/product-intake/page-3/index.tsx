@@ -17,13 +17,16 @@ import ConnectorActive from "@assets/registration/progress-bar-2/progress-bar-co
 
 import Underline from "@assets/registration/progress-underline/underline.svg";
 import { Link } from "react-router-dom";
+import Certificate from "./certification-type";
 
 export default function ProductPage3() {
+  const inputTitle = "text-white text-xl font-manrope font-bold";
+  const inputField = "w-full bg-white p-4 rounded-lg";
   return (
-    <div className="py-20 bg-[#345EC9] h-full">
+    <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
-          PRODUCT INTAKE FORM
+          PRODUCT VALUES
         </h1>
         <div className="flex justify-between px-32 items-end py-7">
           <img src={StepOneActive} alt="Step One Active" />
@@ -63,8 +66,17 @@ export default function ProductPage3() {
         </div>
         <img src={Underline} alt="Underline" width={98} className="mx-auto" />
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
+        <Certificate />
+        <div className="mt-9">
+          <h3 className={inputTitle}>
+            Are there any other ethical, equitable, and/or environmentally
+            sustainable practices involved in the production of this particular
+            product other than the traits listed above?
+          </h3>
+          <textarea name="describe" className={inputField}></textarea>
+        </div>
+        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5 mt-36">
           <Link to="/product-intake-2">Previous</Link>
         </button>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
