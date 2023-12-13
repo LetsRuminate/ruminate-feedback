@@ -1,14 +1,16 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext, useEffect, useReducer, useState } from "react";
-import { FcGoogle } from "react-icons/fc";
+// import { FcGoogle } from "react-icons/fc";
 import {
-  GoogleAuthProvider,
+  // GoogleAuthProvider,
   signInWithEmailAndPassword,
-  signInWithPopup,
+  // signInWithPopup,
 } from "firebase/auth";
 import { UserContext } from "@contexts/UserContext";
 import { auth } from "@components/api/firebase";
-import alertCircle from "@assets/alert-circle.svg";
+
+// React Icons
+import { MdOutlineError } from "react-icons/md";
 
 // interfaces for reducer
 interface Action {
@@ -71,12 +73,22 @@ export default function Login() {
     initialLoginState
   );
 
-  const [className, setClassName] = useState(
-    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
-  );
+  // Login page at Default CSS
+  const originalH1 = "font-manrope text-2xl font-normal mb-6";
+  const originalLabel = "text-primary-B500 text-sm font-medium mb-2";
 
-  const [showError, setShowError] = useState(false);
+  const inputClass =
+    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-input border-borderInput font-semibold border w-full";
+  const errorClass =
+    "mt-2 pt-2 pb-3 px-4 rounded-lg text-base font-semibold border border-[#E46D64] w-full";
+  const alertMessage = "text-error text-xs font-manrope font-normal";
 
+  const [showError, setShowError] = useState(false); // for handleChange
+  const [showError2, setShowError2] = useState(false); // for handleChange2
+
+  // For Email Input,
+  // handleChange function will allow the users to make any input
+  // handleBlur function will check if the user has made a proper input
   const handleChange = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     setShowError(false);
@@ -90,29 +102,24 @@ export default function Login() {
     const target = e.target as HTMLInputElement;
     const input = target.value;
     if (!input || !isValidEmail(input)) {
-      setClassName(
-        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full placeholder-[#E46D64]"
-      );
+      errorClass;
       setShowError(true);
     } else {
-      setClassName(
-        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
-      );
+      inputClass;
       setShowError(false);
     }
   };
 
+  // the following function checks if the input is a valid email address with "@" and the domain
   function isValidEmail(email: string) {
     const re =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(email).toLowerCase());
   }
 
-  const [className2, setClassName2] = useState(
-    "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
-  );
-  const [showError2, setShowError2] = useState(false);
-
+  // For password Input,
+  // handleChange2 function will allow the users to make any input
+  // handleBlur2 function will check if the user has made a proper input
   const handleChange2 = (e: React.SyntheticEvent) => {
     const target = e.target as HTMLInputElement;
     dispatchLoginInfo({
@@ -125,21 +132,42 @@ export default function Login() {
     const target = e.target as HTMLInputElement;
     const input = target.value;
     if (!input) {
-      setClassName2(
-        "mt-2 pt-2 pb-3 px-4 rounded-lg text-base border-[#E46D64] text-[#E46D64] font-semibold leading-6 border w-full"
-      );
+      errorClass;
       setShowError2(true);
     } else {
-      setClassName2(
-        "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-[#6D778C] border-[#888D95] font-semibold leading-6 border w-full"
-      );
+      inputClass;
       setShowError2(false);
     }
   };
 
+  // the following functions have installed the limit on how many times a user can attempt to login
+  // the user is given up to 5 attempts at maximum and if they get their passwords wrong for more than 5 times, they will not be able to login.
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [loginAttempts, setLoginAttempts] = useState(0);
+  const maxLoginAttempts = 5;
+  const remainingAttempts = maxLoginAttempts - loginAttempts;
+
+  // Login Error CSS
+  const loginError =
+    "flex justify-center w-full border-red border-2 bg-errorBG rounded-xl mb-5";
+  const loginErrorText = "text-error text-xs font-manrope font-normal py-4";
+  const lockedOut =
+    "flex justify-center w-full border-red border-2 bg-errorBG rounded-xl mb-5 px-5";
+
   const loginUser = async () => {
-    // XXX
-    // gotta validate input before attempting login
+    if (loginAttempts >= maxLoginAttempts) {
+      setErrorMessage(
+        "Maximum login attempts reached. Please try again later."
+      );
+      return;
+    }
+
+    setLoginAttempts(0);
+    if (!isValidEmail(loginInfo.email) || !loginInfo.password) {
+      setErrorMessage("Invalid email or password");
+      return;
+    }
+
     try {
       await signInWithEmailAndPassword(
         auth,
@@ -147,9 +175,9 @@ export default function Login() {
         loginInfo.password
       );
     } catch (err) {
-      // XXX
-      // Handle better (display to user)
-      console.error(err);
+      console.log(err);
+      setLoginAttempts(loginAttempts + 1);
+      setErrorMessage("Incorrect email or password");
     }
   };
 
@@ -159,95 +187,98 @@ export default function Login() {
     }
   };
 
-  const provider = new GoogleAuthProvider();
+  // const provider = new GoogleAuthProvider();
 
-  const loginUserGoogle = async () => {
-    try {
-      await signInWithPopup(auth, provider);
-    } catch (err) {
-      // XXX
-      // Handle better (display to user)
-      console.error(err);
-    }
-  };
+  // const loginUserGoogle = async () => {
+  //   try {
+  //     await signInWithPopup(auth, provider);
+  //   } catch (err) {
+  //     // XXX
+  //     // Handle better (display to user)
+  //     console.error(err);
+  //   }
+  // };
 
   return (
     <div className="py-[142px] w-[316px] mx-auto">
       <section>
         <form>
-          <h1 className="font-Manrope text-2xl font-normal leading-7 mb-6">
-            Log in
-          </h1>
-          <label className="text-[#344054] text-sm font-medium leading-5 mb-2">
-            Email
-          </label>
-          <div className="relative">
-            <input
-              type="text"
-              placeholder="Email"
-              className={className}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              onKeyDown={handleKeyDown}
-              value={loginInfo.email || ""}
-            />
-            {showError ? (
-              <img
-                alt=""
-                // XXX
-                // hard-coded these offsets here...better solution?
-                className="absolute right-0 -mt-8 mr-3"
-                src={alertCircle}
-              />
-            ) : null}
-            {showError && (
-              <p className="text-[#CC4B3B] text-xs font-Manrope font-normal leading-5">
-                Email is required
+          {errorMessage && remainingAttempts > 0 && (
+            <div className={loginError}>
+              <p className={loginErrorText}>
+                Please check your email and password.
+                <br />
+                you can try {remainingAttempts} more times.
               </p>
-            )}
-          </div>
-          <div className="relative">
-            <label className="text-[#344054] text-sm font-medium leading-5 mb-2">
-              Password
-            </label>
-            <input
-              type="password"
-              placeholder="Password"
-              className={className2}
-              onChange={handleChange2}
-              onBlur={handleBlur2}
-              value={loginInfo.password || ""}
-              onKeyDown={handleKeyDown}
-            />
-            {showError2 ? (
-              <img
-                alt=""
-                // XXX
-                // hard-coded these offsets here...better solution?
-                className="absolute right-0 -mt-8 mr-3"
-                src={alertCircle}
-              />
-            ) : null}
-            {showError2 && (
-              <p className="text-[#CC4B3B] text-xs font-Manrope font-normal leading-5">
-                Password is required
+            </div>
+          )}
+          {remainingAttempts === 0 && (
+            <div className={lockedOut}>
+              <p className={loginErrorText}>
+                You have reached the number of attempts that you can try. Please
+                contact our Administrators at{" "}
+                <a
+                  href="mailto:info@letsruminate.org"
+                  className="text-[blue] underline"
+                >
+                  info@letsruminate.org
+                </a>{" "}
+                for assistance.
               </p>
-            )}
-          </div>
+            </div>
+          )}
+          <h1 className={originalH1}>Log in</h1>
+          <label className={originalLabel}>Email</label>
+          <input
+            type="text"
+            placeholder="Email"
+            className={showError ? errorClass : inputClass}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            onKeyDown={handleKeyDown}
+            value={loginInfo.email || ""}
+          />
+          {showError ? (
+            <div className="flex mt-2 items-center mb-4">
+              <MdOutlineError className="text-error mx-2" />
+              <p className={alertMessage}>Email is required</p>
+            </div>
+          ) : null}
+          <label className={originalLabel}>Password</label>
+          <input
+            type="password"
+            placeholder="Password"
+            className={showError ? errorClass : inputClass}
+            onChange={handleChange2}
+            onBlur={handleBlur2}
+            value={loginInfo.password || ""}
+            onKeyDown={handleKeyDown}
+          />
+          {showError2 ? (
+            <div className="flex mt-2 items-center mb-4">
+              <MdOutlineError className="text-error mx-2" />
+              <p className={alertMessage}>Password is required</p>
+            </div>
+          ) : null}
         </form>
-        <button className="text-[#3E5BD1] text-xs underline font-normal leading-7 pb-4">
+        <button className="text-buttonActive text-xs underline font-normal pb-4">
           Forgot my password
         </button>
       </section>
       <section>
         <button
-          // onClick={loginUser}
-          className="text-white text-base text-center font-normal leading-5 rounded-md bg-[#5772DA] px-6 w-full h-8"
+          onClick={loginUser}
+          className={
+            remainingAttempts === 0
+              ? "text-white text-base text-center font-normal leading-5 rounded-md bg-buttonDisabled px-6 w-full h-8"
+              : "text-white text-base text-center font-normal leading-5 rounded-md bg-buttonActive px-6 w-full h-8"
+          }
           type="button"
+          disabled={remainingAttempts === 0}
         >
           Log in
         </button>
-        <p className="text-center py-4">OR</p>
+        {/* <p className="text-center py-4">OR</p>
         <div className="border border-[#BE493A] w-full h-8 rounded-md mb-4">
           <button
             onClick={loginUserGoogle}
@@ -257,14 +288,14 @@ export default function Login() {
             <FcGoogle />
             Login with Google
           </button>
-        </div>
-        <p className="text-[#344054] text-xs font-normal leading-7 text-center">
+        </div> */}
+        <p className="text-primary-B500 text-xs font-normal text-center pt-4">
           By using Feedback you agree to the{" "}
-          <span className="text-[#0563E0] text-xs font-normal leading-7">
+          <span className="text-[#0563E0] text-xs font-normal">
             <Link to="/">Terms of Service</Link>
           </span>{" "}
           and{" "}
-          <span className="text-[#0563E0] text-xs font-normal leading-7">
+          <span className="text-[#0563E0] text-xs font-normal">
             <Link to="/">Privacy Policy</Link>
           </span>
         </p>

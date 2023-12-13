@@ -80,7 +80,7 @@ export default function AdminDashboard() {
           {userProducts ? (
             userProducts.map((product) => {
               return (
-                <div key={product.productId}>{product.info.productName}</div>
+                <div key={product.productId}>{product.productName}</div>
               );
             })
           ) : (
@@ -115,12 +115,12 @@ export default function AdminDashboard() {
                   onClick={getDetailUser}
                   type="button"
                 >
-                  {`${currentUser.info.name} (${currentUser.info.email})`}
+                  {`${currentUser.name} (${currentUser.email})`}
                 </button>
               );
             })
           ) : (
-            <div>No Users =(</div>
+            <div>No Users 😭</div>
           )}
         </div>
       );
@@ -129,11 +129,11 @@ export default function AdminDashboard() {
   };
 
   const displayAddress = (currentUser: Evaluator | Producer) => {
-    const { address } = currentUser.info;
+    const { address } = currentUser;
     return (
       <>
         {checkProducer(currentUser) ? (
-          <div>{currentUser.info.businessName}</div>
+          <div>{currentUser.businessName}</div>
         ) : null}
         <div>{address.street}</div>
         {address.unit ? <div>{`Unit ${address.unit}`}</div> : null}
@@ -144,23 +144,21 @@ export default function AdminDashboard() {
   };
 
   const displayCertInfo = (currentUser: Producer) => {
-    const { info } = currentUser;
-
     return (
       <>
         <h2>Certification Info:</h2>
         <div>
           Type:{" "}
-          {info.certification === "thirdParty"
+          {currentUser.certification === "thirdParty"
             ? "Third Party"
             : "Self-Certified"}
         </div>
-        {info.certificationURL ? (
+        {currentUser.certificationURL ? (
           <div>
             <a
               className="text-blue-800 underline"
               target="_blank"
-              href={info.certificationURL}
+              href={currentUser.certificationURL}
             >
               Download certification
             </a>
@@ -235,8 +233,8 @@ export default function AdminDashboard() {
             } flex gap-2`}
           >
             <div className="p-1 flex flex-col gap-1">
-              <div>{currentUser.info.name}</div>
-              <div>{currentUser.info.email}</div>
+              <div>{currentUser.name}</div>
+              <div>{currentUser.email}</div>
               <div>role: {currentUser.role}</div>
               <div
                 className={currentUser.approved ? "bg-green-400" : "bg-red-400"}
@@ -270,13 +268,13 @@ export default function AdminDashboard() {
   };
 
   return (
-    <div className="bg-blue-300 text-brand-black p-8 min-h-[400px] flex flex-col items-start gap-2">
+    <div className="bg-blue-300 text-brand-black p-8 h-full flex flex-col items-start gap-2">
       <div className="flex flex-wrap gap-2">
         <div>
           <h1 className="text-3xl">
-            Welcome {user && user.info.name ? user.info.name : "Producer"}!
+            Welcome {user && user.name ? user.name : "Producer"}!
           </h1>
-          <p>{user ? user.info.email : null}</p>
+          <p>{user ? user.email : null}</p>
           {displayAdminConfirmation()}
         </div>
         {displayUsers()}

@@ -7,9 +7,5 @@ export default interface Evaluation {
   // document id of the product being evaluated
   productId: string;
   // rudimentary info for experimenting - not fully developed in this phase
-  info: {
-    immediateThoughts: string;
-    distinguishingFeatures: string;
-    describeToCustomer: string;
-  };
+  describeToCustomer: string;
 }
