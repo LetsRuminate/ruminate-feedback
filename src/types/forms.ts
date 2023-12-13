@@ -58,3 +58,7 @@ export interface ProductIntakeForm {
   name: string;
   goal: string;
 }
+
+export interface EvaluationForm {
+  describeToCustomer: string;
+}
