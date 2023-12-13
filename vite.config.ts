@@ -9,7 +9,11 @@ export default defineConfig({
       "@assets": "/src/assets",
       "@components": "/src/components",
       "@contexts": "/src/contexts",
+      "@fonts": "/src/fonts",
+      "@hooks": "/src/hooks",
       "@pages": "/src/pages",
+      "@cystomTypes": "/src/types",
+      "@util": "/src/util",
     },
   },
 });
