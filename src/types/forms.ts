@@ -54,3 +54,7 @@ export interface EvaluatorForm {
   programCommitment: boolean;
 }
 
+export interface ProductIntakeForm {
+  name: string;
+  goal: string;
+}
