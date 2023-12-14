@@ -8,6 +8,7 @@ function App() {
   const location = useLocation();
   const noFooter = [
     // Producer pages list
+    "/producer-approved",
     "/producer",
     "/product-default",
     "/product-intake-1",
@@ -40,6 +41,7 @@ function App() {
 
   const newNav = [
     // Producer pages list
+    "/producer-approved",
     "/producer",
     "/product-default",
     "/product-intake-1",

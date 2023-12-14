@@ -15,8 +15,12 @@ import HowItWorks from "@pages/how-it-works/index.tsx";
 
 // Detail page for Members
 import AdminDashboard from "@pages/admin/admin-dashboard/index.tsx";
+// ============= if producer is approved but unpaid ====================
+import ProducerApproved from "@pages/producer/approved/index.tsx";
+// ============= if producer is approved and paid ====================
 import ProducerDashboard from "@pages/producer/producer-dashboard/index.tsx";
 import EvaluatorDashboard from "@pages/evaluator/evaluator-dashboard/index.tsx";
+
 // ===== Registration for Producer =====
 import Registration from "@pages/registration/registration-begin/index.tsx";
 import DefaultPage from "@pages/producer/sign-up-form/default-page/index.tsx";
@@ -54,6 +58,9 @@ import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-comple
 import AdministratorNav from "@components/navbar/administrator-dashboard/index.tsx";
 
 // import Navigation menu for Producer Dashboard
+// ================ if the producer is not paid =================
+import ProducerUnpaid from "@components/navbar/producer-approved/index.tsx";
+// ================ if the producer has been paid ===============
 import ProducerNav from "@components/navbar/producer-dashboard/index.tsx";
 import ProducerPricing from "@pages/pricing/producer/index.tsx";
 import PricingOverview from "@pages/pricing/overview/index.tsx";
@@ -100,6 +107,21 @@ const router = createBrowserRouter([
       },
       // ================================
       // Producer Dashboard from this point
+      {
+        path: "/producer-approved",
+        element: (
+          <ProductsContextProvider>
+            <div className="flex h-screen">
+              <UserContextProvider>
+                <ProducerUnpaid />
+              </UserContextProvider>
+              <div className="flex-1 overflow-y-scroll">
+                <ProducerApproved />
+              </div>
+            </div>
+          </ProductsContextProvider>
+        ),
+      },
       {
         path: "/producer",
         element: (
