@@ -289,7 +289,7 @@ export default function ProductPage1() {
                 Previous
               </button>
             </Link>
-            <Link to="/product-intake-3">
+            <Link to="/product-intake-2">
               <button
                 className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
                 type="button"
