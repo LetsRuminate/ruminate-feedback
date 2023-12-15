@@ -50,7 +50,7 @@ export default function Login() {
           navigate("/admin");
           break;
         case "producer":
-          navigate("/producer-approved");
+          navigate("/producer");
           break;
         case "evaluator":
           navigate("/evaluator");
