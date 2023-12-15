@@ -79,9 +79,7 @@ export default function AdminDashboard() {
           <h2>All Products:</h2>
           {userProducts ? (
             userProducts.map((product) => {
-              return (
-                <div key={product.productId}>{product.productName}</div>
-              );
+              return <div key={product.productId}>{product.productName}</div>;
             })
           ) : (
             <div>No Products =(</div>
@@ -270,6 +268,10 @@ export default function AdminDashboard() {
   return (
     <div className="bg-blue-300 text-brand-black p-8 h-full flex flex-col items-start gap-2">
       <div className="flex flex-wrap gap-2">
+        <h1 className="text-3xl my-40 text-center text-red-500">
+          PLEASE NOTE: Phase 4 Development Team will not build Administrator
+          Dashboard in this phase.
+        </h1>
         <div>
           <h1 className="text-3xl">
             Welcome {user && user.name ? user.name : "Producer"}!
