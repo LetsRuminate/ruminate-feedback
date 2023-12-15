@@ -60,28 +60,18 @@ export default function EvaluationDefault() {
           </p>
         </div>
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-14">
-        <div>
-          <h3 className="text-white text-2xl font-manrope font-bold">
-            Taking Your Products to the Next Level!
-          </h3>
-          <p className="text-white text-base font-manrope font-normal py-6">
-            We'll explore your background, your business, and your core values.
-            This information will provide us with a deeper understanding of your
-            profile and business, allowing us to assess compatibility more
-            effectively.
-          </p>
-          <p className="text-white">Click “Sign up” below to get started!</p>
-        </div>
+      <div className="border border-white mx-auto w-[874px] px-48 py-14">
+        <h3 className="text-white text-2xl font-manrope font-bold">
+          Your Opinion Matters
+        </h3>
+        <p className="text-white text-base font-manrope font-normal py-6">
+          Thank you for offering your time to value the product.
+          <br />
+          You will be compensated for every product you leave a review, and we
+          ask you to be thorough in answering the questions.
+        </p>
+        <p className="text-white">Click “Next” below to get started!</p>
         <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-32 py-3 rounded-3xl mt-14">
-          <Link to="/evaluator-page-1">Sign Up</Link>
-        </button>
-      </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
-          <Link to="/evaluator">Previous</Link>
-        </button>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
           <Link to="/evaluation-page-1">Next</Link>
         </button>
       </div>

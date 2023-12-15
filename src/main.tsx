@@ -91,7 +91,7 @@ const router = createBrowserRouter([
       { path: "/login", element: <Login /> },
       { path: "/about-us", element: <AboutUs /> },
       { path: "/how-it-works", element: <HowItWorks /> },
-      { path: "/pricing-overview", element: <PricingOverview /> },
+      { path: "/pricing", element: <PricingOverview /> },
       {
         path: "/admin",
         element: (
@@ -219,7 +219,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProducerMessages />
             </div>
           </div>
@@ -230,7 +230,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProducerSupport />
             </div>
           </div>
@@ -241,7 +241,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProducerProfile />
             </div>
           </div>
@@ -255,7 +255,7 @@ const router = createBrowserRouter([
           <ProductsContextProvider>
             <div className="flex h-screen">
               <EvaluatorNav />
-              <div className="flex-1">
+              <div className="flex-1 overflow-y-scroll">
                 <EvaluatorDashboard />
               </div>
             </div>
@@ -267,7 +267,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluationDefault />
             </div>
           </div>
@@ -278,7 +278,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluationPage1 />
             </div>
           </div>
@@ -289,7 +289,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluationPage2 />
             </div>
           </div>
@@ -300,7 +300,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluationPage3 />
             </div>
           </div>
@@ -311,7 +311,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluationPage4 />
             </div>
           </div>
@@ -322,7 +322,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluationCompleted />
             </div>
           </div>
@@ -333,7 +333,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <Calendar />
               {/* for availabilities */}
             </div>
@@ -345,7 +345,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <PaidEvaluator />
               {/* for payment history */}
             </div>
@@ -357,7 +357,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluatorNotification />
               {/* for notification */}
             </div>
@@ -369,7 +369,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluatorMessage />
             </div>
           </div>
@@ -380,7 +380,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluatorSupport />
             </div>
           </div>
@@ -391,7 +391,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <EvaluatorNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <EvaluatorProfile />
             </div>
           </div>

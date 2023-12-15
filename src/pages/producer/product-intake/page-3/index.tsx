@@ -48,19 +48,19 @@ export default function ProductPage3() {
           <img src={PageFiveInactive} alt="Page Five Inactive" />
         </div>
         <div className="flex justify-between px-32">
-          <p className="text-white text-sm font-manrope font-normal">
-            Product Info
+          <p className="text-white text-sm font-manrope font-normal -ml-3">
+            Product Detail
           </p>
-          <p className="text-white text-sm font-manrope font-normal -ml-10">
-            Preferred Communication
+          <p className="text-white text-sm font-manrope font-normal pl-4">
+            Your Goal
           </p>
-          <p className="text-white text-sm font-manrope font-normal -ml-12">
-            Shipment
+          <p className="text-white text-sm font-manrope font-normal pl-5">
+            Product Value
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal">
-            Form Review
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-2">
+            Communication
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal">
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-2">
             Completed
           </p>
         </div>
@@ -76,12 +76,29 @@ export default function ProductPage3() {
           </h3>
           <textarea name="describe" className={inputField}></textarea>
         </div>
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5 mt-36">
-          <Link to="/product-intake-2">Previous</Link>
-        </button>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-          <Link to="/product-intake-4">Next</Link>
-        </button>
+        <div className="justify-between flex items-center mt-12">
+          <div>
+            <Link to="/product-intake-2">
+              <button
+                className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5"
+                type="button"
+              >
+                Previous
+              </button>
+            </Link>
+            <Link to="/product-intake-4">
+              <button
+                className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
+                type="button"
+              >
+                Next
+              </button>
+            </Link>
+          </div>
+          <button className="text-white" type="button">
+            Save as Draft
+          </button>
+        </div>
       </div>
     </div>
   );
