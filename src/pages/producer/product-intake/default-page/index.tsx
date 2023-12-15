@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 export default function IntakeDefault() {
   return (
-    <div className="py-20 bg-[#345EC9] overflow-auto">
+    <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
           PRODUCT INTAKE FORM
@@ -43,19 +43,19 @@ export default function IntakeDefault() {
           <img src={PageFiveInactive} alt="Page Five Inactive" />
         </div>
         <div className="flex justify-between px-32">
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal">
-            Product Info
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal -ml-3">
+            Product Detail
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal -ml-10">
-            Preferred Communication
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-4">
+            Your Goal
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal -ml-12">
-            Shipment
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-5">
+            Product Value
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal">
-            Form Review
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-2">
+            Communication
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal">
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-2">
             Completed
           </p>
         </div>
@@ -74,7 +74,7 @@ export default function IntakeDefault() {
             Click below to start your product intake form.
           </p>
         </div>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-32 py-3 rounded-3xl mt-14">
+        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-32 py-3 rounded-3xl mt-12">
           <Link to="/product-intake-1">Next</Link>
         </button>
       </div>

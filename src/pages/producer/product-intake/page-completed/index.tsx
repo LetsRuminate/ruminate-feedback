@@ -22,7 +22,7 @@ export default function ProductCompleted() {
     <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
-          PRODUCT INTAKE FORM
+          COMPLETED
         </h1>
         <div className="flex justify-between px-32 items-end py-7">
           <img src={StepOneActive} alt="Step One Active" />
@@ -44,19 +44,19 @@ export default function ProductCompleted() {
           <img src={PageFiveActive} alt="Page Five Active" />
         </div>
         <div className="flex justify-between px-32">
-          <p className="text-white text-sm font-manrope font-normal">
-            Product Info
+          <p className="text-white text-sm font-manrope font-normal -ml-3">
+            Product Detail
           </p>
-          <p className="text-white text-sm font-manrope font-normal -ml-10">
-            Preferred Communication
+          <p className="text-white text-sm font-manrope font-normal pl-4">
+            Your Goal
           </p>
-          <p className="text-white text-sm font-manrope font-normal -ml-12">
-            Shipment
+          <p className="text-white text-sm font-manrope font-normal pl-5">
+            Product Value
           </p>
-          <p className="text-white text-sm font-manrope font-normal">
-            Form Review
+          <p className="text-white text-sm font-manrope font-normal pl-2">
+            Communication
           </p>
-          <p className="text-white text-sm font-manrope font-normal">
+          <p className="text-white text-sm font-manrope font-normal pl-2">
             Completed
           </p>
         </div>
