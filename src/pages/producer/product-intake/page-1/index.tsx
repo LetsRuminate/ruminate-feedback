@@ -55,6 +55,66 @@ export default function ProductPage1() {
     }
   };
 
+  // Product Name
+  const [productName, setProductName] = useState<string>("");
+  const [productNameError, setProductNameError] = useState<string>("");
+  const handleProductName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setProductName(value);
+
+    const validatedFullName = validateFullName(value);
+    if (validatedFullName) {
+      setProductName(validatedFullName);
+    }
+
+    // handleInputChange(e);
+  };
+
+  const validateFullName = (name: string) => {
+    if (name.length < 2) {
+      setProductNameError("Please provide your product name.");
+      return false;
+    }
+
+    setProductNameError("");
+    return name;
+  };
+
+  // Product Year
+  const [productYear, setProductYear] = useState<string>("");
+  const [productYearError, setProductYearError] = useState<string>("");
+  const handleProductYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setProductYear(value);
+
+    const validatedFullName = validateYear(value);
+    if (validatedFullName) {
+      setProductYear(validatedFullName);
+    }
+
+    // handleInputChange(e);
+  };
+
+  const validateYear = (name: string) => {
+    if (name.length < 2) {
+      setProductYearError(
+        "Please let us know when you've released the product."
+      );
+      return false;
+    }
+
+    // Check if the name is not a four-digit number
+    const isNotFourDigitNumber = !/^\d{4}$/.test(name);
+
+    if (isNotFourDigitNumber) {
+      setProductYearError("Year needs be a four-digit number.");
+      return false;
+    }
+
+    setProductYearError("");
+    return name;
+  };
+
   return (
     <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
@@ -84,10 +144,10 @@ export default function ProductPage1() {
           <p className="text-white text-sm font-manrope font-normal -ml-3">
             Product Detail
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-4">
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-6">
             Your Goal
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-5">
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-7">
             Product Value
           </p>
           <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-2">
@@ -111,11 +171,13 @@ export default function ProductPage1() {
               name="name"
               type="text"
               className={inputField}
-              // value={fullName}
-              // onChange={handleFullNameChange}
+              value={productName}
+              onChange={handleProductName}
               required
             />
-            {/* {fullNameError && <p className="text-amber-500">{fullNameError}</p>} */}
+            {productNameError && (
+              <p className="text-amber-500">{productNameError}</p>
+            )}
           </div>
           <div>
             <label htmlFor="input" className={inputTitle}>
@@ -127,14 +189,13 @@ export default function ProductPage1() {
               name="input"
               type="text"
               className={inputField}
-              // value={email}
-              // onChange={(e) => {
-              //   setEmail(e.target.value);
-              //   validateEmail();
-              // }}
+              value={productYear}
+              onChange={handleProductYear}
               required
             />
-            {/* {emailError && <p className="mb-8 text-amber-500">{emailError}</p>} */}
+            {productYearError && (
+              <p className="mb-8 text-amber-500">{productYearError}</p>
+            )}
           </div>
           <Reason />
           {/* ================================================================ */}
@@ -176,6 +237,7 @@ export default function ProductPage1() {
               <textarea
                 name="textarea"
                 className="border border-white rounded-lg w-full h-full overflow-y-scroll p-5"
+                required
               ></textarea>
             </div>
           </div>
@@ -189,6 +251,7 @@ export default function ProductPage1() {
               <textarea
                 name="textarea"
                 className="border border-white rounded-lg w-full h-full overflow-y-scroll p-5"
+                required
               ></textarea>
             </div>
           </div>

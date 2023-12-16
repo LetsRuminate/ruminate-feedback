@@ -5,7 +5,6 @@ import { useState } from "react";
 
 export default function Reason() {
   const inputTitle = "text-white text-xl font-manrope font-bold";
-  const inputField = "w-full bg-white p-4 rounded-lg";
 
   // const [selected, setSelected] = useState(0);
   const [checked, setChecked] = useState(false);
@@ -62,8 +61,8 @@ export default function Reason() {
       <div className="mt-4">
         <div onClick={handleClick}>
           {checked ? (
-            <div className="flex gap-2 items-center">
-              <BiSolidCheckboxChecked className="text-white rounded" />
+            <div className="flex gap-2 items-center -ml-1">
+              <BiSolidCheckboxChecked className="text-white rounded text-xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Developing a new product
               </span>
@@ -79,8 +78,8 @@ export default function Reason() {
         </div>
         <div onClick={handleClick2}>
           {checked1 ? (
-            <div className="flex gap-2 items-center my-5">
-              <BiSolidCheckboxChecked className="text-white rounded" />
+            <div className="flex gap-2 items-center my-5 -ml-1">
+              <BiSolidCheckboxChecked className="text-white rounded text-xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Experimenting with new receipe
               </span>
@@ -96,8 +95,8 @@ export default function Reason() {
         </div>
         <div onClick={handleClick3}>
           {checked2 ? (
-            <div className="flex gap-2 items-center">
-              <BiSolidCheckboxChecked className="text-white rounded" />
+            <div className="flex gap-2 items-center -ml-1">
+              <BiSolidCheckboxChecked className="text-white rounded text-xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Refining an old favorite
               </span>
@@ -113,8 +112,8 @@ export default function Reason() {
         </div>
         <div onClick={handleClick4}>
           {checked3 ? (
-            <div className="flex gap-2 items-center my-5">
-              <BiSolidCheckboxChecked className="text-white rounded" />
+            <div className="flex gap-2 items-center my-5 -ml-1">
+              <BiSolidCheckboxChecked className="text-white rounded text-xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Trying to figure out why the product isn’t selling as hoped
               </span>
@@ -130,8 +129,8 @@ export default function Reason() {
         </div>
         <div onClick={handleClick5}>
           {checked4 ? (
-            <div className="flex gap-2 items-center">
-              <BiSolidCheckboxChecked className="text-white rounded" />
+            <div className="flex gap-2 items-center -ml-1">
+              <BiSolidCheckboxChecked className="text-white rounded text-xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Trying to break into a new geographic market
               </span>
@@ -148,7 +147,7 @@ export default function Reason() {
         <div onClick={handleClick6}>
           {checked5 ? (
             <div className="flex gap-2 items-start my-5">
-              <BiSolidCheckboxChecked className="text-white rounded text-2xl" />
+              <BiSolidCheckboxChecked className="text-white rounded text-3xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Trying to jumpstart sales in a new part of the distribution
                 chain (ex: independent retailers, grocery, distribution)
@@ -156,7 +155,7 @@ export default function Reason() {
             </div>
           ) : (
             <div className="flex gap-2 items-start my-5">
-              <RiCheckboxBlankLine className="text-white rounded text-2xl" />
+              <RiCheckboxBlankLine className="text-white rounded text-3xl" />
               <span className="text-white text-base font-manrope font-normal">
                 Trying to jumpstart sales in a new part of the distribution
                 chain (ex: independent retailers, grocery, distribution)
@@ -186,16 +185,19 @@ export default function Reason() {
         <div onClick={handleClick8}>
           {checked7 ? (
             <>
-              <div className="flex gap-2 items-center text-xl mt-5 mb-4">
+              <div className="flex gap-2 items-center text-base mt-5 mb-4">
                 <BiSolidCheckboxChecked className="text-white rounded" />
                 <span className="text-white text-base font-manrope font-normal">
                   Other
                 </span>
               </div>
-              <input type="text" className={inputField} />
+              <input
+                type="text"
+                className="w-full bg-white p-4 rounded-lg h-full"
+              />
             </>
           ) : (
-            <div className="flex gap-2 items-center text-xl mt-5">
+            <div className="flex gap-2 items-center text-base mt-5">
               <RiCheckboxBlankLine className="text-white rounded" />
               <span className="text-white text-base font-manrope font-normal">
                 Other

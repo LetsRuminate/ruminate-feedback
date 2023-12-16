@@ -30,7 +30,7 @@ const FileUploadButton: React.FC = () => {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center mb-2">
       <button onClick={handleButtonClick} className="text-white underline">
         Click to upload
       </button>

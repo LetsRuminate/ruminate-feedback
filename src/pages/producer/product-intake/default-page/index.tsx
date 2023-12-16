@@ -49,7 +49,7 @@ export default function IntakeDefault() {
           <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-4">
             Your Goal
           </p>
-          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-5">
+          <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-10">
             Product Value
           </p>
           <p className="text-[#ffffff80] text-sm font-manrope font-normal pl-2">
