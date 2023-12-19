@@ -10,49 +10,49 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NotFound from "@pages/404/index.tsx";
 import Home from "@pages/home/index.tsx";
 import Login from "@pages/login/index.tsx";
-import AboutUs from "@pages/about-us/index.tsx";
-import HowItWorks from "@pages/how-it-works/index.tsx";
+import AboutUs from "@pages/home/about-us/index.tsx";
+import HowItWorks from "@pages/home/how-it-works/index.tsx";
 
 // Detail page for Members
-import AdminDashboard from "@pages/admin/admin-dashboard/index.tsx";
+import AdminDashboard from "@pages/users-related/admin/admin-dashboard/index.tsx";
 // ============= if producer is approved but unpaid ====================
-import ProducerApproved from "@pages/producer/approved/index.tsx";
+import ProducerApproved from "@pages/users-related/producer/approved/index.tsx";
 // ============= if producer is approved and paid ====================
-import ProducerDashboard from "@pages/producer/producer-dashboard/index.tsx";
-import EvaluatorDashboard from "@pages/evaluator/evaluator-dashboard/index.tsx";
+import ProducerDashboard from "@pages/users-related/producer/producer-dashboard/index.tsx";
+import EvaluatorDashboard from "@pages/users-related/evaluator/evaluator-dashboard/index.tsx";
 
 // ===== Registration for Producer =====
 import Registration from "@pages/registration/registration-begin/index.tsx";
-import DefaultPage from "@pages/producer/sign-up-form/default-page/index.tsx";
-import ProducerPage1 from "@pages/producer/sign-up-form/page-1/index.tsx";
-import ProducerPage2 from "@pages/producer/sign-up-form/page-2/index.tsx";
-import ProducerPage3 from "@pages/producer/sign-up-form/page-3/index.tsx";
-import ProducerPage4 from "@pages/producer/sign-up-form/page-4/index.tsx";
-import ProducerCompleted from "@pages/producer/sign-up-form/page-completed/index.tsx";
+import DefaultPage from "@pages/users-related/producer/sign-up-form/default-page/index.tsx";
+import ProducerPage1 from "@pages/users-related/producer/sign-up-form/page-1/index.tsx";
+import ProducerPage2 from "@pages/users-related/producer/sign-up-form/page-2/index.tsx";
+import ProducerPage3 from "@pages/users-related/producer/sign-up-form/page-3/index.tsx";
+import ProducerPage4 from "@pages/users-related/producer/sign-up-form/page-4/index.tsx";
+import ProducerCompleted from "@pages/users-related/producer/sign-up-form/page-completed/index.tsx";
 
 // ====== Registration for Product ======
-import IntakeDefault from "@pages/producer/product-intake/default-page/index.tsx";
-import ProductPage1 from "@pages/producer/product-intake/page-1/index.tsx";
-import ProductPage2 from "@pages/producer/product-intake/page-2/index.tsx";
-import ProductPage3 from "@pages/producer/product-intake/page-3/index.tsx";
-import ProductPage4 from "@pages/producer/product-intake/page-4/index.tsx";
-import ProductCompleted from "@pages/producer/product-intake/page-completed/index.tsx";
+import IntakeDefault from "@pages/users-related/producer/product-intake/default-page/index.tsx";
+import ProductPage1 from "@pages/users-related/producer/product-intake/page-1/index.tsx";
+import ProductPage2 from "@pages/users-related/producer/product-intake/page-2/index.tsx";
+import ProductPage3 from "@pages/users-related/producer/product-intake/page-3/index.tsx";
+import ProductPage4 from "@pages/users-related/producer/product-intake/page-4/index.tsx";
+import ProductCompleted from "@pages/users-related/producer/product-intake/page-completed/index.tsx";
 
 // ====== Registration for Evaluator =====
-import EvaluatorDefault from "@pages/evaluator/sign-up-form/default-page/index.tsx";
-import EvaluatorPage1 from "@pages/evaluator/sign-up-form/page-1/index.tsx";
-import EvaluatorPage2 from "@pages/evaluator/sign-up-form/page-2/index.tsx";
-import EvaluatorPage3 from "@pages/evaluator/sign-up-form/page-3/index.tsx";
-import EvaluatorPage4 from "@pages/evaluator/sign-up-form/page-4/index.tsx";
-import EvaluatorCompleted from "@pages/evaluator/sign-up-form/page-completed/index.tsx";
+import EvaluatorDefault from "@pages/users-related/evaluator/sign-up-form/default-page/index.tsx";
+import EvaluatorPage1 from "@pages/users-related/evaluator/sign-up-form/page-1/index.tsx";
+import EvaluatorPage2 from "@pages/users-related/evaluator/sign-up-form/page-2/index.tsx";
+import EvaluatorPage3 from "@pages/users-related/evaluator/sign-up-form/page-3/index.tsx";
+import EvaluatorPage4 from "@pages/users-related/evaluator/sign-up-form/page-4/index.tsx";
+import EvaluatorCompleted from "@pages/users-related/evaluator/sign-up-form/page-completed/index.tsx";
 
 // ====== Product Evaluation ======
-import EvaluationDefault from "@pages/evaluator/product-evaluation/default-page/index.tsx";
-import EvaluationPage1 from "@pages/evaluator/product-evaluation/page-1/index.tsx";
-import EvaluationPage2 from "@pages/evaluator/product-evaluation/page-2/index.tsx";
-import EvaluationPage3 from "@pages/evaluator/product-evaluation/page-3/index.tsx";
-import EvaluationPage4 from "@pages/evaluator/product-evaluation/page-4/index.tsx";
-import EvaluationCompleted from "@pages/evaluator/product-evaluation/page-completed/index.tsx";
+import EvaluationDefault from "@pages/users-related/evaluator/product-evaluation/default-page/index.tsx";
+import EvaluationPage1 from "@pages/users-related/evaluator/product-evaluation/page-1/index.tsx";
+import EvaluationPage2 from "@pages/users-related/evaluator/product-evaluation/page-2/index.tsx";
+import EvaluationPage3 from "@pages/users-related/evaluator/product-evaluation/page-3/index.tsx";
+import EvaluationPage4 from "@pages/users-related/evaluator/product-evaluation/page-4/index.tsx";
+import EvaluationCompleted from "@pages/users-related/evaluator/product-evaluation/page-completed/index.tsx";
 
 // import Navigation menu for Administrator Dashboard
 import AdministratorNav from "@components/navbar/administrator-dashboard/index.tsx";
@@ -62,20 +62,20 @@ import AdministratorNav from "@components/navbar/administrator-dashboard/index.t
 import ProducerUnpaid from "@components/navbar/producer-approved/index.tsx";
 // ================ if the producer has been paid ===============
 import ProducerNav from "@components/navbar/producer-dashboard/index.tsx";
-import ProducerPricing from "@pages/pricing/producer/index.tsx";
-import PricingOverview from "@pages/pricing/overview/index.tsx";
-import ProducerMessages from "@pages/messages/producer/index.tsx";
-import ProducerSupport from "@pages/help/FAQ/producer/index.tsx";
-import ProducerProfile from "@pages/profile/producer-profile/index.tsx";
+import ProducerPricing from "@pages/users-related/producer/pricing/producer/index.tsx";
+import PricingOverview from "@pages/users-related/producer/pricing/overview/index.tsx";
+import ProducerMessages from "@pages/dashboard-common/messages/producer/index.tsx";
+import ProducerSupport from "@pages/dashboard-common/help/FAQ/producer/index.tsx";
+import ProducerProfile from "@pages/dashboard-common/profile/producer-profile/index.tsx";
 
 // import Navigation menu for Evaluator Dashboard
 import EvaluatorNav from "@components/navbar/evaluator-dashboard/index.tsx";
-import Calendar from "@pages/evaluator/calendar/index.tsx";
-import PaidEvaluator from "@pages/payment-history/index.tsx";
-import EvaluatorMessage from "@pages/messages/evaluator/index.tsx";
-import EvaluatorSupport from "@pages/help/FAQ/evaluator/index.tsx";
-import EvaluatorProfile from "@pages/profile/evaluator-profile/index.tsx";
-import EvaluatorNotification from "@pages/evaluator/notification/index.tsx";
+import Calendar from "@pages/users-related/evaluator/calendar/index.tsx";
+import PaidEvaluator from "@pages/users-related/evaluator/payment-history/index.tsx";
+import EvaluatorMessage from "@pages/dashboard-common/messages/evaluator/index.tsx";
+import EvaluatorSupport from "@pages/dashboard-common/help/FAQ/evaluator/index.tsx";
+import EvaluatorProfile from "@pages/dashboard-common/profile/evaluator-profile/index.tsx";
+import EvaluatorNotification from "@pages/users-related/evaluator/notification/index.tsx";
 
 const router = createBrowserRouter([
   {
@@ -92,6 +92,8 @@ const router = createBrowserRouter([
       { path: "/about-us", element: <AboutUs /> },
       { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/pricing", element: <PricingOverview /> },
+      // Registration
+      { path: "/registration", element: <Registration /> },
       {
         path: "/admin",
         element: (
@@ -414,8 +416,6 @@ const router = createBrowserRouter([
       // { path: "/evaluation-page-4", element: <EvaluationPage4 /> },
       // { path: "/evaluation-completed", element: <EvaluationCompleted /> },
       // =================================
-      // Registration
-      { path: "/registration", element: <Registration /> },
       // == Producer Registration
       { path: "/producer-default", element: <DefaultPage /> },
       { path: "/producer-page-1", element: <ProducerPage1 /> },

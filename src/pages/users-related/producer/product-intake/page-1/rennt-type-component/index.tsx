@@ -3,11 +3,10 @@ import { RiCheckboxBlankLine } from "react-icons/ri";
 import { BiSolidCheckboxChecked } from "react-icons/bi";
 import { useState } from "react";
 
-export default function MilkType() {
+export default function RenntType() {
   const inputTitle = "text-white text-xl font-manrope font-bold";
-  const inputField = "w-full bg-white p-4 rounded-lg";
 
-  const options = ["Goat", "Cow", "Sheep", "Other"];
+  const options = ["Plant-based", "Animal-based", "Microbial"];
 
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
 
@@ -18,7 +17,7 @@ export default function MilkType() {
   return (
     <div>
       <div className="mt-9">
-        <h3 className={inputTitle}>Cheese Style</h3>
+        <h3 className={inputTitle}>Rennt Type</h3>
       </div>
       <div className="mt-4">
         {options.map((option, index) => (
@@ -40,11 +39,6 @@ export default function MilkType() {
             )}
           </div>
         ))}
-        {selectedOption === options.length - 1 && (
-          <>
-            <input type="text" className={inputField} />
-          </>
-        )}
       </div>
     </div>
   );

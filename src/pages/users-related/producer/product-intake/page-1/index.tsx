@@ -29,7 +29,7 @@ import { IoFolderSharp } from "react-icons/io5";
 import FileUploadButton from "@components/forms/upload";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function ProductPage1() {
   const inputTitle = "text-white text-xl font-manrope font-bold";
@@ -66,9 +66,25 @@ export default function ProductPage1() {
     if (validatedFullName) {
       setProductName(validatedFullName);
     }
-
-    // handleInputChange(e);
   };
+
+  // const inputClass =
+  //   "mb-4 mt-2 pt-2 pb-3 px-4 rounded-lg text-base text-input border-borderInput font-semibold border w-full";
+  // const errorClass =
+  //   "mt-2 pt-2 pb-3 px-4 rounded-lg text-base font-semibold border border-[#E46D64] w-full";
+
+  // const [showError, setShowError] = useState(false);
+  // const handleBlur = (e: React.SyntheticEvent) => {
+  //   const target = e.target as HTMLInputElement;
+  //   const input = target.value;
+  //   if (!input) {
+  //     errorClass;
+  //     setShowError(true);
+  //   } else {
+  //     inputClass;
+  //     setShowError(false);
+  //   }
+  // };
 
   const validateFullName = (name: string) => {
     if (name.length < 2) {
@@ -114,6 +130,10 @@ export default function ProductPage1() {
     setProductYearError("");
     return name;
   };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="py-20 bg-[#345EC9]">
@@ -257,7 +277,7 @@ export default function ProductPage1() {
           </div>
           {/* ============================= File Uploader ================================ */}
           <div className="mb-16">
-            <h3 className="text-white text-xl font-manrope font-semibold">
+            <h3 className="text-white text-xl font-manrope font-semibold pb-4">
               If you’d like, upload a photo of how the product is usually
               shipped in a retail scenario. This image will be provided to
               evaluators for context. &#42;
@@ -319,7 +339,7 @@ export default function ProductPage1() {
           </div>
           {/* ============================== Shipping File Uploader ================ */}
           <div className="mb-16 mt-9">
-            <h3 className="text-white text-xl font-manrope font-semibold">
+            <h3 className="text-white text-xl font-manrope font-semibold pb-4">
               If you’d like, upload a photo of how the product is usually
               shipped in a retail scenario. This image will be provided to
               evaluators for context. &#42;

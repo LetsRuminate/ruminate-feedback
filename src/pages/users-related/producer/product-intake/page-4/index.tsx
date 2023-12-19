@@ -18,6 +18,7 @@ import ConnectorActive from "@assets/registration/progress-bar-2/progress-bar-co
 import Underline from "@assets/registration/progress-underline/underline.svg";
 import { Link } from "react-router-dom";
 import Region from "./region";
+import { useEffect } from "react";
 
 export default function ProductPage4() {
   const handleDropdownChange = (
@@ -29,6 +30,10 @@ export default function ProductPage4() {
 
   const inputTitle = "text-white text-xl font-manrope font-bold";
   const inputField = "w-full bg-white p-4 rounded-lg";
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="py-20 bg-[#345EC9]">

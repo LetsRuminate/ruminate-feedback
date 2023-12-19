@@ -18,7 +18,7 @@ export default function Status() {
   return (
     <div>
       <div className="mt-9">
-        <h3 className={inputTitle}>Cheese Style</h3>
+        <h3 className={inputTitle}>Status</h3>
       </div>
       <div className="mt-4">
         {options.map((option, index) => (
