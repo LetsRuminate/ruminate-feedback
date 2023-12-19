@@ -10,16 +10,12 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import NotFound from "@pages/404/index.tsx";
 import Home from "@pages/home/index.tsx";
 import Login from "@pages/login/index.tsx";
+import LoginNavbar from "@components/navbar/login-navbar/index.tsx";
 import AboutUs from "@pages/home/about-us/index.tsx";
 import HowItWorks from "@pages/home/how-it-works/index.tsx";
 
-// Detail page for Members
-import AdminDashboard from "@pages/users-related/admin/admin-dashboard/index.tsx";
-// ============= if producer is approved but unpaid ====================
-import ProducerApproved from "@pages/users-related/producer/approved/index.tsx";
-// ============= if producer is approved and paid ====================
-import ProducerDashboard from "@pages/users-related/producer/producer-dashboard/index.tsx";
-import EvaluatorDashboard from "@pages/users-related/evaluator/evaluator-dashboard/index.tsx";
+// Registration Landing Page
+import RegistrationNavbar from "@components/navbar/registration-navbar/index.tsx";
 
 // ===== Registration for Producer =====
 import Registration from "@pages/registration/registration-begin/index.tsx";
@@ -53,6 +49,14 @@ import EvaluationPage2 from "@pages/users-related/evaluator/product-evaluation/p
 import EvaluationPage3 from "@pages/users-related/evaluator/product-evaluation/page-3/index.tsx";
 import EvaluationPage4 from "@pages/users-related/evaluator/product-evaluation/page-4/index.tsx";
 import EvaluationCompleted from "@pages/users-related/evaluator/product-evaluation/page-completed/index.tsx";
+
+// Detail page for Members
+import AdminDashboard from "@pages/users-related/admin/admin-dashboard/index.tsx";
+// ============= if producer is approved but unpaid ====================
+import ProducerApproved from "@pages/users-related/producer/approved/index.tsx";
+// ============= if producer is approved and paid ====================
+import ProducerDashboard from "@pages/users-related/producer/producer-dashboard/index.tsx";
+import EvaluatorDashboard from "@pages/users-related/evaluator/evaluator-dashboard/index.tsx";
 
 // import Navigation menu for Administrator Dashboard
 import AdministratorNav from "@components/navbar/administrator-dashboard/index.tsx";
@@ -88,12 +92,141 @@ const router = createBrowserRouter([
     errorElement: <NotFound />,
     children: [
       { index: true, path: "/", element: <Home /> },
-      { path: "/login", element: <Login /> },
+      {
+        path: "/login",
+        element: (
+          <div>
+            <LoginNavbar />
+            <Login />
+          </div>
+        ),
+      },
       { path: "/about-us", element: <AboutUs /> },
       { path: "/how-it-works", element: <HowItWorks /> },
       { path: "/pricing", element: <PricingOverview /> },
       // Registration
-      { path: "/registration", element: <Registration /> },
+      {
+        path: "/registration",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <Registration />
+          </div>
+        ),
+      },
+      // Producer Registration
+      // =================================
+      // == Producer Registration
+      {
+        path: "/producer-default",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <DefaultPage />
+          </div>
+        ),
+      },
+      {
+        path: "/producer-page-1",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <ProducerPage1 />
+          </div>
+        ),
+      },
+      {
+        path: "/producer-page-2",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <ProducerPage2 />
+          </div>
+        ),
+      },
+      {
+        path: "/producer-page-3",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <ProducerPage3 />
+          </div>
+        ),
+      },
+      {
+        path: "/producer-page-4",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <ProducerPage4 />
+          </div>
+        ),
+      },
+      {
+        path: "/producer-completed",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <ProducerCompleted />
+          </div>
+        ),
+      },
+      // Evaluator Registration
+      // == Evaluator Registration
+      {
+        path: "/evaluator-default",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <EvaluatorDefault />
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-page-1",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <EvaluatorPage1 />
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-page-2",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <EvaluatorPage2 />
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-page-3",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <EvaluatorPage3 />
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-page-4",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <EvaluatorPage4 />
+          </div>
+        ),
+      },
+      {
+        path: "/evaluator-completed",
+        element: (
+          <div>
+            <RegistrationNavbar />
+            <EvaluatorCompleted />
+          </div>
+        ),
+      },
       {
         path: "/admin",
         element: (
@@ -399,37 +532,6 @@ const router = createBrowserRouter([
           </div>
         ),
       },
-      // --------------------------------------------------
-      // Original version below
-      // {
-      //   path: "/evaluator",
-      //   element: (
-      //     <ProductsContextProvider>
-      //       <EvaluatorDashboard />
-      //     </ProductsContextProvider>
-      //   ),
-      // },
-      // { path: "/evaluation-default", element: <EvaluationDefault /> },
-      // { path: "/evaluation-page-1", element: <EvaluationPage1 /> },
-      // { path: "/evaluation-page-2", element: <EvaluationPage2 /> },
-      // { path: "/evaluation-page-3", element: <EvaluationPage3 /> },
-      // { path: "/evaluation-page-4", element: <EvaluationPage4 /> },
-      // { path: "/evaluation-completed", element: <EvaluationCompleted /> },
-      // =================================
-      // == Producer Registration
-      { path: "/producer-default", element: <DefaultPage /> },
-      { path: "/producer-page-1", element: <ProducerPage1 /> },
-      { path: "/producer-page-2", element: <ProducerPage2 /> },
-      { path: "/producer-page-3", element: <ProducerPage3 /> },
-      { path: "/producer-page-4", element: <ProducerPage4 /> },
-      { path: "/producer-completed", element: <ProducerCompleted /> },
-      // == Evaluator Registration
-      { path: "/evaluator-default", element: <EvaluatorDefault /> },
-      { path: "/evaluator-page-1", element: <EvaluatorPage1 /> },
-      { path: "/evaluator-page-2", element: <EvaluatorPage2 /> },
-      { path: "/evaluator-page-3", element: <EvaluatorPage3 /> },
-      { path: "/evaluator-page-4", element: <EvaluatorPage4 /> },
-      { path: "/evaluator-completed", element: <EvaluatorCompleted /> },
     ],
   },
 ]);

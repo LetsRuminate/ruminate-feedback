@@ -1,21 +1,9 @@
 import { Link } from "react-router-dom";
 import BrandLogo from "@assets/brand/brand-logo.svg";
 
-export default function NavBar() {
+export default function LoginNavbar() {
   return (
     <>
-      <div className="bg-black w-full px-[73px] pt-2 pb-10">
-        <div className="flex gap-2 float-right">
-          <p className="text-white text-xl font-manrope font-normal">
-            Already have an account?
-          </p>
-          <Link to="/login">
-            <button className="text-white text-xl font-manrope font-normal">
-              Login
-            </button>
-          </Link>
-        </div>
-      </div>
       <nav className="bg-[#0F7B41] w-full h-20 py-8 px-14 flex justify-between items-center relative">
         <Link to="/">
           <img alt="Feedback logo" src={BrandLogo} className="shrink-0" />
@@ -37,9 +25,11 @@ export default function NavBar() {
             </button>
           </Link>
         </div>
-        <button className="text-[#0F7B41] text-xl shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
-          <Link to="/registration">GET STARTED</Link>
-        </button>
+        <Link to="/registration">
+          <button className="text-[#0F7B41] text-xl shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
+            GET STARTED
+          </button>
+        </Link>
       </nav>
     </>
   );
