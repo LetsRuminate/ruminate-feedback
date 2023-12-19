@@ -1,16 +1,26 @@
 import { Link } from "react-router-dom";
 import BrandLogo from "@assets/brand/brand-logo.svg";
+import { useState } from "react";
 
 export default function NavBar() {
+  const [hover, setHover] = useState(false);
   return (
     <>
       <div className="bg-black w-full px-[73px] pt-2 pb-10">
-        <div className="flex gap-2 float-right">
+        <div className="flex gap-2 float-right items-center">
           <p className="text-white text-xl font-manrope font-normal">
             Already have an account?
           </p>
           <Link to="/login">
-            <button className="text-white text-xl font-manrope font-normal">
+            <button
+              className={`text-xl font-manrope font-normal ${
+                hover
+                  ? "bg-white px-2 py-1 rounded-lg text-black"
+                  : "text-white"
+              }`}
+              onMouseEnter={() => setHover(true)}
+              onMouseLeave={() => setHover(false)}
+            >
               Login
             </button>
           </Link>
