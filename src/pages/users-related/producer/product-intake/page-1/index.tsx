@@ -30,6 +30,7 @@ import FileUploadButton from "@components/forms/upload";
 import { MdOutlineRadioButtonUnchecked } from "react-icons/md";
 import { MdOutlineRadioButtonChecked } from "react-icons/md";
 import { useEffect, useState } from "react";
+import List from "@components/forms/upload-list";
 
 export default function ProductPage1() {
   const inputTitle = "text-white text-xl font-manrope font-bold";
@@ -134,6 +135,13 @@ export default function ProductPage1() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // File Upload
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+
+  const handleFileUpload = (file: File) => {
+    setUploadedFiles((prevFiles) => [...prevFiles, file]);
+  };
 
   return (
     <div className="py-20 bg-[#345EC9]">
@@ -284,8 +292,9 @@ export default function ProductPage1() {
             </h3>
             <div className="border-dashed border-white border">
               <IoFolderSharp className="text-5xl text-[#B5B3B3] mx-auto mt-2" />
-              <FileUploadButton />
+              <FileUploadButton onFileUpload={handleFileUpload} />
             </div>
+            <List files={uploadedFiles} />
           </div>
           {/* ============================================================================ */}
           <h3 className="mt-4 text-white text-xl">
@@ -346,8 +355,9 @@ export default function ProductPage1() {
             </h3>
             <div className="border-dashed border-white border">
               <IoFolderSharp className="text-5xl text-[#B5B3B3] mx-auto mt-2" />
-              <FileUploadButton />
+              <FileUploadButton onFileUpload={handleFileUpload} />
             </div>
+            <List files={uploadedFiles} />
           </div>
           {/* I might need the warning thing for later */}
           {/* {showWarning && (
