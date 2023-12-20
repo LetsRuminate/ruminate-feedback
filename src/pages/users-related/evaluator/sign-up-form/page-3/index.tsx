@@ -26,10 +26,15 @@ import FileUploadButton from "@components/forms/upload";
 import List from "@components/forms/upload-list";
 import Calendar from "@components/calendar";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CalendarButton from "@components/calendar";
 
 export default function EvaluatorPage3() {
+  // always pull the windows to the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const [showCalendar, setShowCalendar] = useState(false);
 
   const display = () => {
@@ -47,6 +52,13 @@ export default function EvaluatorPage3() {
       setCcpClicked(true);
       setResumeClicked(false);
     }
+  };
+
+  // File Upload
+  const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);
+
+  const handleFileUpload = (file: File) => {
+    setUploadedFiles((prevFiles) => [...prevFiles, file]);
   };
 
   return (
@@ -94,13 +106,13 @@ export default function EvaluatorPage3() {
         </div>
         <img src={Underline} alt="Underline" width={98} className="mx-auto" />
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-16">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
         <form>
           <h4 className="text-white text-2xl font-manrope font-bold">
             What industry sector, within food, do you currently work in? &#42;
           </h4>
           <span className="text-white text-sm font-manrope font-medium">
-            Select one
+            (Select one)
           </span>
           <div className="border-white border-b mb-4">
             <button
@@ -155,17 +167,14 @@ export default function EvaluatorPage3() {
             </span>
           </div>
           <div>
-            <h4 className="text-white text-xl font-manrope font-semibold">
+            <h4 className="text-white text-xl font-manrope font-semibold pb-2">
               Attach Document &#42;
             </h4>
             <div className="border-dashed border-white border">
               <IoFolderSharp className="text-5xl text-[#B5B3B3] mx-auto mt-2" />
-              <FileUploadButton />
+              <FileUploadButton onFileUpload={handleFileUpload} />
             </div>
-          </div>
-          <div>
-            <h1 className="text-white py-4">Uploaded Files</h1>
-            <List />
+            <List files={uploadedFiles} />
           </div>
           <div className="flex items-end gap-1">
             <h4 className="text-white text-xl font-manrope font-semibold mt-8">
@@ -186,12 +195,18 @@ export default function EvaluatorPage3() {
             </div>
           </div>
         </form>
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
-          <Link to="/evaluator-page-2">Previous</Link>
-        </button>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-          <Link to="/evaluator-page-4">Next</Link>
-        </button>
+        <div className="mt-9">
+          <Link to="/evaluator-page-2">
+            <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
+              Previous
+            </button>
+          </Link>
+          <Link to="/evaluator-page-4">
+            <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+              Next
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

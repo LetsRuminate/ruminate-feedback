@@ -17,9 +17,15 @@ import Connector from "@assets/registration/progress-bar-2/progress-bar-connecto
 import Underline from "@assets/registration/progress-underline/underline.svg";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function EvaluatorPage1() {
+  // always pull the windows to the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  // Related to the content
   const [showWarning, setShowWarning] = useState<boolean>(false);
   const [showWarning2, setShowWarning2] = useState<boolean>(false);
 
@@ -184,6 +190,9 @@ export default function EvaluatorPage1() {
   //   }
   // };
 
+  const labelClass = "text-white text-2xl font-manrope font-bold";
+  const inputClass = "w-full bg-white rounded-lg px-2 py-2 mt-2";
+
   return (
     <div className="py-20 bg-[#345EC9] overflow-x-scroll">
       <div className="border border-white md:w-[874px] py-8 mx-auto">
@@ -229,13 +238,10 @@ export default function EvaluatorPage1() {
         </div>
         <img src={Underline} alt="Underline" width={98} className="ml-28" />
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 pt-14 pb-20">
+      <div className="border border-white mx-auto w-[874px] px-48 py-20">
         <form>
           <div>
-            <label
-              htmlFor="Name"
-              className="text-white text-2xl font-manrope font-bold"
-            >
+            <label htmlFor="Name" className={labelClass}>
               Name &#42;
             </label>
           </div>
@@ -244,7 +250,7 @@ export default function EvaluatorPage1() {
               name="name"
               type="text"
               placeholder="Type your full name"
-              className="w-full bg-transparent border-b-2 border-white text-white"
+              className={inputClass}
               value={fullName}
               onChange={handleFullNameChange}
               required
@@ -252,10 +258,7 @@ export default function EvaluatorPage1() {
             {fullNameError && <p className="text-amber-500">{fullNameError}</p>}
           </div>
           <div>
-            <label
-              htmlFor="Email"
-              className="text-white text-2xl font-manrope font-bold"
-            >
+            <label htmlFor="Email" className={labelClass}>
               Email &#42;
             </label>
           </div>
@@ -265,7 +268,7 @@ export default function EvaluatorPage1() {
               autoComplete="username"
               type="text"
               placeholder="i.e. ruminate@ruminate.com"
-              className="w-full bg-transparent border-b-2 border-white text-white"
+              className={inputClass}
               value={email}
               onChange={(e) => {
                 setEmail(e.target.value);
@@ -276,10 +279,7 @@ export default function EvaluatorPage1() {
             {emailError && <p className="mb-8 text-amber-500">{emailError}</p>}
           </div>
           <div>
-            <label
-              htmlFor="Password"
-              className="text-white text-2xl font-manrope font-bold"
-            >
+            <label htmlFor="Password" className={labelClass}>
               Create Password &#42;
             </label>
           </div>
@@ -289,7 +289,7 @@ export default function EvaluatorPage1() {
               autoComplete="new-password"
               type="password"
               placeholder="**********"
-              className="w-full bg-transparent border-b-2 border-white text-white"
+              className={inputClass}
               value={password}
               onChange={(e) => {
                 handleChange(e);
@@ -310,10 +310,7 @@ export default function EvaluatorPage1() {
           </div>
           <div className="mb-8">
             <div>
-              <label
-                htmlFor="Password"
-                className="text-white text-2xl font-manrope font-bold"
-              >
+              <label htmlFor="Password" className={labelClass}>
                 Confirm Password
               </label>
             </div>
@@ -321,7 +318,8 @@ export default function EvaluatorPage1() {
               name="confirmPassword"
               autoComplete="new-password"
               type="password"
-              className="w-full bg-transparent border-b-2 border-white text-white"
+              placeholder="**********"
+              className={inputClass}
               value={confirmPassword}
               onChange={(e) => {
                 setConfirmPassword(e.target.value);
@@ -334,10 +332,7 @@ export default function EvaluatorPage1() {
             )}
           </div>
           <div>
-            <label
-              htmlFor="text"
-              className="text-white text-2xl font-manrope font-bold"
-            >
+            <label htmlFor="text" className={labelClass}>
               Preferred Pronouns &#42;
             </label>
           </div>
@@ -345,23 +340,31 @@ export default function EvaluatorPage1() {
             name="pronoun"
             type="text"
             placeholder="him/her"
-            className="w-full bg-transparent border-b-2 border-white mb-8 text-white"
+            className={inputClass}
             value={pronoun}
             onChange={handlePronounChange}
             required
           />
         </form>
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
-          <Link to="/evaluator-default">Previous</Link>
-        </button>
-        <Link to="/evaluator-page-2">
-          <button
-            className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
-            // onClick={handleButtonClick}
-          >
-            Next
-          </button>
-        </Link>
+        <div className="mt-9">
+          <Link to="/evaluator-default">
+            <button
+              className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5"
+              type="button"
+            >
+              Previous
+            </button>
+          </Link>
+          <Link to="/evaluator-page-2">
+            <button
+              className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl"
+              type="button"
+              // onClick={handleButtonClick}
+            >
+              Next
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );

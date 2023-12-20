@@ -22,65 +22,37 @@ import { RiCheckboxBlankLine } from "react-icons/ri";
 import { BiSolidCheckboxChecked } from "react-icons/bi";
 
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+const options = [
+  "Retail",
+  "Consulting",
+  "Events",
+  "Food Producer",
+  "Distribution",
+  "Media",
+  "Other",
+];
 
 // I do think that there might be a better way to have these check marks, but I just can't think of it at the moment...
 export default function EvaluatorPage2() {
+  // always pull the windows to the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
+  const [checkedOptions, setCheckedOptions] = useState(
+    Array(options.length).fill(false)
+  );
+
+  const handleOptionClick = (index: number) => {
+    const newCheckedOptions = [...checkedOptions];
+    newCheckedOptions[index] = !newCheckedOptions[index];
+    setCheckedOptions(newCheckedOptions);
+  };
+
   const [selected, setSelected] = useState(0);
-  const [checked, setChecked] = useState(false);
-  const [checked1, setChecked1] = useState(false);
-  const [checked2, setChecked2] = useState(false);
-  const [checked3, setChecked3] = useState(false);
-  const [checked4, setChecked4] = useState(false);
-  const [checked5, setChecked5] = useState(false);
-  const [checked6, setChecked6] = useState(false);
-
-  function handleClick() {
-    setChecked(!checked);
-  }
-
-  function handleClick2() {
-    setChecked1(!checked1);
-  }
-
-  function handleClick3() {
-    setChecked2(!checked2);
-  }
-
-  function handleClick4() {
-    setChecked3(!checked3);
-  }
-
-  function handleClick5() {
-    setChecked4(!checked4);
-  }
-
-  function handleClick6() {
-    setChecked5(!checked5);
-  }
-
-  function handleClick7() {
-    setChecked6(!checked6);
-  }
-
-  // Can anyone please tell me why refactoring the handleClick was not working?
-  // const [items, setItems] = useState([
-  //   { id: 1, checked: false },
-  //   { id: 2, checked: false },
-  //   { id: 3, checked: false },
-  //   { id: 4, checked: false },
-  //   { id: 5, checked: false },
-  // ]);
-
-  // function toggleCheck(id: number) {
-  //   const newItems = items.map((item) => {
-  //     if (item.id === id) {
-  //       return { ...item, checked: !item.checked };
-  //     }
-  //     setItems(newItems);
-  //     return item;
-  //   });
-  // }
+  const inputField = "w-full bg-white p-4 rounded-lg";
 
   return (
     <div className="py-20 bg-[#345EC9]">
@@ -127,14 +99,14 @@ export default function EvaluatorPage2() {
         </div>
         <img src={Underline} alt="Underline" width={98} className="ml-64" />
       </div>
-      <div className="border border-white mx-auto w-[874px] px-14 py-20">
+      <div className="border border-white mx-auto w-[874px] px-44 py-20">
         <form>
           <div>
             <h4 className="text-white text-2xl font-manrope font-bold">
               Years working in the specialty food industry &#42;
             </h4>
           </div>
-          <div className="flex border-b border-white gap-2 items-center pb-1">
+          <div className="flex border-b border-white gap-2 items-center pb-1 pt-2">
             <select
               value={selected}
               onChange={(e) => setSelected(parseInt(e.target.value))}
@@ -147,7 +119,7 @@ export default function EvaluatorPage2() {
                 </option>
               ))}
             </select>
-            <p className="text-3xl text-white font-manrope font-medium uppercase">
+            <p className="text-xl text-white font-manrope font-medium uppercase">
               YEARS
             </p>
           </div>
@@ -155,268 +127,50 @@ export default function EvaluatorPage2() {
             <h4 className="text-white text-2xl font-manrope font-bold">
               What industry sector, within food, do you currently work in? &#42;
             </h4>
-            <br />
             <span className="text-white text-sm font-manrope font-medium">
-              Select all that apply
+              (Select all that apply)
             </span>
 
-            <div className="mt-4 grid grid-cols-3 gap-5">
-              <div onClick={handleClick}>
-                {checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Retail
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Retail
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div onClick={handleClick2}>
-                {checked1 ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Consulting
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Consulting
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div onClick={handleClick3}>
-                {checked2 ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Events
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Events
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div onClick={handleClick4}>
-                {checked3 ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Food Producer
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Food Producer
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div onClick={handleClick5}>
-                {checked4 ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Distribution
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Distribution
-                    </span>
-                  </div>
-                )}
-              </div>
-              <div onClick={handleClick6}>
-                {checked5 ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Media
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Media
-                    </span>
-                  </div>
-                )}
-              </div>
-            </div>
-            <div onClick={handleClick7}>
-              {checked6 ? (
-                <div className="flex gap-2 items-center">
-                  <BiSolidCheckboxChecked className="text-white rounded" />
-                  <span className="text-white text-base font-manrope font-normal">
-                    Other
-                  </span>
+            <div className="mt-4">
+              {options.map((option, index) => (
+                <div key={index} onClick={() => handleOptionClick(index)}>
+                  {checkedOptions[index] ? (
+                    <>
+                      <div className="flex gap-2 items-center my-5 cursor-pointer">
+                        <BiSolidCheckboxChecked className="text-white rounded text-xl -ml-1" />
+                        <span className="text-white text-base font-manrope font-normal">
+                          {option}
+                        </span>
+                      </div>
+                      {index === options.length - 1 && (
+                        <input type="text" className={inputField} />
+                      )}
+                    </>
+                  ) : (
+                    <div className="flex gap-2 items-center my-5 cursor-pointer">
+                      <RiCheckboxBlankLine className="text-white rounded" />
+                      <span className="text-white text-base font-manrope font-normal">
+                        {option}
+                      </span>
+                    </div>
+                  )}
                 </div>
-              ) : (
-                <div className="flex gap-2 items-center mt-5">
-                  <RiCheckboxBlankLine className="text-white rounded" />
-                  <span className="text-white text-base font-manrope font-normal">
-                    Other
-                  </span>
-                </div>
-              )}
-              <input
-                type="text"
-                placeholder="do tell..."
-                className="rounded w-full px-2 py-2 bg-transparent border-b border-white"
-              />
+              ))}
             </div>
-            {/* ======================================================= */}
-            {/* I am still not sure why the below refactoring was not working */}
-            {/* {items.map((item) => (
-              <div
-                className="mt-4 grid grid-cols-3 gap-5"
-                key={item.id}
-                onClick={() => toggleCheck(item.id)}
-              >
-                {item.checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Retail
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Retail
-                    </span>
-                  </div>
-                )}
-                {item.checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Consulting
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Consulting
-                    </span>
-                  </div>
-                )}
-                {item.checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Events
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Events
-                    </span>
-                  </div>
-                )}
-                {item.checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Food Producer
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Food Producer
-                    </span>
-                  </div>
-                )}
-                {item.checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Distribution
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Distribution
-                    </span>
-                  </div>
-                )}
-                {item.checked ? (
-                  <div className="flex gap-2 items-center">
-                    <BiSolidCheckboxChecked className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Media
-                    </span>
-                  </div>
-                ) : (
-                  <div className="flex gap-2 items-center">
-                    <RiCheckboxBlankLine className="text-white rounded" />
-                    <span className="text-white text-base font-manrope font-normal">
-                      Media
-                    </span>
-                  </div>
-                )}
-              </div>
-            ))}
-            <div>
-              <div className="flex gap-2 items-center mt-5">
-                <RiCheckboxBlankLine className="text-white rounded" />
-                <span className="text-white text-base font-manrope font-normal">
-                  Other
-                </span>
-              </div>
-              <input
-                type="text"
-                placeholder="do tell..."
-                className="rounded w-full px-2 py-2 bg-transparent border-b border-white"
-              />
-            </div> */}
-            {/* ====================================================================== */}
-            {/*  */}
-            {/*  */}
-            {/* I'm not too sure if the following question is supposed to be here, so I am not going to code for now. */}
-            {/* <h4
-            htmlFor="text"
-            className="text-white text-2xl font-manrope font-bold"
-          >
-            If you're a food producer, what do you produce?
-          </h4> */}
           </div>
         </form>
-        <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
-          <Link to="/evaluator-page-1">Previous</Link>
-        </button>
-        <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
-          <Link to="/evaluator-page-3">Next</Link>
-        </button>
+        <div className="mt-9">
+          <Link to="/evaluator-page-1">
+            <button className="text-white text-base font-manrope font-medium rounded-3xl border border-white px-9 py-3 mr-5">
+              Previous
+            </button>
+          </Link>
+          <Link to="/evaluator-page-3">
+            <button className="text-[#345EC9] text-base font-manrope font-semibold bg-white px-11 py-3 rounded-3xl">
+              Next
+            </button>
+          </Link>
+        </div>
       </div>
     </div>
   );
