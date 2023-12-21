@@ -5,14 +5,14 @@ import { UserContext } from "@contexts/UserContext";
 export default function ProducerNotification() {
   const user = useContext(UserContext);
   return (
-    <div className="text-brand-black pb-8 flex-1 px-10">
-      <div className="my-4">
+    <div className="text-brand-black pb-8 flex-1">
+      <div className="my-4 px-20">
         <Link to="/producer">
           <button>Dashboard</button>
         </Link>{" "}
         &gt; <span className="font-semibold">Notification</span>
       </div>
-      <div className="border-t border-[#D9D9D9]">
+      <div className="border-t border-[#D9D9D9] px-20">
         <h1 className="text-5xl py-6 font-manrope font-bold">
           Hello {user && user.name ? user.name : "Producer"}!
         </h1>
