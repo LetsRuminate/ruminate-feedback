@@ -20,12 +20,12 @@ import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
 export default function ProductPage2() {
-  const inputTitle = "text-white text-xl font-manrope font-bold";
-  const inputField = "w-full bg-white p-4 rounded-lg";
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  const inputTitle = "text-white text-xl font-manrope font-bold";
+  const inputField = "w-full bg-white p-4 rounded-lg";
+
   return (
     <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
