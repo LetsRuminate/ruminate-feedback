@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "@contexts/UserContext";
 
 export default function Profile({
-  user: { photoURL, displayName, userRole },
+  user: { photoURL },
 }: {
-  user: { photoURL: string; displayName: string; userRole: string };
+  user: { photoURL: string };
 }) {
+  const user = useContext(UserContext);
   const navigate = useNavigate();
 
   const handleNavigate = () => {
@@ -23,10 +26,10 @@ export default function Profile({
         />
       </div>
       <span className="hidden md:block pt-3 text-xl font-manrope font-bold pl-4">
-        {displayName}
+        {user && user.name ? user.name : "Producer"}
       </span>
       <p className="hidden md:block text-sm font-manrope font-normal pl-4">
-        {userRole}
+        Producer
       </p>
     </div>
   );

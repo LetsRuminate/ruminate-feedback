@@ -68,6 +68,7 @@ import ProducerUnpaid from "@components/navbar/producer-approved/index.tsx";
 import ProducerNav from "@components/navbar/producer-dashboard/index.tsx";
 import ProducerPricing from "@pages/users-related/producer/pricing/producer/index.tsx";
 import PricingOverview from "@pages/users-related/producer/pricing/overview/index.tsx";
+import ProducerNotification from "@pages/users-related/producer/notification/index.tsx";
 import ProducerMessages from "@pages/dashboard-common/messages/producer/index.tsx";
 import ProducerSupport from "@pages/dashboard-common/help/FAQ/producer/index.tsx";
 import ProducerProfile from "@pages/dashboard-common/profile/producer-profile/index.tsx";
@@ -334,6 +335,17 @@ const router = createBrowserRouter([
             <ProducerNav />
             <div className="flex-1 overflow-y-scroll">
               <ProductCompleted />
+            </div>
+          </div>
+        ),
+      },
+      {
+        path: "/producer-notification",
+        element: (
+          <div className="flex h-screen">
+            <ProducerNav />
+            <div className="flex-1">
+              <ProducerNotification />
             </div>
           </div>
         ),

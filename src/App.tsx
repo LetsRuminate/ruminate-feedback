@@ -16,6 +16,7 @@ function App() {
     "/product-intake-3",
     "/product-intake-4",
     "/product-completed",
+    "/producer-notification",
     "/producer-pricing",
     "/producer-message",
     "/producer-help",
@@ -53,6 +54,7 @@ function App() {
     "/producer-completed",
     // Producer pages list
     "/producer-approved",
+    "/producer-notification",
     "/producer",
     "/product-default",
     "/product-intake-1",
