@@ -18,8 +18,13 @@ import ConnectorActive from "@assets/registration/progress-bar-2/progress-bar-co
 import Underline from "@assets/registration/progress-underline/underline.svg";
 
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function ProducerCompleted() {
+  // always pull the windows to the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
