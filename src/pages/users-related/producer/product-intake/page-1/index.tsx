@@ -33,6 +33,10 @@ import { useEffect, useState } from "react";
 import List from "@components/forms/upload-list";
 
 export default function ProductPage1() {
+  // always pull the windows to the top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const inputTitle = "text-white text-xl font-manrope font-bold";
   const inputField = "w-full bg-white p-4 rounded-lg";
 
@@ -131,10 +135,6 @@ export default function ProductPage1() {
     setProductYearError("");
     return name;
   };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
 
   // File Upload
   const [uploadedFiles, setUploadedFiles] = useState<File[]>([]);

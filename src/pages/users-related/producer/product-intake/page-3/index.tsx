@@ -21,12 +21,12 @@ import Certificate from "./certification-type";
 import { useEffect } from "react";
 
 export default function ProductPage3() {
-  const inputTitle = "text-white text-xl font-manrope font-bold";
-  const inputField = "w-full bg-white p-4 rounded-lg";
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const inputTitle = "text-white text-xl font-manrope font-bold";
+  const inputField = "w-full bg-white p-4 rounded-lg";
 
   return (
     <div className="py-20 bg-[#345EC9]">
