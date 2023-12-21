@@ -344,7 +344,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProducerNotification />
             </div>
           </div>
@@ -355,7 +355,7 @@ const router = createBrowserRouter([
         element: (
           <div className="flex h-screen">
             <ProducerNav />
-            <div className="flex-1">
+            <div className="flex-1 overflow-y-scroll">
               <ProducerPricing />
             </div>
           </div>
