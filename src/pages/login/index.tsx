@@ -32,6 +32,10 @@ function loginReducer(loginInfo: LoginInfo, action: Action) {
 }
 
 export default function Login() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const user = useContext(UserContext);
   const navigate = useNavigate();
 
