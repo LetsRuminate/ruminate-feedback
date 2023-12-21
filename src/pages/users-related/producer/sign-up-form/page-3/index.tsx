@@ -122,7 +122,7 @@ export default function ProducerPage3() {
     <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
-          Your Values
+          YOUR VALUES
         </h1>
         {/* the below is for the sandwich */}
         <div className="flex justify-between px-28 items-end py-4">
