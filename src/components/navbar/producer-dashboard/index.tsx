@@ -5,7 +5,7 @@ import { auth } from "@components/api/firebase";
 // Local Imports
 import BrandLogoBlack from "@assets/brand/brand-logo-black.svg";
 import Profile from "@components/user-profile";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 
 const userProfile = {
@@ -170,14 +170,12 @@ export default function ProducerNav() {
         </div>
       </section>
       <footer className="mt-2 mb-10">
-        <Link to="/login">
-          <button
-            onClick={signOutUser}
-            className="text-xl text-left font-manrope font-bold w-full pl-4"
-          >
-            Logout
-          </button>
-        </Link>
+        <button
+          onClick={signOutUser}
+          className="text-xl text-left font-manrope font-bold w-full pl-4"
+        >
+          Logout
+        </button>
       </footer>
     </div>
   );
