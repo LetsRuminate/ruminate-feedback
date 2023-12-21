@@ -58,7 +58,7 @@ export default function EvaluatorPage2() {
     <div className="py-20 bg-[#345EC9]">
       <div className="border border-white w-[874px] py-8 mx-auto">
         <h1 className="text-white text-5xl font-manrope font-bold text-center">
-          EVALUATOR SIGN UP
+          PROFESSIONAL INFORMATION
         </h1>
         {/* the below is for the sandwich */}
         <div className="flex justify-between px-32 items-end py-7">
