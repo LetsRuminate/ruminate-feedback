@@ -1,19 +1,21 @@
-import Hero from "./hero";
-import HeroText from "./heroText";
-import SectionOne from "./sectionOne";
-import SectionTwo from "./sectionTwo";
-import SectionThree from "./sectionThree";
-import SectionFour from "./sectionFour";
+import Banner from "./landing-page-components/banner";
+import Feedback from "./landing-page-components/feedback";
+import Works from "./landing-page-components/how-it-works";
+import Plans from "./landing-page-components/our-plans";
+import Testimonials from "./landing-page-components/testimonials";
 
 export default function Home() {
   return (
-    <div className="text-neutral-50 bg-brand-black">
-      <Hero />
-      <HeroText />
-      <SectionOne />
-      <SectionTwo />
-      <SectionThree />
-      <SectionFour />
-    </div>
+    <>
+      <Banner />
+      {/* the below is the detail for yellow feedback section */}
+      <Feedback />
+      {/* the below is the detail for green how-it-works section */}
+      <Works />
+      {/* the below is the detail for blue our plans section */}
+      <Plans />
+      {/* the below is the detail for yellow testimonials section */}
+      <Testimonials />
+    </>
   );
 }

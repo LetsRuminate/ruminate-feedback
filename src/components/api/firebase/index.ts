@@ -1,7 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { getFirestore } from "firebase/firestore/lite";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -18,20 +18,25 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+// ===============================================================
+// FOR ACTUAL PROJECT ONLY - COMMENT OUT WHEN USING LOCAL EMULATORS
 const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
-export { auth, db, storage };
+// ===============================================================
 
-const provider = new GoogleAuthProvider();
-
-export function login() {
-  signInWithPopup(auth, provider)
-    .then((result) => {
-      const user = result.user;
-      console.log(user);
-    })
-    .catch(console.error);
-}
+// ===============================================================
+// FOR LOCAL EMULATORS ONLY - COMMENT OUT WHEN USING ACTUAL FIREBASE PROJECT
+/*
+const auth = getAuth();
+connectAuthEmulator(auth, "http://127.0.0.1:9099");
+const db = getFirestore();
+connectFirestoreEmulator(db, "127.0.0.1", 8080);
+const storage = getStorage();
+connectStorageEmulator(storage, "127.0.0.1", 9199);
+// ===============================================================
+*/
 
 export default app;
+export { auth, db, storage };

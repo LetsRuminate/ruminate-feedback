@@ -7,8 +7,14 @@
     "skipLibCheck": true,
     "baseUrl": "./",
     "paths": {
-      "@assets/*": ["assets/*"],
-      "@pages/*": ["src/pages/*"]
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@contexts/*": ["src/contexts/*"],
+      "@fonts/*": ["src/fonts/*"],
+      "@hooks/*": ["src/hooks/*"],
+      "@pages/*": ["src/pages/*"],
+      "@customTypes/*": ["src/types/*"],
+      "@util/*": ["src/util/*"],
     },
 
     /* Bundler mode */
