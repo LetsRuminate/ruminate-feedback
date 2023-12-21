@@ -357,7 +357,7 @@ export default function ProducerPage1() {
           />
         </form>
         <div>
-          <h3 className={`${inputTitle} mt-4 mb-2`}>Rennt Type</h3>
+          <h3 className={`${inputTitle} mt-4 mb-2`}>Years in the Industry</h3>
           {options.map((option, index) => (
             <div key={index} onClick={() => handleClick(index)}>
               {selectedOption === index ? (
