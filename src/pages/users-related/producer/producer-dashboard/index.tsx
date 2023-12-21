@@ -1,7 +1,7 @@
-import { useContext, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { UserContext } from "@contexts/UserContext";
-// import { ProductsContext } from "@contexts/ProductsContext";
+import { ProductsContext } from "@contexts/ProductsContext";
 
 import { Producer } from "src/types/users";
 
@@ -19,16 +19,8 @@ function checkProducer(user: Producer | unknown): user is Producer {
 // front-end create dashboards from mid-fi designs
 export default function ProducerDashboard() {
   const user = useContext(UserContext);
-  // const userProducts = useContext(ProductsContext);
-  // console.log(userProducts);
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/login");
-    }
-  }, [navigate, user]);
+  const userProducts = useContext(ProductsContext);
+  console.log(userProducts);
 
   const displayAddress = () => {
     if (user && checkProducer(user)) {
@@ -36,9 +28,7 @@ export default function ProducerDashboard() {
         <>
           <p>{user.address.street}</p>
           <p>{`${user.address.city}, ${user.address.state}`}</p>
-          {user.address.unit ? (
-            <p>{`unit ${user.address.unit}`}</p>
-          ) : null}
+          {user.address.unit ? <p>{`unit ${user.address.unit}`}</p> : null}
           <p>{user.address.zip}</p>
         </>
       );
@@ -53,13 +43,6 @@ export default function ProducerDashboard() {
     return <p className="bg-orange-400 p-1">Awaiting admin confirmation</p>;
   };
 
-  const displayApprovalStatus = () => {
-    if (user && checkProducer(user) && user.approved) {
-      return <p className="bg-green-500 p-1">Approved</p>;
-    }
-    return <p className="bg-rose-500 p-1">Not approved</p>;
-  };
-
   const displayBusinessInfo = () => {
     return (
       <div className="bg-neutral-100 p-1">
@@ -69,13 +52,9 @@ export default function ProducerDashboard() {
             : null}
         </p>
         <p>
-          {user && checkProducer(user) && user.website
-            ? user.website
-            : null}
+          {user && checkProducer(user) && user.website ? user.website : null}
         </p>
-        {user && checkProducer(user) && user.address
-          ? displayAddress()
-          : null}
+        {user && checkProducer(user) && user.address ? displayAddress() : null}
       </div>
     );
   };
@@ -102,6 +81,13 @@ export default function ProducerDashboard() {
     return null;
   };
 
+  const displayApprovalStatus = () => {
+    if (user && checkProducer(user) && user.approved) {
+      return <p className="bg-green-500 p-1">Approved</p>;
+    }
+    return <p className="bg-rose-500 p-1">Not approved</p>;
+  };
+
   // const displayProducts = () => {
   //   if (user && checkProducer(user)) {
   //     return (
@@ -123,7 +109,12 @@ export default function ProducerDashboard() {
   // };
 
   return (
-    <div className="text-brand-black p-8 h-full flex-1 pt-24 px-10">
+    <div className="text-brand-black pb-8 h-full flex-1 px-10">
+      <div>
+        <p className="text-5xl my-5 text-center">
+          Phase 5 team will continue build from here.
+        </p>
+      </div>
       <div className="border-t border-[#D9D9D9]">
         <div className="pt-6 flex justify-between items-center">
           <h1 className="text-3xl">
@@ -141,16 +132,35 @@ export default function ProducerDashboard() {
             <FaListUl />
           </div>
         </div>
-        <div className="bg-gray-200 px-10 py-5">
+        <div className="bg-gray-200 px-10 py-5 mb-20 rounded-lg">
           <h1 className="text-3xl font-manrope font-medium mb-9">
             Your Current Product Evaluations
           </h1>
-          <div className="gap-20">
-            <button>In Progress {/* how many? */}</button>
-            <button>Completed {/* how many? */}</button>
-          </div>
+          <button>In Progress {/* how many? */}</button>
+          <button className="ml-20">Completed {/* how many? */}</button>
+          <p className="my-20 text-center text-base font-manrope font-medium">
+            Please note: you will see more activities as you fill out the
+            product intake form.
+            <br /> You can find the form both on the left menu (Evaluations) or
+            on the right top corner ("START PRODUCT INTAKE" button).
+          </p>
         </div>
-        <div></div>
+        <div className="bg-gray-200 px-10 py-5 rounded-lg">
+          <h1 className="text-3xl font-manrope font-medium mb-4">
+            Your Products
+          </h1>
+          <p className="text-base font-manrope font-medium mb-9">
+            Here is a list of products you've specified in your sign-up form.
+            Some are ready for evaluation, while others will be accepted later.
+            Join the waitlist to be notified when the Product Intake form is
+            available.
+          </p>
+          <button>Product Type {/* how many? */}</button>
+          <button className="ml-20">Status {/* how many? */}</button>
+          <p className="my-20 text-center text-base font-manrope font-medium">
+            Your filled out product applications will show up here.
+          </p>
+        </div>
         <div className="mt-56">
           <p>{user ? user.email : null}</p>
           {displayApprovalStatus()}
