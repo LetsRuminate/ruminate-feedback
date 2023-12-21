@@ -16,6 +16,7 @@ function App() {
     "/product-intake-3",
     "/product-intake-4",
     "/product-completed",
+    "/producer-notification",
     "/producer-pricing",
     "/producer-message",
     "/producer-help",
@@ -40,8 +41,20 @@ function App() {
   const hideFooter = noFooter.includes(location.pathname);
 
   const newNav = [
+    // Login page
+    "/login",
+    // Registration main landing page
+    "/registration",
+    // Producer Registration List
+    "/producer-default",
+    "/producer-page-1",
+    "/producer-page-2",
+    "/producer-page-3",
+    "/producer-page-4",
+    "/producer-completed",
     // Producer pages list
     "/producer-approved",
+    "/producer-notification",
     "/producer",
     "/product-default",
     "/product-intake-1",
@@ -53,6 +66,13 @@ function App() {
     "/producer-message",
     "/producer-help",
     "/producer-profile",
+    // Evaluator Registration List
+    "/evaluator-default",
+    "/evaluator-page-1",
+    "/evaluator-page-2",
+    "/evaluator-page-3",
+    "/evaluator-page-4",
+    "/evaluator-completed",
     // Evaluator pages list
     "/evaluator",
     "/evaluation-default",

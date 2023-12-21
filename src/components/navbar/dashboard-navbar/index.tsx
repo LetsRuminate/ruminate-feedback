@@ -1,5 +1,5 @@
 // PLEASE NOTE
-// I am going through re-organizing the codes for the navigation here.
+// I wanted to utilize this navigation component, but I could not figure out how.
 
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";

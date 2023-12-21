@@ -14,16 +14,6 @@ const userProfile = {
   userRole: "User Role",
 };
 
-async function signOutUser() {
-  try {
-    await signOut(auth);
-  } catch (err) {
-    // XXX
-    // Handle better
-    console.error(err);
-  }
-}
-
 export default function ProducerNav() {
   // Dashboard button CSS
   const dashboardButton =
@@ -32,8 +22,23 @@ export default function ProducerNav() {
     "px-4 py-4 my-1 text-xl font-manrope font-bold w-full bg-[#BBB3B3] rounded-xl";
   // Producer Dashboard only
   const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate("/login");
+  };
+
+  async function signOutUser() {
+    try {
+      await signOut(auth);
+      handleNavigate();
+    } catch (err) {
+      // XXX
+      // Handle better
+      console.error(err);
+    }
+  }
 
   const [dashboard, setDashboard] = useState(false);
+  const [notification, setNotification] = useState(false);
   const [product, setProduct] = useState(false);
   const [pricing, setPricing] = useState(false);
 
@@ -46,6 +51,7 @@ export default function ProducerNav() {
     if (buttonType === "dashboard") {
       setDashboard(true);
       navigate("/producer");
+      setNotification(false);
       setProduct(false);
       setPricing(false);
       setMessage(false);
@@ -55,6 +61,16 @@ export default function ProducerNav() {
       setProduct(true);
       navigate("/product-default");
       setDashboard(false);
+      setNotification(false);
+      setPricing(false);
+      setMessage(false);
+      setHelp(false);
+      setProfile(false);
+    } else if (buttonType === "notification") {
+      setNotification(true);
+      navigate("/producer-notification");
+      setDashboard(false);
+      setProduct(false);
       setPricing(false);
       setMessage(false);
       setHelp(false);
@@ -64,6 +80,7 @@ export default function ProducerNav() {
       navigate("/producer-pricing");
       setDashboard(false);
       setProduct(false);
+      setNotification(false);
       setMessage(false);
       setHelp(false);
       setProfile(false);
@@ -72,6 +89,7 @@ export default function ProducerNav() {
       navigate("/producer-message");
       setDashboard(false);
       setProduct(false);
+      setNotification(false);
       setPricing(false);
       setMessage(false);
       setHelp(false);
@@ -81,6 +99,7 @@ export default function ProducerNav() {
       navigate("/producer-help");
       setDashboard(false);
       setProduct(false);
+      setNotification(false);
       setPricing(false);
       setMessage(false);
       setProfile(false);
@@ -89,6 +108,7 @@ export default function ProducerNav() {
       navigate("/producer-profile");
       setDashboard(false);
       setProduct(false);
+      setNotification(false);
       setPricing(false);
       setMessage(false);
       setHelp(false);
@@ -115,6 +135,11 @@ export default function ProducerNav() {
         <div className={product ? dashboardButtonActive : dashboardButton}>
           <button type="button" onClick={() => clicked("product")}>
             <p>Evaluations</p>
+          </button>
+        </div>
+        <div className={notification ? dashboardButtonActive : dashboardButton}>
+          <button type="button" onClick={() => clicked("notification")}>
+            <p>Notification</p>
           </button>
         </div>
         <div className={pricing ? dashboardButtonActive : dashboardButton}>
