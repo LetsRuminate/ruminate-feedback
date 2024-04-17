@@ -15,7 +15,7 @@ The application will have desktop and mobile support.<br/>
 
 ### Development Teams
 
-More information about the Development teams aer available here:
+More information about the Development teams are available here:
 
 The dev team for [Phase 4](/docs/phase4devteam.md)
 <br>
