@@ -26,3 +26,45 @@ Now run the following to have the project running locally on `http://localhost:5
 npm run build
 npm run dev
 ```
+
+### Firebase emulator setup 
+
+Download firebase cli and check your version
+More information about the Firebase CLI [here](https://firebase.google.com/docs/cli?_gl=1*1qvu5fs*_up*MQ..*_ga*MTU0NjM0MTQwMS4xNzEzMzYzNzAx*_ga_CW55HF8NVT*MTcxMzM2MzcwMC4xLjAuMTcxMzM2MzcwMC4wLjAuMA..#macos)
+
+```
+npm install -g firebase-tools
+
+firebase --version
+```
+Login to your firebase account set up on the Ruminate project using
+
+```
+firebase login
+```
+
+Then set up firebase to use the Ruminate project
+
+```
+firebase use ruminate-feedback
+```
+<!-- unsure if this step is needed  -->
+And initialise firebase setup with 
+```
+firebase init
+```
+You will get several options during this step, pick the options for `Firestore` and `Emulators`.
+
+<b> NOTE: Make sure to NOT override the existing firestore rules and indexes. </b>
+
+Once initialised, you will need to pick the emulators you want to install and finish your set up.
+
+
+#### To run your firebase emulators
+
+```
+firebase emulators:start --only firestore,storage,auth
+```
+
+you can access them at `http://127.0.0.1:4000`
+
