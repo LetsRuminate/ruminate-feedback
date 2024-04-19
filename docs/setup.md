@@ -53,9 +53,10 @@ And initialise firebase setup with
 ```
 firebase init
 ```
-You will get several options during this step, pick the options for `Firestore` and `Emulators`.
+<!-- Need to double check if Storage and emulator init is required to set up emulators -->
+You will get several options during this step, pick the options for `Firestore` , `Storage` and `Emulators`.
 
-<b> NOTE: Make sure to NOT override the existing firestore rules and indexes. </b>
+<b> NOTE: Make sure to NOT override the existing firestore and storage rules and indexes. </b>
 
 Once initialised, you will need to pick the emulators you want to install and finish your set up.
 
