@@ -23,7 +23,6 @@ VITE_MEASUREMENT_ID="some value"
 
 Now run the following to have the project running locally on `http://localhost:5173/`
 ```
-npm run build
 npm run dev
 ```
 
@@ -68,4 +67,5 @@ firebase emulators:start --only firestore,storage,auth
 ```
 
 you can access them at `http://127.0.0.1:4000`
+
 
