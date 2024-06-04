@@ -26,7 +26,7 @@ export default function RegistrationNavbar() {
           </Link>
         </div>
       </div>
-      <nav className="bg-[#0F7B41] w-full h-20 py-8 px-14 flex justify-between items-center relative">
+      <nav className="bg-[#000000] w-full h-20 py-8 px-14 flex justify-between items-center relative">
         <Link to="/">
           <img alt="Feedback logo" src={BrandLogo} className="shrink-0" />
         </Link>
