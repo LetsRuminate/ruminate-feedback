@@ -10,7 +10,7 @@ import { FaInstagram } from "react-icons/fa";
 
 export default function Footer() {
   return (
-    <div className="bg-[#0F7B41] border-t-[24px] border-black pt-16 pb-14 -mt-4 relative z-50 px-14">
+    <div className="bg-[#000000] border-t-[24px] border-black pt-16 pb-14 -mt-4 relative z-50 px-14">
       <label className="text-white text-5xl font-anton font-normal">
         Join Our Newsletter
       </label>
