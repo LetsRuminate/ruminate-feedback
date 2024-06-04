@@ -7,30 +7,13 @@ export default function NavBar() {
   return (
     <>
       <div className="bg-black w-full px-[73px] pt-2 pb-10">
-        <div className="flex gap-2 float-right items-center">
-          <p className="text-white text-xl font-manrope font-normal">
-            Already have an account?
-          </p>
-          <Link to="/login">
-            <button
-              className={`text-xl font-manrope font-normal ${
-                hover
-                  ? "bg-white px-2 py-1 rounded-lg text-black"
-                  : "text-white"
-              }`}
-              onMouseEnter={() => setHover(true)}
-              onMouseLeave={() => setHover(false)}
-            >
-              Login
-            </button>
-          </Link>
-        </div>
+        
       </div>
-      <nav className="bg-[#0F7B41] w-full h-20 py-8 px-14 flex justify-between items-center relative">
+      <nav className="bg-[#000000] w-full h-20 py-8 px-14 flex justify-between items-center relative">
         <Link to="/">
           <img alt="Feedback logo" src={BrandLogo} className="shrink-0" />
         </Link>
-        <div className="flex items-center gap-14">
+        <div className="flex items-right gap-10 ml-auto">
           <Link to="/about-us">
             <button className="text-white text-xl font-manrope font-normal">
               About us
@@ -47,7 +30,15 @@ export default function NavBar() {
             </button>
           </Link>
         </div>
-        <button className="text-[#0F7B41] text-xl shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
+        
+        <div className="flex ml-auto mr-7">   
+        <Link to="/login">
+            <button className="text-white text-xl font-manrope font-normal">
+              Login
+            </button>
+          </Link>
+        </div>
+        <button className="text-[#000000] text-xl shrink-0 w-48 h-11 rounded-2xl bg-white text-center font-manrope font-bold">
           <Link to="/registration">GET STARTED</Link>
         </button>
       </nav>
