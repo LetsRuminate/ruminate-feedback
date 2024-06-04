@@ -8,3 +8,83 @@
 :root {
   @apply max-w-[1440px] mx-auto;
 }
+
+@layer base {
+  @font-face {
+    font-family: 'Helvetica Neue LT STD 97 Black Condensed';
+    src: url(./fonts/helvetica-neue/HELVETICA-NEUE-LT-STD-97-BLACK-CONDENSED.OTF) 
+    format('opentype');
+  }
+}
+
+.header1 {
+  font-family: "Helvetica Neue LT STD 97 Black Condensed", Arial, sans-serif;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Helvetica Neue LT STD 93 Black Extended';
+    src: url(./fonts/helvetica-neue/HELVETICA-NEUE-LT-STD-93-BLACK-EXTENDED.OTF) 
+    format('opentype');
+  }
+}
+
+.header2 {
+  font-family: "Helvetica Neue LT STD 93 Black Extended", Arial, sans-serif;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Helvetica Neue LT STD 97 Black Condensed Oblique';
+    src: url(./fonts/helvetica-neue/HELVETICA-NEUE-LT-STD-97-BLACK-CONDENSED-OBLIQUE.OTF) 
+    format('opentype');
+  }
+}
+
+.header3 {
+  font-family: "Helvetica Neue LT STD 97 Black Condensed Oblique", Arial, sans-serif;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Manrope Semibold';
+    src: url(./fonts/manrope/static/Manrope-SemiBold.ttf) 
+    format('truetype');
+  }
+}
+
+.manropesemibold {
+  font-family: "Manrope Semibold", Arial, sans-serif;
+}
+
+.boxshadow {
+  box-shadow: -20px 20px #000000;
+}
+
+.buttonshadow {
+  box-shadow: -7px 7px #000000;
+  position: relative;
+}
+
+.textshadow {
+  text-shadow: -15px 15px #000000;
+}
+
+.buttonshadow:hover {
+  content: '';
+  box-shadow: -15px 15px #000000;
+  position: relative;
+  transform: translate(8px, -8px);
+  transition: all .3s ease-in-out 0s;
+  }
+
+.horizontal-scroll-wrapper {
+  width: 1440px;
+  height: 600px;
+  overflow-x: scroll;
+  overlfow-y: visible;
+  }
+
+
+
+
