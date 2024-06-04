@@ -5,17 +5,22 @@ export default function Plans() {
     <>
       {/* ========================================================================================= */}
       {/* the below is our plans section */}
-      <section className="bg-[#4670D9] -skew-y-3 -mt-20 border-t-[24px] border-black pt-48 pb-48">
+      <section className="bg-[#0E6BA8] -skew-y-3 -mt-20 border-t-[24px] border-black pt-20 pb-48">
         <section className="skew-y-3">
-          <h1 className="text-white text-[140px] font-anton font-normal text-right pr-48 relative z-[11]">
-            Our Plans
+          <div className="ml-[410px]">
+          <h1 className="text-white text-[140px] header1 pr-10 relative z-[11] inline">
+            OUR 
           </h1>
+          <h1 className="text-white text-[140px] header2 relative z-[11] inline tracking-wide">
+            PLANS
+          </h1>
+          </div>
           <div className="md:flex px-32 md:gap-9">
-            <div className="bg-white py-8 px-12 mt-10 border-black border">
+            <div className="bg-white py-8 px-12 mt-10 border-black border rounded-3xl boxshadow">
               <header className="pb-6 border-b border-black">
                 <h3 className="text-2xl font-manrope font-bold">Explore</h3>
                 <h2 className="text-5xl font-manrope font-bold pt-2">$99</h2>
-                <p className="text-sm font-manrope font-medium">per package</p>
+                <p className="text-sm font-manrope font-medium pt-2">Per evaluation</p>
               </header>
               <main className="w-64">
                 {/* for the below title, check with Designer Sally because it does not look bold enough */}
@@ -40,36 +45,36 @@ export default function Plans() {
                   <div className="flex items-start gap-2">
                     <FaCheckCircle className="text-xl" />
                     <p className="text-sm font-manrope font-normal">
-                      Ability to exclude 1 U.S. region for evaluation / shipment
+                    Feedback from 3 seasoned food professionals
                     </p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <FaCheckCircle />
+                  <FaCheckCircle className="text-[26px] -mt-[17px]"/>
                   <p className="text-sm font-manrope font-normal">
-                    Access to Feedback library of tools
+                  Ability to exclude one U.S. region for evaluation/shipment
                   </p>
                 </div>
               </main>
               <footer className="text-center">
-                <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 w-full rounded-3xl mt-9">
+                <button className="buttonshadow text-base text-[#000000] font-manrope font-semibold bg-[#F9BCAC] py-3 w-full rounded-3xl mt-9">
                   Learn more
                 </button>
               </footer>
             </div>
             {/* second box */}
             <div className="">
-              <div className="bg-black py-2 text-center">
+              <div className="bg-black py-2 text-center boxshadow">
                 <p className="text-white text-base font-manrope font-medium">
                   Most Popular
                 </p>
               </div>
-              <div className="bg-white py-8 px-12 border-black border-4">
+              <div className="bg-white py-[29px] px-12 border-black border-4 rounded-b-3xl boxshadow">
                 <header className="pb-6 border-b border-black">
                   <h3 className="text-2xl font-manrope font-bold">Consider</h3>
                   <h2 className="text-5xl font-manrope font-bold pt-2">$349</h2>
-                  <p className="text-sm font-manrope font-medium">
-                    per package
+                  <p className="text-sm font-manrope font-medium pt-2">
+                    Per evaluation
                   </p>
                 </header>
                 <main className="w-64">
@@ -78,38 +83,37 @@ export default function Plans() {
                     Everything in Explore, plus:
                   </h6>
                   <div className="flex items-start gap-2">
-                    <FaCheckCircle className="text-2xl" />
+                    <FaCheckCircle className="text-2xl -mt-[2px]" />
                     <p className="text-sm font-manrope font-normal">
                       Quick review summaries by the Feedback (admin) team
                     </p>
                   </div>
                   <div className="flex items-start gap-2 py-4">
-                    <FaCheckCircle className="text-3xl" />
+                    <FaCheckCircle className="text-[21px]" />
                     <p className="text-sm font-manrope font-normal">
-                      Additional evaluators ($58 charge for each evaluator, max
-                      is 2 evaluators)
+                      Feedback from 6 seasoned food professionals
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
-                    <FaCheckCircle />
+                    <FaCheckCircle className="text-[25px] -mt-[17px]"/>
                     <p className="text-sm font-manrope font-normal">
-                      6 products can be evaluated
+                      Ability to pay for additional evaluators, for a max of 8 total
                     </p>
                   </div>
                 </main>
                 <footer className="text-center">
-                  <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 w-full rounded-3xl mt-9">
+                  <button className="buttonshadow text-base text-[#000000] font-manrope font-semibold bg-[#F9BCAC] py-3 w-full rounded-3xl mt-14">
                     Learn more
                   </button>
                 </footer>
               </div>
             </div>
             {/* third box */}
-            <div className="bg-white py-8 px-12 mt-10 border-black border">
+            <div className="bg-white py-8 px-12 mt-10 border-black border rounded-3xl boxshadow">
               <header className="pb-6 border-b border-black">
                 <h3 className="text-2xl font-manrope font-bold">Examine</h3>
                 <h2 className="text-5xl font-manrope font-bold pt-2">$569</h2>
-                <p className="text-sm font-manrope font-medium">per package</p>
+                <p className="text-sm font-manrope font-medium pt-2">Per evaluation</p>
               </header>
               <main className="w-64">
                 {/* for the below title, check with Designer Sally because it does not look bold enough */}
@@ -117,27 +121,26 @@ export default function Plans() {
                   Everything in Consider, plus:
                 </h6>
                 <div className="flex items-start gap-2">
-                  <FaCheckCircle className="text-xl" />
+                  <FaCheckCircle className="text-[25px] -mt-[3px]" />
                   <p className="text-sm font-manrope font-normal">
-                    Ability to segment into one single region
+                    Add custom questions before the evaluation starts (max 5)
                   </p>
                 </div>
-                <div className="flex items-start gap-2 py-4">
-                  <FaCheckCircle className="text-3xl" />
+                <div className="flex items-start gap-2 py-[15px]">
+                  <FaCheckCircle className="text-[36px] -mt-2" />
                   <p className="text-sm font-manrope font-normal">
-                    Unlimited amount of 1 hour debriefing calls with the
-                    Feedback team
+                  Unlimited number of 1-hour debriefing calls with the Feedback team about your product
                   </p>
                 </div>
                 <div className="flex items-start gap-2">
-                  <FaCheckCircle className="text-2xl" />
+                  <FaCheckCircle className="text-[21px]" />
                   <p className="text-sm font-manrope font-normal">
-                    Add custom questions before the evaluation starts
+                  Ability to segment feedback into a single region
                   </p>
                 </div>
               </main>
               <footer className="text-center">
-                <button className="text-base text-[#F8FCFE] font-manrope font-semibold bg-[#023047] py-3 w-full rounded-3xl mt-4">
+                <button className="buttonshadow text-base text-[#000000] font-manrope font-semibold bg-[#F9BCAC] py-3 w-full rounded-3xl mt-[38px]">
                   Learn more
                 </button>
               </footer>
